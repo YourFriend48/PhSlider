@@ -26,7 +26,8 @@ Transform:
   m_LocalRotation: {x: 0.000000013077987, y: -0.00000017502538, z: 0.07571667, w: 0.9971294}
   m_LocalPosition: {x: -0.0018450785, y: 0.077221386, z: -3.2128078e-11}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 7357966432736843146}
   m_Father: {fileID: 8901784251651174649}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -522,6 +523,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4439665237720200650}
+  - component: {fileID: 386859161969583559}
   m_Layer: 0
   m_Name: AggressiveEnemy
   m_TagString: Untagged
@@ -542,10 +544,28 @@ Transform:
   m_Children:
   - {fileID: 6626266198151275201}
   - {fileID: 6317718523890864334}
-  - {fileID: 7357966432736843146}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &386859161969583559
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3951641141606494064}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: a0c2539e67fb77648ac2e80dfde44092, type: 3}
+  m_Controller: {fileID: 9100000, guid: 3a5b225bc5e57c8409f30a06b46b3754, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4117280677026501600
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,13 +590,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4117280677026501600}
-  m_LocalRotation: {x: -0, y: -0.99988365, z: -0, w: 0.015254943}
-  m_LocalPosition: {x: -0.0004, y: 1.6, z: 0.311}
+  m_LocalRotation: {x: 0.28554323, y: -0.8580908, z: 0.15350497, w: 0.39822295}
+  m_LocalPosition: {x: 0.189, y: 0.454, z: 0.205}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_Children: []
-  m_Father: {fileID: 4439665237720200650}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: -178.252, z: 0}
+  m_Father: {fileID: 2179050163053099024}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 29.397, y: -136.858, z: -24.97}
 --- !u!212 &2388655858353537935
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -915,7 +935,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6626266198151275201}
   m_Layer: 0
-  m_Name: Skelet
+  m_Name: Skelet.c
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
