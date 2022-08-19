@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
@@ -5,12 +6,15 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Animator), typeof(Rigidbody))]
 public class Landing : MonoBehaviour
 {
+    [SerializeField] private float _fallSpeed = 10f;
     [SerializeField] private Platform _platform;
     [SerializeField] private float _startingPositionY = 25f;
-    [SerializeField] private float _fallSpeed = 10f;
+    [SerializeField] private float _movementDelay = 1f;
 
     private bool _isLanded;
     private Rigidbody _rigidbody;
+
+    public event UnityAction ReadyToMove;
 
     private void Start()
     {
@@ -36,6 +40,18 @@ public class Landing : MonoBehaviour
         transform.position = new Vector3(platformCenter.x, _startingPositionY, platformCenter.z);
     }
 
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (_isLanded || collision.TryGetComponent(out Platform _) == false)
+        {
+            return;
+        }
+
+        _isLanded = true;
+
+        StartCoroutine(MovementDelay());
+    }
+
     private void Update()
     {
         if (_isLanded)
@@ -46,16 +62,9 @@ public class Landing : MonoBehaviour
         _rigidbody.velocity = Vector3.down * _fallSpeed;
     }
 
-    private void OnTriggerEnter(Collider collision)
+    private IEnumerator MovementDelay()
     {
-        if (_isLanded || collision.TryGetComponent(out Platform _) == false)
-        {
-            return;
-        }
-
-        _isLanded = true;
-        Landed?.Invoke();
+        yield return new WaitForSeconds(_movementDelay);
+        ReadyToMove?.Invoke();
     }
-
-    public event UnityAction Landed;
 }
