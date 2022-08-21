@@ -1,9 +1,8 @@
 using System.Collections;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(Animator), typeof(Rigidbody))]
+[RequireComponent(typeof(Rigidbody))]
 public class Landing : MonoBehaviour
 {
     [SerializeField] private float _fallSpeed = 10f;
@@ -20,23 +19,7 @@ public class Landing : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody>();
 
-        Vector3 platformCenter;
-
-        if (_platform.TryGetComponent(out Renderer platformRenderer))
-        {
-            platformCenter = platformRenderer.bounds.center;
-        }
-        else
-        {
-            var sumVector = new Vector3(0f, 0f, 0f);
-
-            sumVector = _platform.transform.Cast<Transform>().Aggregate(
-                sumVector,
-                (current, child) => current + child.position);
-
-            platformCenter = sumVector / _platform.transform.childCount;
-        }
-
+        Vector3 platformCenter = _platform.GetComponent<Collider>().bounds.center;
         transform.position = new Vector3(platformCenter.x, _startingPositionY, platformCenter.z);
     }
 
