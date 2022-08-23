@@ -1,16 +1,18 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(Landing), typeof(PlayerAnimator))]
+[RequireComponent(typeof(Player), typeof(PlayerAnimator))]
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private float _speed = 13f;
+    [SerializeField] private float _delayAfterLanding = 1f;
+    [SerializeField] private float _speed = 18f;
 
     private bool _canMove;
     private float _currentSpeed;
-
-    private Landing _landing;
     private Platform _lastAffectedPlatform;
+
+    private Player _player;
     private PlayerAnimator _playerAnimator;
 
     public void MoveBack()
@@ -35,13 +37,13 @@ public class Movement : MonoBehaviour
 
     private void Awake()
     {
-        _landing = GetComponent<Landing>();
+        _player = GetComponent<Player>();
         _playerAnimator = GetComponent<PlayerAnimator>();
     }
 
     private void OnEnable()
     {
-        _landing.ReadyToMove += Landing_OnReadyToMove;
+        _player.Landed += Landing_OnLanded;
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -60,6 +62,8 @@ public class Movement : MonoBehaviour
         _playerAnimator.RunFlightToIdle();
 
         PlaceInPlatformCenter();
+
+        _canMove = true;
     }
 
     private void Update()
@@ -69,7 +73,13 @@ public class Movement : MonoBehaviour
 
     private void OnDisable()
     {
-        _landing.ReadyToMove -= Landing_OnReadyToMove;
+        _player.Landed -= Landing_OnLanded;
+    }
+
+    private IEnumerator EnableMovement()
+    {
+        yield return new WaitForSeconds(_delayAfterLanding);
+        _canMove = true;
     }
 
     private bool IsWall()
@@ -80,14 +90,14 @@ public class Movement : MonoBehaviour
         return Physics.Raycast(ray, maxDistance);
     }
 
-    private void Landing_OnReadyToMove()
+    private void Landing_OnLanded()
     {
-        _canMove = true;
+        StartCoroutine(EnableMovement());
     }
 
     private void Move(float degrees)
     {
-        if (_canMove == false || _playerAnimator.IsIdle() == false)
+        if (_canMove == false)
         {
             return;
         }
@@ -98,6 +108,8 @@ public class Movement : MonoBehaviour
         {
             return;
         }
+
+        _canMove = false;
 
         _playerAnimator.RunIdleToFlight();
         _currentSpeed = _speed;

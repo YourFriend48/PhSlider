@@ -1,19 +1,14 @@
-using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Landing : MonoBehaviour
 {
-    [SerializeField] private float _fallSpeed = 10f;
+    [SerializeField] private float _startingPositionY = 23.9f;
+    [SerializeField] private float _fallSpeed = 16f;
     [SerializeField] private Platform _platform;
-    [SerializeField] private float _startingPositionY = 25f;
-    [SerializeField] private float _movementDelay = 1f;
 
     private bool _isLanded;
     private Rigidbody _rigidbody;
-
-    public event UnityAction ReadyToMove;
 
     private void Start()
     {
@@ -31,8 +26,6 @@ public class Landing : MonoBehaviour
         }
 
         _isLanded = true;
-
-        StartCoroutine(MovementDelay());
     }
 
     private void Update()
@@ -43,11 +36,5 @@ public class Landing : MonoBehaviour
         }
 
         _rigidbody.velocity = Vector3.down * _fallSpeed;
-    }
-
-    private IEnumerator MovementDelay()
-    {
-        yield return new WaitForSeconds(_movementDelay);
-        ReadyToMove?.Invoke();
     }
 }
