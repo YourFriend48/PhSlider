@@ -5,8 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(Player), typeof(PlayerAnimator))]
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private float _delayAfterLanding = 1f;
-    [SerializeField] private float _speed = 18f;
+    [SerializeField] private float _delayAfterLanding = 1.43f;
+    [SerializeField] private float _speed = 17f;
 
     private bool _isMovementEnabled;
     private Platform _nextPlatform;

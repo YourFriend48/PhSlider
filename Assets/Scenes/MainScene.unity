@@ -7696,7 +7696,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!65 &928349170
 BoxCollider:
@@ -7709,8 +7709,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.490014, y: 1.85, z: 0.7}
-  m_Center: {x: 0.0064611286, y: 0.91502476, z: 0.14514643}
+  m_Size: {x: 0.490014, y: 1.85, z: 0.75}
+  m_Center: {x: 0, y: 0.91502476, z: 0.14514643}
 --- !u!114 &928349171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7738,8 +7738,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 718eaf39e4351144294b0d911f2fa0fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _delayAfterLanding: 1
-  _speed: 18
+  _delayAfterLanding: 1.43
+  _speed: 17
 --- !u!114 &928349173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14574,6 +14574,14 @@ PrefabInstance:
     - target: {fileID: 994089525320286804, guid: 3d7d869d4f709544e836b4a4750344f8, type: 3}
       propertyPath: m_Name
       value: Platform
+      objectReference: {fileID: 0}
+    - target: {fileID: 2296724421278241002, guid: 3d7d869d4f709544e836b4a4750344f8, type: 3}
+      propertyPath: _addToSizeY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2296724421278241002, guid: 3d7d869d4f709544e836b4a4750344f8, type: 3}
+      propertyPath: _sizeChangeSpeed
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2799564159074066013, guid: 3d7d869d4f709544e836b4a4750344f8, type: 3}
       propertyPath: m_Materials.Array.data[0]

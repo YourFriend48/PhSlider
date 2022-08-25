@@ -57,7 +57,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: IdleToFlight
-  m_Speed: 7
+  m_Speed: 10
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -2185817845385269243}
@@ -166,7 +166,7 @@ AnimatorStateTransition:
   m_TransitionOffset: 0
   m_ExitTime: 0
   m_HasExitTime: 0
-  m_HasFixedDuration: 1
+  m_HasFixedDuration: 0
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
@@ -292,7 +292,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: FlightToIdle
-  m_Speed: 7
+  m_Speed: 4
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 7142861362147655536}

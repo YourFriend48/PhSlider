@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ede1c6f2148804baf4de0c04561cfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _addToSizeY: 0.5
+  _sizeChangeSpeed: 1.7
 --- !u!65 &7057064614987009022
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -245,7 +247,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2799564159074066014}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -262,3 +264,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89468e6b3eb88644fb69bb1a6e095e0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _activatedMaterial: {fileID: 2100000, guid: d8fe39fe22879b54baa4c109e03ebe7e, type: 2}
