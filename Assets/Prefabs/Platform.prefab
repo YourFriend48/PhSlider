@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _addToSizeY: 0.5
-  _sizeChangeSpeed: 1.7
+  _sizeChangeSpeed: 1.8
 --- !u!65 &7057064614987009022
 BoxCollider:
   m_ObjectHideFlags: 0

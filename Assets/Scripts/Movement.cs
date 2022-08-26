@@ -1,18 +1,21 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Player), typeof(PlayerAnimator))]
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private float _delayAfterLanding = 1.43f;
-    [SerializeField] private float _speed = 17f;
+    [SerializeField] private float _delayAfterLanding = 1.35f;
+    [SerializeField] private float _speed = 19f;
 
     private bool _isMovementEnabled;
     private Platform _nextPlatform;
     private Vector3 _nextPosition;
     private Player _player;
     private PlayerAnimator _playerAnimator;
+
+    public event UnityAction MovementEnabled;
 
     private bool CanMove => _nextPosition != default && transform.position != _nextPosition;
 
@@ -72,6 +75,7 @@ public class Movement : MonoBehaviour
     {
         yield return new WaitForSeconds(_delayAfterLanding);
         _isMovementEnabled = true;
+        MovementEnabled?.Invoke();
     }
 
     private void Landing_OnLanded()
