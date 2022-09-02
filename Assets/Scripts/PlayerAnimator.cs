@@ -10,11 +10,12 @@ public class PlayerAnimator : MonoBehaviour
 
     public void RunFlightToIdle()
     {
-        _animator.SetTrigger(_flightToIdleHash);
+        _animator.SetBool(_flightToIdleHash, true);
     }
 
     public void RunIdleToFlight()
     {
+        _animator.SetBool(_flightToIdleHash, false);
         _animator.SetTrigger(_idleToFlightHash);
     }
 

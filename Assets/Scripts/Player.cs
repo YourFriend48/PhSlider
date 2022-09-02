@@ -26,11 +26,7 @@ public class Player : MonoBehaviour
         if (_isLanded == false)
         {
             _isLanded = true;
-
-            _rigidbody.constraints = RigidbodyConstraints.FreezePositionY
-                                     | RigidbodyConstraints.FreezeRotationX
-                                     | RigidbodyConstraints.FreezeRotationY
-                                     | RigidbodyConstraints.FreezeRotationZ;
+            _rigidbody.isKinematic = true;
 
             Landed?.Invoke();
             return;
