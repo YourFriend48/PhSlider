@@ -8168,7 +8168,7 @@ MonoBehaviour:
   - {fileID: 1924744160}
   - {fileID: 2115935526}
   - {fileID: 1640334177}
-  _enemyPrefab: {fileID: 3951641141606494064, guid: 404cd0620cf470042bccb190deaff1fb, type: 3}
+  _enemyPrefab: {fileID: 5412938535433232978, guid: 404cd0620cf470042bccb190deaff1fb, type: 3}
   _enemyPlatform: {fileID: 2100000, guid: 16c1ef339fc8b494f8219ef0059ce1ac, type: 2}
 --- !u!1001 &964734633
 PrefabInstance:
@@ -9877,13 +9877,21 @@ PrefabInstance:
       value: -168.096
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 5d8592a3d965f2c4c857910aeeca603c, type: 3}
+      propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 5d8592a3d965f2c4c857910aeeca603c, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 5d8592a3d965f2c4c857910aeeca603c, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0bb0e5e38d0ba0a4cb8a316945a8d442, type: 2}
+      objectReference: {fileID: 2100000, guid: 09865510ff636634181bdf6adfcbeba9, type: 2}
     - target: {fileID: -7511558181221131132, guid: 5d8592a3d965f2c4c857910aeeca603c, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: 0bb0e5e38d0ba0a4cb8a316945a8d442, type: 2}
+      objectReference: {fileID: 2100000, guid: 09865510ff636634181bdf6adfcbeba9, type: 2}
     - target: {fileID: -7511558181221131132, guid: 5d8592a3d965f2c4c857910aeeca603c, type: 3}
       propertyPath: m_Materials.Array.data[2]
       value: 
