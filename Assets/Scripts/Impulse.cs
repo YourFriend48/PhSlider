@@ -1,0 +1,25 @@
+using Cinemachine;
+using UnityEngine;
+
+[RequireComponent(typeof(CinemachineImpulseSource))]
+public class Impulse : MonoBehaviour
+{
+    private CinemachineImpulseSource _cinemachineImpulse;
+    private bool _isActivated;
+
+    private void Start()
+    {
+        _cinemachineImpulse = GetComponent<CinemachineImpulseSource>();
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (_isActivated || collision.TryGetComponent(out Player _) == false)
+        {
+            return;
+        }
+
+        _isActivated = true;
+        _cinemachineImpulse.GenerateImpulse();
+    }
+}
