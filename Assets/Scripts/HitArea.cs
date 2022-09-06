@@ -3,16 +3,10 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class HitArea : MonoBehaviour
 {
-    [SerializeField] private RoofDetector _roofDetector;
     [SerializeField] private Transform _positioningObject;
 
     private Vector3 _currentEulerAngles;
     private Rigidbody _rigidbody;
-
-    private void OnEnable()
-    {
-        _roofDetector.Faced += RoofDetectorOnFaced;
-    }
 
     private void Start()
     {
@@ -25,15 +19,19 @@ public class HitArea : MonoBehaviour
         {
             _rigidbody.isKinematic = false;
         }
-    }
 
-    private void OnDisable()
-    {
-        _roofDetector.Faced -= RoofDetectorOnFaced;
-    }
+        Vector3 origin = _positioningObject.position;
+        bool raycast = Physics.Raycast(
+            origin,
+            _positioningObject.TransformDirection(Vector3.forward),
+            out RaycastHit raycastHit,
+            Mathf.Infinity);
 
-    private void RoofDetectorOnFaced()
-    {
+        if (raycast == false || raycastHit.collider.TryGetComponent(out Roof _) == false)
+        {
+            return;
+        }
+
         _rigidbody.isKinematic = true;
         _currentEulerAngles = _positioningObject.rotation.eulerAngles;
     }

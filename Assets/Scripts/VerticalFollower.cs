@@ -3,7 +3,7 @@ using UnityEngine;
 public class VerticalFollower : MonoBehaviour
 {
     [SerializeField] private Transform _target;
-    [SerializeField] private float _speed = 6f;
+    [SerializeField] private float _speed = 4.5f;
 
     private void Update()
     {

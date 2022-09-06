@@ -721,6 +721,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InactiveRoof (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 2682773887274132057, guid: f00a7069f42d8bd499212025fa5c83ae, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2682773887274132063, guid: f00a7069f42d8bd499212025fa5c83ae, type: 3}
       propertyPath: m_Size.x
       value: 1
@@ -1805,7 +1809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _target: {fileID: 928349168}
-  _speed: 5
+  _speed: 4.5
 --- !u!1 &296327294
 GameObject:
   m_ObjectHideFlags: 0
@@ -3111,7 +3115,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11c0a4bd131432e4aa5bd788f0c0a0ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _roofDetector: {fileID: 928349177}
   _positioningObject: {fileID: 928349168}
 --- !u!54 &417580486
 Rigidbody:
@@ -6988,6 +6991,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InactiveRoof (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2682773887274132057, guid: f00a7069f42d8bd499212025fa5c83ae, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f00a7069f42d8bd499212025fa5c83ae, type: 3}
 --- !u!4 &862134257 stripped
@@ -7558,7 +7565,7 @@ GameObject:
   - component: {fileID: 928349174}
   - component: {fileID: 928349175}
   - component: {fileID: 928349176}
-  - component: {fileID: 928349177}
+  - component: {fileID: 928349178}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -7629,7 +7636,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.7, y: 1.8499999, z: 0.7}
+  m_Size: {x: 0.7, y: 2, z: 0.7}
   m_Center: {x: 4.6566007e-17, y: 0.91502476, z: 0.012348205}
 --- !u!114 &928349171
 MonoBehaviour:
@@ -7646,6 +7653,8 @@ MonoBehaviour:
   _startingPositionY: 23.9
   _fallSpeed: 16
   _platform: {fileID: 318411087}
+  _landingMark: {fileID: 4352543881133978835, guid: 5aca212647b99a44bb6a833bd112b54f, type: 3}
+  _destroyMarkAfter: 1.35
 --- !u!114 &928349172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7708,7 +7717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e98c9891527cade48a8f2bdcd831aa37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &928349177
+--- !u!114 &928349178
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7717,10 +7726,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 928349166}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e49ea91b673446c41932c879a3fcf538, type: 3}
+  m_Script: {fileID: 11500000, guid: 04297cbc3d3032241a8fd4c7aee74847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _positionIncrease: {x: 0, y: 0.2, z: 0}
+  _hitMark: {fileID: 8608064054317838318, guid: d3f62aacb9b8ac04e8126170a3eeed39, type: 3}
+  _minPassedPlatforms: 4
+  _shiftPosition: {x: 0, y: 0.308, z: 0}
+  _roofInspectionDistance: 2
 --- !u!1001 &940728093
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7746,7 +7758,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2682773887274132056, guid: f00a7069f42d8bd499212025fa5c83ae, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.0000002
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2682773887274132056, guid: f00a7069f42d8bd499212025fa5c83ae, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7787,6 +7799,10 @@ PrefabInstance:
     - target: {fileID: 2682773887274132057, guid: f00a7069f42d8bd499212025fa5c83ae, type: 3}
       propertyPath: m_Name
       value: InactiveRoof (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2682773887274132057, guid: f00a7069f42d8bd499212025fa5c83ae, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f00a7069f42d8bd499212025fa5c83ae, type: 3}
@@ -9328,7 +9344,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11c0a4bd131432e4aa5bd788f0c0a0ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _roofDetector: {fileID: 928349177}
   _positioningObject: {fileID: 928349168}
 --- !u!54 &1115343721
 Rigidbody:
@@ -10619,6 +10634,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InactiveRoof (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2682773887274132057, guid: f00a7069f42d8bd499212025fa5c83ae, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f00a7069f42d8bd499212025fa5c83ae, type: 3}
 --- !u!4 &1328831743 stripped
@@ -11542,6 +11561,10 @@ PrefabInstance:
     - target: {fileID: 2682773887274132057, guid: f00a7069f42d8bd499212025fa5c83ae, type: 3}
       propertyPath: m_Name
       value: InactiveRoof (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2682773887274132057, guid: f00a7069f42d8bd499212025fa5c83ae, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f00a7069f42d8bd499212025fa5c83ae, type: 3}
@@ -13151,7 +13174,7 @@ MonoBehaviour:
   m_ImpulseDefinition:
     m_ImpulseChannel: 1
     m_RawSignal: {fileID: 11400000, guid: 31b6658caa5cc11498dee916a3907947, type: 2}
-    m_AmplitudeGain: 0.8
+    m_AmplitudeGain: 0.6
     m_FrequencyGain: 1
     m_RepeatMode: 1
     m_Randomize: 0
@@ -13188,7 +13211,7 @@ MonoBehaviour:
         m_RotationOrder: 4
       m_AttackTime: 0
       m_SustainTime: 0
-      m_DecayTime: 0.2
+      m_DecayTime: 0.15
       m_ScaleWithImpact: 0
       m_HoldForever: 0
     m_ImpactRadius: 100
@@ -13924,6 +13947,10 @@ PrefabInstance:
     - target: {fileID: 2682773887274132057, guid: f00a7069f42d8bd499212025fa5c83ae, type: 3}
       propertyPath: m_Name
       value: InactiveRoof (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2682773887274132057, guid: f00a7069f42d8bd499212025fa5c83ae, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f00a7069f42d8bd499212025fa5c83ae, type: 3}
@@ -16842,6 +16869,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InactiveRoof (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 2682773887274132057, guid: f00a7069f42d8bd499212025fa5c83ae, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f00a7069f42d8bd499212025fa5c83ae, type: 3}
 --- !u!4 &2143825274 stripped
@@ -16915,6 +16946,10 @@ PrefabInstance:
     - target: {fileID: 2682773887274132057, guid: f00a7069f42d8bd499212025fa5c83ae, type: 3}
       propertyPath: m_Name
       value: InactiveRoof
+      objectReference: {fileID: 0}
+    - target: {fileID: 2682773887274132057, guid: f00a7069f42d8bd499212025fa5c83ae, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f00a7069f42d8bd499212025fa5c83ae, type: 3}

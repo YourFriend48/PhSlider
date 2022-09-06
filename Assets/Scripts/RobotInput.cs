@@ -48,5 +48,19 @@ public class RobotInput : MonoBehaviour
         _movement.MoveBack();
         await Task.Delay(980);
         _movement.MoveRight();
+        await Task.Delay(560);
+        _movement.MoveBack();
+        await Task.Delay(390);
+        _movement.MoveLeft();
+        await Task.Delay(420);
+        _movement.MoveForward();
+        await Task.Delay(300);
+        _movement.MoveRight();
+        await Task.Delay(380);
+        _movement.MoveForward();
+        await Task.Delay(510);
+        _movement.MoveLeft();
+        await Task.Delay(380);
+        _movement.MoveForward();
     }
 }
