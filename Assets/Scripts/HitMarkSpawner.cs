@@ -6,7 +6,7 @@ public class HitMarkSpawner : MonoBehaviour
     [SerializeField] private GameObject _hitMark;
     [SerializeField] private int _minPassedPlatforms = 4;
     [SerializeField] private Vector3 _shiftPosition = new Vector3(0, 0.308f, 0);
-    [SerializeField] private float _roofInspectionDistance = 2f;
+    [SerializeField] private float _roofInspectionDistance = 1f;
 
     private readonly List<Vector3> _markSpawnPoints = new List<Vector3>();
 
@@ -14,9 +14,8 @@ public class HitMarkSpawner : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector3 origin = transform.position;
         bool raycast = Physics.Raycast(
-            origin,
+            transform.position,
             transform.TransformDirection(Vector3.forward),
             out RaycastHit raycastHit,
             _roofInspectionDistance);

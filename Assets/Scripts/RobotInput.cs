@@ -25,6 +25,7 @@ public class RobotInput : MonoBehaviour
     {
         await PassHouse1();
         await PassHouse2();
+        await PassHouse3();
     }
 
     private async Task PassHouse1()
@@ -61,6 +62,48 @@ public class RobotInput : MonoBehaviour
         await Task.Delay(510);
         _movement.MoveLeft();
         await Task.Delay(380);
+        _movement.MoveForward();
+        await Task.Delay(2450);
+    }
+
+    private async Task PassHouse3()
+    {
+        _movement.MoveLeft();
+        await Task.Delay(300);
+        _movement.MoveRight();
+        await Task.Delay(580);
+        _movement.MoveForward();
+        await Task.Delay(1500);
+        _movement.MoveLeft();
+        await Task.Delay(420);
+        _movement.MoveBack();
+        await Task.Delay(420);
+        _movement.MoveRight();
+        await Task.Delay(670);
+        _movement.MoveBack();
+        await Task.Delay(500);
+        _movement.MoveLeft();
+        await Task.Delay(450);
+        _movement.MoveForward();
+        await Task.Delay(360);
+        _movement.MoveRight();
+        await Task.Delay(860);
+        _movement.MoveLeft();
+        await Task.Delay(590);
+        _movement.MoveForward();
+        await Task.Delay(520);
+        _movement.MoveRight();
+        await Task.Delay(550);
+        _movement.MoveBack();
+        await Task.Delay(550);
+        _movement.MoveForward();
+        await Task.Delay(350);
+        _movement.MoveLeft();
+        await Task.Delay(590);
+        _movement.MoveBack();
+        await Task.Delay(510);
+        _movement.MoveRight();
+        await Task.Delay(420);
         _movement.MoveForward();
     }
 }

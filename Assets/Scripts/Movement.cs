@@ -15,6 +15,8 @@ public class Movement : MonoBehaviour
     private Player _player;
     private PlayerAnimator _playerAnimator;
 
+    public event UnityAction FinishReached;
+    public event UnityAction LastHitInitiated;
     public event UnityAction MovementEnabled;
 
     private bool CanMove => _nextPosition != default && transform.position != _nextPosition;
@@ -55,6 +57,11 @@ public class Movement : MonoBehaviour
         if (collision.TryGetComponent(out Platform platform) && platform == _nextPlatform)
         {
             _playerAnimator.RunFlightToIdle();
+
+            if (platform.TryGetComponent(out FinishPlatform _))
+            {
+                FinishReached?.Invoke();
+            }
         }
     }
 
@@ -103,6 +110,11 @@ public class Movement : MonoBehaviour
         _nextPosition = new Vector3(platformCenter.x, transform.position.y, platformCenter.z);
 
         _nextPlatform = nextPlatform;
+
+        if (nextPlatform.TryGetComponent(out FinishPlatform _))
+        {
+            LastHitInitiated?.Invoke();
+        }
     }
 
     private bool TryGetNextPlatform(out Platform platform)
