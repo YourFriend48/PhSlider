@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Player), typeof(PlayerAnimator))]
-public class Movement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float _delayAfterLanding = 1.35f;
     [SerializeField] private float _speed = 19f;
@@ -23,22 +23,22 @@ public class Movement : MonoBehaviour
 
     public void MoveBack()
     {
-        Move(90f);
+        SetNextMovementPlatform(Vector3.right);
     }
 
     public void MoveForward()
     {
-        Move(-90f);
+        SetNextMovementPlatform(Vector3.left);
     }
 
     public void MoveLeft()
     {
-        Move(180f);
+        SetNextMovementPlatform(Vector3.back);
     }
 
     public void MoveRight()
     {
-        Move(0f);
+        SetNextMovementPlatform(Vector3.forward);
     }
 
     private void Awake()
@@ -49,7 +49,7 @@ public class Movement : MonoBehaviour
 
     private void OnEnable()
     {
-        _player.Landed += Landing_OnLanded;
+        _player.Landed += LandingOnLanded;
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -76,7 +76,7 @@ public class Movement : MonoBehaviour
 
     private void OnDisable()
     {
-        _player.Landed -= Landing_OnLanded;
+        _player.Landed -= LandingOnLanded;
     }
 
     private IEnumerator EnableMovement()
@@ -86,19 +86,19 @@ public class Movement : MonoBehaviour
         MovementEnabled?.Invoke();
     }
 
-    private void Landing_OnLanded()
+    private void LandingOnLanded()
     {
         StartCoroutine(EnableMovement());
     }
 
-    private void Move(float degrees)
+    private void SetNextMovementPlatform(Vector3 direction)
     {
         if (_isMovementEnabled == false || CanMove)
         {
             return;
         }
 
-        transform.localEulerAngles = new Vector3(0, degrees, 0);
+        transform.rotation = Quaternion.LookRotation(direction);
 
         if (TryGetNextPlatform(out Platform nextPlatform) == false)
         {
@@ -120,7 +120,7 @@ public class Movement : MonoBehaviour
 
     private bool TryGetNextPlatform(out Platform platform)
     {
-        const float RaycastDepth = .5f;
+        const float RaycastDepth = 0.5f;
         const int RaycastHitBuffer = 128;
 
         platform = null;
@@ -142,7 +142,7 @@ public class Movement : MonoBehaviour
 
         Platform requiredPlatform = null;
 
-        for (var i = 0; i < hits; i++)
+        for (int i = 0; i < hits; i++)
         {
             RaycastHit raycastHit = raycastHits[i];
 
@@ -152,7 +152,7 @@ public class Movement : MonoBehaviour
                 continue;
             }
 
-            if (raycastHit.collider.TryGetComponent(out Roof _))
+            if (raycastHit.collider.TryGetComponent(out InactiveRoof _))
             {
                 break;
             }

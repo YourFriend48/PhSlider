@@ -5,23 +5,23 @@ using UnityEngine;
 public class CameraChanger : MonoBehaviour
 {
     [SerializeField] private Player _player;
-    [SerializeField] private Movement _movement;
+    [SerializeField] private PlayerMovement _playerMovement;
     [SerializeField] private float _waitBeforeLaunchCameraDisable = 0.5f;
     [SerializeField] private CinemachineVirtualCamera _launchCamera;
     [SerializeField] private CinemachineVirtualCamera _mainCamera;
 
     private void OnEnable()
     {
-        _player.Landed += Player_OnLanded;
-        _movement.LastHitInitiated += Movement_OnLastHitInitiated;
-        _movement.FinishReached += Movement_OnFinishReached;
+        _player.Landed += PlayerOnLanded;
+        _playerMovement.LastHitInitiated += PlayerMovementOnLastHitInitiated;
+        _playerMovement.FinishReached += PlayerMovementOnFinishReached;
     }
 
     private void OnDisable()
     {
-        _player.Landed -= Player_OnLanded;
-        _movement.LastHitInitiated -= Movement_OnLastHitInitiated;
-        _movement.FinishReached -= Movement_OnFinishReached;
+        _player.Landed -= PlayerOnLanded;
+        _playerMovement.LastHitInitiated -= PlayerMovementOnLastHitInitiated;
+        _playerMovement.FinishReached -= PlayerMovementOnFinishReached;
     }
 
     private IEnumerator DisableLaunchCamera()
@@ -30,17 +30,17 @@ public class CameraChanger : MonoBehaviour
         _launchCamera.enabled = false;
     }
 
-    private void Movement_OnFinishReached()
+    private void PlayerMovementOnFinishReached()
     {
         _mainCamera.enabled = true;
     }
 
-    private void Movement_OnLastHitInitiated()
+    private void PlayerMovementOnLastHitInitiated()
     {
         _mainCamera.enabled = false;
     }
 
-    private void Player_OnLanded()
+    private void PlayerOnLanded()
     {
         StartCoroutine(DisableLaunchCamera());
     }

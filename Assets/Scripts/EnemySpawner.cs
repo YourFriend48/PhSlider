@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private ActiveHouseArea[] _activeHouseAreas;
+    [SerializeField] private ActiveBuildingArea[] _activeHouseAreas;
     [SerializeField] private Enemy _enemyPrefab;
     [SerializeField] private Material _enemyPlatform;
 
     private void Start()
     {
-        foreach (ActiveHouseArea activeHouseArea in _activeHouseAreas)
+        foreach (ActiveBuildingArea activeHouseArea in _activeHouseAreas)
         {
             if (activeHouseArea == null)
             {

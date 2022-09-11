@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Platform : MonoBehaviour
 {
-    [SerializeField] private float _addToSizeY = .5f;
+    [SerializeField] private float _addToSizeY = 0.5f;
     [SerializeField] private float _sizeChangeSpeed = 1.8f;
 
     private Vector3 _finalPosition;

@@ -5,11 +5,16 @@ public class ColorablePlatformPart : MonoBehaviour
 {
     [SerializeField] private Material _activatedMaterial;
 
+    private bool _materialChanged;
+
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.TryGetComponent(out Player _))
+        if (_materialChanged || collision.TryGetComponent(out Player _) == false)
         {
-            GetComponent<MeshRenderer>().material = _activatedMaterial;
+            return;
         }
+
+        _materialChanged = true;
+        GetComponent<MeshRenderer>().material = _activatedMaterial;
     }
 }

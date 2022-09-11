@@ -20,7 +20,7 @@ public class HitMarkSpawner : MonoBehaviour
             out RaycastHit raycastHit,
             _roofInspectionDistance);
 
-        if (raycast == false || raycastHit.collider.TryGetComponent(out Roof _) == false)
+        if (raycast == false || raycastHit.collider.TryGetComponent(out InactiveRoof _) == false)
         {
             return;
         }

@@ -3,16 +3,16 @@ using UnityEngine;
 
 public class CoverController : MonoBehaviour
 {
-    [SerializeField] private Movement _movement;
+    [SerializeField] private PlayerMovement _playerMovement;
     [SerializeField] private Transform _gameCover;
     [SerializeField] private float _enableGameAfter = 1.13f;
     [SerializeField] private Transform _finishCover;
-    [SerializeField] private float _enableFinishAfter = .805f;
+    [SerializeField] private float _enableFinishAfter = 0.805f;
     [SerializeField] private Transform _confeti;
-    
+
     private void OnEnable()
     {
-        _movement.FinishReached += Movement_OnFinishReached;
+        _playerMovement.FinishReached += PlayerMovementOnFinishReached;
     }
 
     private void Start()
@@ -24,7 +24,7 @@ public class CoverController : MonoBehaviour
 
     private void OnDisable()
     {
-        _movement.FinishReached -= Movement_OnFinishReached;
+        _playerMovement.FinishReached -= PlayerMovementOnFinishReached;
     }
 
     private IEnumerator EnableFinishCover()
@@ -41,7 +41,7 @@ public class CoverController : MonoBehaviour
         _gameCover.gameObject.SetActive(true);
     }
 
-    private void Movement_OnFinishReached()
+    private void PlayerMovementOnFinishReached()
     {
         StartCoroutine(EnableFinishCover());
     }

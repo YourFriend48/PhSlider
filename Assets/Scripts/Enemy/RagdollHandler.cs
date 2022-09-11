@@ -24,12 +24,12 @@ public class RagdollHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        _enemy.Died += Enemy_OnDied;
+        _enemy.Died += EnemyOnDied;
     }
 
     private void OnDisable()
     {
-        _enemy.Died -= Enemy_OnDied;
+        _enemy.Died -= EnemyOnDied;
     }
 
     private void ChangeRagdollState(RagdollState ragdollState)
@@ -42,7 +42,7 @@ public class RagdollHandler : MonoBehaviour
         _animator.enabled = ragdollState == RagdollState.Disable;
     }
 
-    private void Enemy_OnDied()
+    private void EnemyOnDied()
     {
         ChangeRagdollState(RagdollState.Enable);
     }

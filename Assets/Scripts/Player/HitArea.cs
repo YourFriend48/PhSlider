@@ -27,7 +27,7 @@ public class HitArea : MonoBehaviour
             out RaycastHit raycastHit,
             Mathf.Infinity);
 
-        if (raycast == false || raycastHit.collider.TryGetComponent(out Roof _) == false)
+        if (raycast == false || raycastHit.collider.TryGetComponent(out InactiveRoof _) == false)
         {
             return;
         }

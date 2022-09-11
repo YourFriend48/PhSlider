@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class ActivePlatformsCalculator : MonoBehaviour
 {
-    [SerializeField] private ActiveHouseArea _roofActiveArea;
+    [SerializeField] private ActiveBuildingArea _roofActiveArea;
     [SerializeField] private Material _platformMaterial;
 
     private int _activePlatformCount;
@@ -17,14 +17,14 @@ public class ActivePlatformsCalculator : MonoBehaviour
         _platformParts = _roofActiveArea.GetComponentsInChildren<ColorablePlatformPart>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (_isDisabled)
         {
             return;
         }
 
-        var activePlatformCount = 0;
+        int activePlatformCount = 0;
 
         foreach (ColorablePlatformPart colorablePart in _platformParts)
         {

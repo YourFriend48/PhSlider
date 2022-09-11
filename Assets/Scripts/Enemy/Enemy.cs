@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _hideSecAfterKill = 3f;
     [SerializeField] private Material _deathMaterial;
     [SerializeField] private ParticleSystem _hitEffect;
-    
+
     private Collider[] _childrenColliders;
     private bool _died;
 

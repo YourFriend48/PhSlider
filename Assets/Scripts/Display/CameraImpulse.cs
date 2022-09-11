@@ -2,7 +2,7 @@ using Cinemachine;
 using UnityEngine;
 
 [RequireComponent(typeof(CinemachineImpulseSource))]
-public class Impulse : MonoBehaviour
+public class CameraImpulse : MonoBehaviour
 {
     private CinemachineImpulseSource _cinemachineImpulse;
     private bool _isActivated;

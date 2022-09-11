@@ -1,35 +1,35 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Movement))]
+[RequireComponent(typeof(PlayerMovement))]
 public class KeyboardInput : MonoBehaviour
 {
-    private Movement _movement;
+    private PlayerMovement _playerMovement;
 
     private void Start()
     {
-        _movement = GetComponent<Movement>();
+        _playerMovement = GetComponent<PlayerMovement>();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            _movement.MoveForward();
+            _playerMovement.MoveForward();
         }
 
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            _movement.MoveBack();
+            _playerMovement.MoveBack();
         }
 
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            _movement.MoveLeft();
+            _playerMovement.MoveLeft();
         }
 
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            _movement.MoveRight();
+            _playerMovement.MoveRight();
         }
     }
 }

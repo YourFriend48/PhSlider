@@ -22,7 +22,7 @@ public class LevelStatusChanger : MonoBehaviour
 
     private void OnEnable()
     {
-        _activePlatformsCalculator.QuantityChanged += ActivePlatformsCalculator_OnQuantityChanged;
+        _activePlatformsCalculator.QuantityChanged += ActivePlatformsCalculatorOnQuantityChanged;
     }
 
     private void FixedUpdate()
@@ -40,10 +40,10 @@ public class LevelStatusChanger : MonoBehaviour
 
     private void OnDisable()
     {
-        _activePlatformsCalculator.QuantityChanged -= ActivePlatformsCalculator_OnQuantityChanged;
+        _activePlatformsCalculator.QuantityChanged -= ActivePlatformsCalculatorOnQuantityChanged;
     }
 
-    private void ActivePlatformsCalculator_OnQuantityChanged(int currentCount, int totalCount)
+    private void ActivePlatformsCalculatorOnQuantityChanged(int currentCount, int totalCount)
     {
         if (currentCount == 1)
         {
@@ -60,8 +60,8 @@ public class LevelStatusChanger : MonoBehaviour
         }
     }
 
-    private void ChangeScale(Vector3 to)
+    private void ChangeScale(Vector3 newScale)
     {
-        transform.localScale = Vector3.Lerp(transform.localScale, to, _changeScaleSpeed * Time.deltaTime);
+        transform.localScale = Vector3.Lerp(transform.localScale, newScale, _changeScaleSpeed * Time.deltaTime);
     }
 }
