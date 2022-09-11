@@ -903,7 +903,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 35
+        scalar: 40
         minScalar: 25
         maxCurve:
           serializedVersion: 2

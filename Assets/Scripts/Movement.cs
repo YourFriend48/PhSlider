@@ -61,6 +61,7 @@ public class Movement : MonoBehaviour
             if (platform.TryGetComponent(out FinishPlatform _))
             {
                 FinishReached?.Invoke();
+                _playerAnimator.RunIdleToVictory();
             }
         }
     }
