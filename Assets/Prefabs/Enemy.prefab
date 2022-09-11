@@ -1087,6 +1087,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
 --- !u!114 &7035818631319860104
 MonoBehaviour:
   m_ObjectHideFlags: 0

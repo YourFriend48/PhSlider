@@ -8,7 +8,8 @@ public class CoverController : MonoBehaviour
     [SerializeField] private float _enableGameAfter = 1.13f;
     [SerializeField] private Transform _finishCover;
     [SerializeField] private float _enableFinishAfter = .805f;
-
+    [SerializeField] private Transform _confeti;
+    
     private void OnEnable()
     {
         _movement.FinishReached += Movement_OnFinishReached;
@@ -31,6 +32,7 @@ public class CoverController : MonoBehaviour
         yield return new WaitForSeconds(_enableFinishAfter);
         _gameCover.gameObject.SetActive(false);
         _finishCover.gameObject.SetActive(true);
+        _confeti.gameObject.SetActive(true);
     }
 
     private IEnumerator EnableGameCover()

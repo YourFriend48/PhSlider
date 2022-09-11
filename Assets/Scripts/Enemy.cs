@@ -8,7 +8,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _impactForce = 43f;
     [SerializeField] private float _hideSecAfterKill = 3f;
     [SerializeField] private Material _deathMaterial;
-
+    [SerializeField] private ParticleSystem _hitEffect;
+    
     private Collider[] _childrenColliders;
     private bool _died;
 
@@ -33,6 +34,7 @@ public class Enemy : MonoBehaviour
             return;
         }
 
+        Instantiate(_hitEffect, collision.contacts[0].point, Quaternion.identity);
         _died = true;
         Died?.Invoke();
 

@@ -9,6 +9,7 @@ public class Landing : MonoBehaviour
     [SerializeField] private Platform _platform;
     [SerializeField] private GameObject _landingMark;
     [SerializeField] private float _destroyMarkAfter = 1.35f;
+    [SerializeField] private ParticleSystem _landingEffect;
 
     private bool _isLanded;
     private GameObject _mark;
@@ -30,6 +31,8 @@ public class Landing : MonoBehaviour
         }
 
         _mark = Instantiate(_landingMark, transform.position, _landingMark.transform.rotation);
+        Instantiate(_landingEffect, transform.position, _landingEffect.transform.rotation);
+
         StartCoroutine(DestroyMark());
 
         _isLanded = true;
