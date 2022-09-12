@@ -41,6 +41,11 @@ public class PlayerMovement : MonoBehaviour
         SetNextMovementPlatform(Vector3.forward);
     }
 
+    public void Move(Vector3 direction)
+    {
+        SetNextMovementPlatform(direction);
+    }
+
     private void Awake()
     {
         _player = GetComponent<Player>();
