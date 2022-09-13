@@ -18,12 +18,12 @@ public class MouseInput : MonoBehaviour
             _mousePreviousPosition = Input.mousePosition;
         }
 
-        if (Input.GetMouseButtonUp(0) == false)
+        Vector3 mousePosition = Input.mousePosition;
+
+        if (Input.GetMouseButtonUp(0) == false || mousePosition == _mousePreviousPosition)
         {
             return;
         }
-
-        Vector3 mousePosition = Input.mousePosition;
         
         if (Mathf.Abs(mousePosition.x - _mousePreviousPosition.x)
             > Mathf.Abs(mousePosition.y - _mousePreviousPosition.y))
