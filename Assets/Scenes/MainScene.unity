@@ -5302,6 +5302,7 @@ GameObject:
   - component: {fileID: 688100958}
   - component: {fileID: 688100960}
   - component: {fileID: 688100959}
+  - component: {fileID: 688100961}
   m_Layer: 5
   m_Name: RestartIcon
   m_TagString: Untagged
@@ -5367,6 +5368,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 688100957}
   m_CullTransparentMesh: 1
+--- !u!114 &688100961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 688100957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 688100959}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &691159932
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7732,6 +7777,7 @@ GameObject:
   - component: {fileID: 928349172}
   - component: {fileID: 928349173}
   - component: {fileID: 928349174}
+  - component: {fileID: 928349179}
   - component: {fileID: 928349175}
   - component: {fileID: 928349176}
   - component: {fileID: 928349178}
@@ -7908,6 +7954,18 @@ MonoBehaviour:
   _minPassedPlatforms: 4
   _shiftPosition: {x: 0, y: 0.308, z: 0}
   _roofInspectionDistance: 1
+--- !u!114 &928349179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928349166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e228a7d5a7ca6c4d9b0fda07a9a1920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &940728093
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15883,6 +15941,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1943926739}
+  - component: {fileID: 1943926740}
   m_Layer: 5
   m_Name: GameCover
   m_TagString: Untagged
@@ -15914,6 +15973,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1943926740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1943926738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92fdd39a497c62041910b99bcf4138c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _restartButton: {fileID: 688100961}
 --- !u!1001 &1944684664
 PrefabInstance:
   m_ObjectHideFlags: 0
