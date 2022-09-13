@@ -59,16 +59,22 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.TryGetComponent(out Platform platform) && platform == _nextPlatform)
+        if (collision.TryGetComponent(out Platform platform) == false || platform != _nextPlatform)
         {
-            _playerAnimator.RunFlightToIdle();
-
-            if (platform.TryGetComponent(out FinishPlatform _))
-            {
-                FinishReached?.Invoke();
-                _playerAnimator.RunIdleToVictory();
-            }
+            return;
         }
+
+        _playerAnimator.RunFlightToIdle();
+
+        if (platform.TryGetComponent(out FinishPlatform _) == false)
+        {
+            return;
+        }
+
+        _isMovementEnabled = false;
+
+        FinishReached?.Invoke();
+        _playerAnimator.RunIdleToVictory();
     }
 
     private void Update()
