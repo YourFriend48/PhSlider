@@ -12,24 +12,11 @@ public class KeyboardInput : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            _playerMovement.MoveForward();
-        }
+        var inputDirection = new Vector3(Input.GetAxisRaw("Vertical") * -1, 0, Input.GetAxisRaw("Horizontal"));
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (inputDirection.magnitude > 0)
         {
-            _playerMovement.MoveBack();
-        }
-
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            _playerMovement.MoveLeft();
-        }
-
-        if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            _playerMovement.MoveRight();
+            _playerMovement.Move(inputDirection);
         }
     }
 }
