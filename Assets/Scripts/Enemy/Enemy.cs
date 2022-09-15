@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _hideSecAfterKill = 3f;
     [SerializeField] private Material _deathMaterial;
     [SerializeField] private ParticleSystem _hitEffect;
+    [SerializeField] private PowerCanvas _powerCanvas;
 
     private Collider[] _childrenColliders;
     private bool _died;
@@ -35,8 +36,11 @@ public class Enemy : MonoBehaviour
         }
 
         Instantiate(_hitEffect, collision.contacts[0].point, Quaternion.identity);
+
         _died = true;
         Died?.Invoke();
+
+        Destroy(_powerCanvas.gameObject);
 
         ChangeBodyToDead();
 
