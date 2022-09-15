@@ -21,6 +21,11 @@ public class PlayerMovement : MonoBehaviour
 
     private bool CanMove => _nextPosition != default && transform.position != _nextPosition;
 
+    public void Move(Vector3 direction)
+    {
+        SetNextMovementPlatform(direction);
+    }
+
     public void MoveBack()
     {
         SetNextMovementPlatform(Vector3.right);
@@ -41,11 +46,6 @@ public class PlayerMovement : MonoBehaviour
         SetNextMovementPlatform(Vector3.forward);
     }
 
-    public void Move(Vector3 direction)
-    {
-        SetNextMovementPlatform(direction);
-    }
-
     private void Awake()
     {
         _player = GetComponent<Player>();
@@ -55,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         _player.Landed += LandingOnLanded;
+        _player.Died += PlayerOnDied;
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -88,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnDisable()
     {
         _player.Landed -= LandingOnLanded;
+        _player.Died -= PlayerOnDied;
     }
 
     private IEnumerator EnableMovement()
@@ -100,6 +102,11 @@ public class PlayerMovement : MonoBehaviour
     private void LandingOnLanded()
     {
         StartCoroutine(EnableMovement());
+    }
+
+    private void PlayerOnDied()
+    {
+        _isMovementEnabled = false;
     }
 
     private void SetNextMovementPlatform(Vector3 direction)

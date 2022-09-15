@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Animator), typeof(Power))]
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, ICharacter
 {
     [SerializeField] private float _impactForce = 43f;
     [SerializeField] private float _hideSecAfterKill = 3f;
@@ -48,7 +48,7 @@ public class Enemy : MonoBehaviour
         {
             if (strikerPower.TryGetComponent(out Player striker))
             {
-                striker.Die();
+                striker.Die(_power);
                 return;
             }
         }
