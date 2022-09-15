@@ -7,7 +7,13 @@ public class Player : MonoBehaviour
     private bool _isLanded;
     private Rigidbody _rigidbody;
 
+    public event UnityAction Died;
     public event UnityAction Landed;
+
+    public void Die()
+    {
+        Died?.Invoke();
+    }
 
     private void Start()
     {

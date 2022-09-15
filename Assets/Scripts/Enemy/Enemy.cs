@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Animator), typeof(Power))]
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private float _impactForce = 43f;
@@ -13,17 +13,19 @@ public class Enemy : MonoBehaviour
 
     private Collider[] _childrenColliders;
     private bool _died;
+    private Power _power;
 
     public event UnityAction Died;
 
     private void Start()
     {
         _childrenColliders = GetComponentsInChildren<Collider>();
+        _power = GetComponent<Power>();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.TryGetComponent(out HitArea _) == false)
+        if (collision.gameObject.TryGetComponent(out HitArea hitArea) == false)
         {
             return;
         }
@@ -35,12 +37,30 @@ public class Enemy : MonoBehaviour
             return;
         }
 
+        var strikerPower = hitArea.GetComponentInParent<Power>();
+
+        if (strikerPower == null)
+        {
+            return;
+        }
+
+        if (strikerPower.Current < _power.Current)
+        {
+            if (strikerPower.TryGetComponent(out Player striker))
+            {
+                striker.Die();
+                return;
+            }
+        }
+
         Instantiate(_hitEffect, collision.contacts[0].point, Quaternion.identity);
 
         _died = true;
         Died?.Invoke();
 
         Destroy(_powerCanvas.gameObject);
+
+        strikerPower.Add(_power.Current);
 
         ChangeBodyToDead();
 
