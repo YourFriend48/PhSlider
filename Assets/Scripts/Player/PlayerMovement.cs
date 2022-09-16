@@ -80,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (CanMove)
+        if (_speed > 0f && CanMove)
         {
             transform.position = Vector3.MoveTowards(transform.position, _nextPosition, _speed * Time.deltaTime);
         }
@@ -107,6 +107,7 @@ public class PlayerMovement : MonoBehaviour
     private void PlayerOnDied()
     {
         _isMovementEnabled = false;
+        _speed = 0f;
     }
 
     private void SetNextMovementPlatform(Vector3 direction)

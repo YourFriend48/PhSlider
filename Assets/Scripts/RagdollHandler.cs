@@ -1,10 +1,10 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Animator), typeof(Enemy))]
+[RequireComponent(typeof(Animator), typeof(ICharacter))]
 public class RagdollHandler : MonoBehaviour
 {
     private Animator _animator;
-    private Enemy _enemy;
+    private ICharacter _character;
     private Rigidbody[] _ragdollRigidbodies;
 
     private enum RagdollState
@@ -15,7 +15,7 @@ public class RagdollHandler : MonoBehaviour
 
     private void Awake()
     {
-        _enemy = GetComponent<Enemy>();
+        _character = GetComponent<ICharacter>();
         _animator = GetComponent<Animator>();
         _ragdollRigidbodies = GetComponentsInChildren<Rigidbody>();
 
@@ -24,16 +24,21 @@ public class RagdollHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        _enemy.Died += EnemyOnDied;
+        _character.Died += CharacterOnDied;
     }
 
     private void OnDisable()
     {
-        _enemy.Died -= EnemyOnDied;
+        _character.Died -= CharacterOnDied;
     }
 
     private void ChangeRagdollState(RagdollState ragdollState)
     {
+        if (_character as Player && ragdollState == RagdollState.Disable)
+        {
+            return;
+        }
+
         foreach (Rigidbody ragdollRigidbody in _ragdollRigidbodies)
         {
             ragdollRigidbody.isKinematic = ragdollState == RagdollState.Disable;
@@ -42,7 +47,7 @@ public class RagdollHandler : MonoBehaviour
         _animator.enabled = ragdollState == RagdollState.Disable;
     }
 
-    private void EnemyOnDied()
+    private void CharacterOnDied()
     {
         ChangeRagdollState(RagdollState.Enable);
     }
