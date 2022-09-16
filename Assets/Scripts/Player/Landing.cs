@@ -1,7 +1,6 @@
 using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
 public class Landing : MonoBehaviour
 {
     [SerializeField] private float _startingPositionY = 23.9f;
@@ -12,15 +11,16 @@ public class Landing : MonoBehaviour
     [SerializeField] private ParticleSystem _landingEffect;
 
     private bool _isLanded;
+    private Vector3 _landingPosition;
     private GameObject _mark;
-    private Rigidbody _rigidbody;
 
     private void Start()
     {
-        _rigidbody = GetComponent<Rigidbody>();
+        Bounds platformBounds = _platform.GetComponent<Collider>().bounds;
+        Vector3 platformCenter = platformBounds.center;
 
-        Vector3 platformCenter = _platform.GetComponent<Collider>().bounds.center;
         transform.position = new Vector3(platformCenter.x, _startingPositionY, platformCenter.z);
+        _landingPosition = platformCenter + new Vector3(0, platformBounds.extents.y, 0);
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -30,12 +30,12 @@ public class Landing : MonoBehaviour
             return;
         }
 
+        _isLanded = true;
+
         _mark = Instantiate(_landingMark, transform.position, _landingMark.transform.rotation);
         Instantiate(_landingEffect, transform.position, _landingEffect.transform.rotation);
 
         StartCoroutine(DestroyMark());
-
-        _isLanded = true;
     }
 
     private void Update()
@@ -45,7 +45,7 @@ public class Landing : MonoBehaviour
             return;
         }
 
-        _rigidbody.velocity = Vector3.down * _fallSpeed;
+        transform.position = Vector3.MoveTowards(transform.position, _landingPosition, _fallSpeed * Time.deltaTime);
     }
 
     private IEnumerator DestroyMark()
