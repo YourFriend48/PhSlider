@@ -2,13 +2,14 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(Animator), typeof(Power))]
+[RequireComponent(typeof(Collider), typeof(Animator), typeof(Power))]
 public class Enemy : MonoBehaviour, ICharacter
 {
     [SerializeField] private float _impactForce = 43f;
     [SerializeField] private float _hideSecAfterKill = 3f;
     [SerializeField] private Material _deathMaterial;
     [SerializeField] private ParticleSystem _hitEffect;
+    [SerializeField] private ParticleSystem _fieldEffect;
     [SerializeField] private PowerCanvas _powerCanvas;
 
     private Collider[] _childrenColliders;
@@ -48,7 +49,11 @@ public class Enemy : MonoBehaviour, ICharacter
         {
             if (strikerPower.TryGetComponent(out Player striker))
             {
+                Bounds colliderBounds = GetComponent<Collider>().bounds;
+                Instantiate(_fieldEffect, colliderBounds.center, Quaternion.identity);
+
                 striker.Die(_power);
+
                 return;
             }
         }
