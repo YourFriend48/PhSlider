@@ -30,7 +30,6 @@ public class Player : MonoBehaviour, ICharacter
         Died?.Invoke();
         GetComponentInChildren<SkinnedMeshRenderer>().material = _deathMaterial;
 
-        _boxingGlove.transform.localScale = _gloveInitalScale;
         Destroy(_effectsObject.gameObject);
         Destroy(_powerCanvas.gameObject);
 
@@ -57,6 +56,17 @@ public class Player : MonoBehaviour, ICharacter
         _rigidbody.isKinematic = true;
 
         Landed?.Invoke();
+    }
+
+    private void Update()
+    {
+        if (_died && _boxingGlove.transform.localScale != _gloveInitalScale)
+        {
+            _boxingGlove.transform.localScale = Vector3.Lerp(
+                _boxingGlove.transform.localScale,
+                _gloveInitalScale,
+                _reboundForce * Time.deltaTime);
+        }
     }
 
     private void ApplyRebound()
