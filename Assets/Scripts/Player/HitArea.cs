@@ -5,7 +5,7 @@ public class HitArea : MonoBehaviour
 {
     [SerializeField] private Transform _positioningObject;
 
-    private Vector3 _currentEulerAngles;
+    private Vector3 _lastEulerAngles;
     private Rigidbody _rigidbody;
 
     private void Start()
@@ -15,24 +15,20 @@ public class HitArea : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_rigidbody.isKinematic && _currentEulerAngles != _positioningObject.rotation.eulerAngles)
+        if (_rigidbody.isKinematic && _lastEulerAngles != _positioningObject.rotation.eulerAngles)
         {
             _rigidbody.isKinematic = false;
         }
+    }
 
-        Vector3 origin = _positioningObject.position;
-        bool raycast = Physics.Raycast(
-            origin,
-            _positioningObject.TransformDirection(Vector3.forward),
-            out RaycastHit raycastHit,
-            Mathf.Infinity);
-
-        if (raycast == false || raycastHit.collider.TryGetComponent(out InactiveRoof _) == false)
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!collision.gameObject.TryGetComponent(out InactiveRoof _))
         {
             return;
         }
 
         _rigidbody.isKinematic = true;
-        _currentEulerAngles = _positioningObject.rotation.eulerAngles;
+        _lastEulerAngles = _positioningObject.rotation.eulerAngles;
     }
 }
