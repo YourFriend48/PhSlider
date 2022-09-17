@@ -1244,6 +1244,7 @@ MonoBehaviour:
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
+  _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 7444555115465193476}
 --- !u!114 &7035818631319860104
 MonoBehaviour:
@@ -1270,7 +1271,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inital: 1
-  _displayText: {fileID: 6078634330502189688}
 --- !u!1 &4031926149942748240
 GameObject:
   m_ObjectHideFlags: 0
@@ -1284,7 +1284,7 @@ GameObject:
   - component: {fileID: 6164579422374047463}
   - component: {fileID: 1361571933923834787}
   - component: {fileID: 7444555115465193476}
-  - component: {fileID: 8642343505087618648}
+  - component: {fileID: 5332277156280971457}
   m_Layer: 5
   m_Name: PowerCanvas
   m_TagString: Untagged
@@ -1386,7 +1386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c9a6313ad20b63448756c2ca6e11dd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8642343505087618648
+--- !u!114 &5332277156280971457
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1395,9 +1395,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4031926149942748240}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4c9a6313ad20b63448756c2ca6e11dd5, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f555ac3586d697448f0359aa204518c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _power: {fileID: 2855548333009855358}
+  _displayText: {fileID: 6078634330502189688}
+  _increaseTextScale: {x: 1.8, y: 1.8, z: 1.8}
+  _increaseTextSpeed: 8
 --- !u!1 &4117280677026501600
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,12 +1,13 @@
-using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Power : MonoBehaviour
 {
     [SerializeField] private int _inital;
-    [SerializeField] private TMP_Text _displayText;
 
     private int _current;
+
+    public event UnityAction<int, int> Changed;
 
     public int Current
     {
@@ -14,7 +15,7 @@ public class Power : MonoBehaviour
         private set
         {
             _current = value;
-            _displayText.text = _current.ToString();
+            Changed?.Invoke(_inital, _current);
         }
     }
 

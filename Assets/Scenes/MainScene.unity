@@ -4761,7 +4761,7 @@ RectTransform:
   m_LocalRotation: {x: 1.1716848e-10, y: 5.99698e-12, z: -6.0195396e-15, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 541923185}
   m_RootOrder: 0
@@ -16522,7 +16522,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inital: 1
-  _displayText: {fileID: 551500311}
 --- !u!114 &1846224334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17633,6 +17632,7 @@ GameObject:
   - component: {fileID: 1984861869}
   - component: {fileID: 1984861868}
   - component: {fileID: 1984861867}
+  - component: {fileID: 1984861871}
   m_Layer: 7
   m_Name: PowerCanvas
   m_TagString: Untagged
@@ -17734,6 +17734,22 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1984861871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984861865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f555ac3586d697448f0359aa204518c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _power: {fileID: 1846224333}
+  _displayText: {fileID: 551500311}
+  _increaseTextScale: {x: 1.8, y: 1.8, z: 1.8}
+  _increaseTextSpeed: 8
 --- !u!1 &1986167034
 GameObject:
   m_ObjectHideFlags: 0
