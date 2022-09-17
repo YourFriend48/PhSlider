@@ -33,6 +33,8 @@ public class Player : MonoBehaviour, ICharacter
         Destroy(_powerCanvas.gameObject);
 
         killerPower.Increase();
+
+        DisableHitAreas();
         ApplyRebound();
     }
 
@@ -74,6 +76,24 @@ public class Player : MonoBehaviour, ICharacter
         foreach (Rigidbody currentRigidbody in rigidbodies)
         {
             currentRigidbody.velocity = rebound;
+        }
+    }
+
+    private void DisableHitAreas()
+    {
+        HitArea[] hitAreas = GetComponentsInChildren<HitArea>();
+
+        if (hitAreas.Length < 1)
+        {
+            return;
+        }
+
+        foreach (HitArea hitArea in hitAreas)
+        {
+            if (hitArea.TryGetComponent(out Collider hitAreaCollider))
+            {
+                hitAreaCollider.enabled = false;
+            }
         }
     }
 }
