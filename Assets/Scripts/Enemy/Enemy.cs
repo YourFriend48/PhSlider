@@ -65,7 +65,7 @@ public class Enemy : MonoBehaviour, ICharacter
 
         Destroy(_powerCanvas.gameObject);
 
-        strikerPower.Add(_power.Current);
+        strikerPower.Increase();
 
         ChangeBodyToDead();
 

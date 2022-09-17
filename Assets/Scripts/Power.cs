@@ -19,9 +19,9 @@ public class Power : MonoBehaviour
         }
     }
 
-    public void Add(int power)
+    public void Increase()
     {
-        Current += power;
+        Current++;
     }
 
     private void Start()

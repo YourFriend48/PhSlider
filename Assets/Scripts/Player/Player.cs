@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(Rigidbody), typeof(Power))]
+[RequireComponent(typeof(Rigidbody))]
 public class Player : MonoBehaviour, ICharacter
 {
     [SerializeField] private Transform _boxingGlove;
@@ -13,7 +13,6 @@ public class Player : MonoBehaviour, ICharacter
     private bool _died;
     private Vector3 _gloveInitalScale;
     private bool _isLanded;
-    private Power _power;
     private Rigidbody _rigidbody;
 
     public event UnityAction Died;
@@ -33,15 +32,13 @@ public class Player : MonoBehaviour, ICharacter
         Destroy(_effectsObject.gameObject);
         Destroy(_powerCanvas.gameObject);
 
-        killerPower.Add(_power.Current);
+        killerPower.Increase();
         ApplyRebound();
     }
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _power = GetComponent<Power>();
-
         _gloveInitalScale = _boxingGlove.transform.localScale;
     }
 
