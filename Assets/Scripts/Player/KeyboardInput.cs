@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerMovement))]
@@ -14,7 +15,7 @@ public class KeyboardInput : MonoBehaviour
     {
         var inputDirection = new Vector3(Input.GetAxisRaw("Vertical") * -1, 0, Input.GetAxisRaw("Horizontal"));
 
-        if (inputDirection.magnitude > 0)
+        if (Math.Abs(inputDirection.magnitude - 1f) == 0)
         {
             _playerMovement.Move(inputDirection);
         }
