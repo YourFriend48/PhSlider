@@ -51181,6 +51181,7 @@ GameObject:
   - component: {fileID: 1012169863}
   - component: {fileID: 1012169864}
   - component: {fileID: 1012169865}
+  - component: {fileID: 1012169866}
   m_Layer: 5
   m_Name: WinCover
   m_TagString: Untagged
@@ -51231,7 +51232,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1012169865
+--- !u!225 &1012169865
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012169862}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &1012169866
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -51244,6 +51257,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Button: {fileID: 714565766}
+  _playerMovement: {fileID: 1846224340}
+  _enableAfterWin: 0.805
 --- !u!1 &1014922913
 GameObject:
   m_ObjectHideFlags: 0
@@ -95190,6 +95205,7 @@ GameObject:
   - component: {fileID: 1900689965}
   - component: {fileID: 1900689966}
   - component: {fileID: 1900689967}
+  - component: {fileID: 1900689968}
   m_Layer: 5
   m_Name: LoseCover
   m_TagString: Untagged
@@ -95240,7 +95256,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1900689967
+--- !u!225 &1900689967
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900689964}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &1900689968
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95253,6 +95281,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Button: {fileID: 201221779}
+  _player: {fileID: 1846224336}
+  _enableAfterLose: 0.805
 --- !u!1 &1901742557
 GameObject:
   m_ObjectHideFlags: 0
@@ -97542,6 +97572,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1943926739}
   - component: {fileID: 1943926740}
+  - component: {fileID: 1943926741}
   m_Layer: 5
   m_Name: GameCover
   m_TagString: Untagged
@@ -97572,7 +97603,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1943926740
+--- !u!225 &1943926740
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1943926738}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &1943926741
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97585,6 +97628,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Button: {fileID: 688100961}
+  _enableAfter: 1.13
 --- !u!1001 &1944684664
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -101007,14 +101051,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a31714cb2912d249aea0964f4acca4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 1846224336}
-  _playerMovement: {fileID: 1846224340}
-  _gameCover: {fileID: 1943926739}
-  _enableGameAfter: 1.13
-  _winCover: {fileID: 1012169863}
-  _loseCover: {fileID: 1900689965}
-  _enableEndGameAfter: 0.805
-  _confeti: {fileID: 2012799827}
+  _gameCover: {fileID: 1943926741}
+  _winCover: {fileID: 1012169866}
+  _loseCover: {fileID: 1900689968}
 --- !u!1 &2023842622
 GameObject:
   m_ObjectHideFlags: 0
