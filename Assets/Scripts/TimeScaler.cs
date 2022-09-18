@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class TimeScaler : MonoBehaviour
 {
+    [SerializeField] private Player _player;
     [SerializeField] private PlayerMovement _playerMovement;
     [SerializeField] private float _lastHitTimeScale = 0.315f;
     [SerializeField] private float _finishTimeScale = 1f;
@@ -10,21 +11,33 @@ public class TimeScaler : MonoBehaviour
     {
         _playerMovement.LastHitInitiated += PlayerMovementOnLastHitInitiated;
         _playerMovement.FinishReached += PlayerMovementOnFinishReached;
+        _player.Died += PlayerOnDied;
     }
 
     private void OnDisable()
     {
         _playerMovement.LastHitInitiated -= PlayerMovementOnLastHitInitiated;
         _playerMovement.FinishReached -= PlayerMovementOnFinishReached;
+        _player.Died -= PlayerOnDied;
     }
 
     private void PlayerMovementOnFinishReached()
     {
-        Time.timeScale = _finishTimeScale;
+        SetTimeScale(_finishTimeScale);
     }
 
     private void PlayerMovementOnLastHitInitiated()
     {
-        Time.timeScale = _lastHitTimeScale;
+        SetTimeScale(_lastHitTimeScale);
+    }
+
+    private void PlayerOnDied()
+    {
+        SetTimeScale(_finishTimeScale);
+    }
+
+    private void SetTimeScale(float time)
+    {
+        Time.timeScale = time;
     }
 }
