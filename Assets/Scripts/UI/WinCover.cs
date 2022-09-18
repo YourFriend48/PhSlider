@@ -1,6 +1,6 @@
 using UnityEngine.SceneManagement;
 
-public class GameCover : Screen
+public class WinCover : Screen
 {
     protected override void OnButtonClick()
     {

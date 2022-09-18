@@ -34391,7 +34391,7 @@ GameObject:
   - component: {fileID: 688100959}
   - component: {fileID: 688100961}
   m_Layer: 5
-  m_Name: RestartIcon
+  m_Name: RestartButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51180,6 +51180,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1012169863}
   - component: {fileID: 1012169864}
+  - component: {fileID: 1012169865}
   m_Layer: 5
   m_Name: WinCover
   m_TagString: Untagged
@@ -51230,6 +51231,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1012169865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012169862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5cef45244d287c419fefe184e734646, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Button: {fileID: 714565766}
 --- !u!1 &1014922913
 GameObject:
   m_ObjectHideFlags: 0
@@ -95175,6 +95189,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1900689965}
   - component: {fileID: 1900689966}
+  - component: {fileID: 1900689967}
   m_Layer: 5
   m_Name: LoseCover
   m_TagString: Untagged
@@ -95225,6 +95240,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1900689967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900689964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 887cc4b999307dc45862002f419a2dcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Button: {fileID: 201221779}
 --- !u!1 &1901742557
 GameObject:
   m_ObjectHideFlags: 0
@@ -97556,7 +97584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92fdd39a497c62041910b99bcf4138c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _restartButton: {fileID: 688100961}
+  Button: {fileID: 688100961}
 --- !u!1001 &1944684664
 PrefabInstance:
   m_ObjectHideFlags: 0
