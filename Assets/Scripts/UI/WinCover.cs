@@ -20,6 +20,7 @@ public class WinCover : Screen
     private void Start()
     {
         Close();
+        _confetti.gameObject.SetActive(false);
 
         _animator = GetComponent<Animator>();
         _animator.enabled = false;
