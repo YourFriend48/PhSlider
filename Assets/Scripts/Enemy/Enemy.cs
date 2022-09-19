@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(Collider), typeof(Animator), typeof(Power))]
+[RequireComponent(typeof(Collider), typeof(EnemyAnimator), typeof(Power))]
 public class Enemy : MonoBehaviour, ICharacter
 {
     [SerializeField] private float _impactForce = 43f;
@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour, ICharacter
     [SerializeField] private ParticleSystem _fieldEffect;
     [SerializeField] private PowerCanvas _powerCanvas;
 
+    private EnemyAnimator _animator;
     private Collider[] _childrenColliders;
     private bool _died;
     private Power _power;
@@ -22,6 +23,7 @@ public class Enemy : MonoBehaviour, ICharacter
     {
         _childrenColliders = GetComponentsInChildren<Collider>();
         _power = GetComponent<Power>();
+        _animator = GetComponent<EnemyAnimator>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -52,6 +54,7 @@ public class Enemy : MonoBehaviour, ICharacter
                 Bounds colliderBounds = GetComponent<Collider>().bounds;
                 Instantiate(_fieldEffect, colliderBounds.center, Quaternion.identity);
 
+                _animator.RunIdleToVictory();
                 striker.Die(_power);
 
                 return;
