@@ -15,6 +15,7 @@ public class CameraChanger : MonoBehaviour
         _player.Landed += PlayerOnLanded;
         _playerMovement.LastHitInitiated += PlayerMovementOnLastHitInitiated;
         _playerMovement.FinishReached += PlayerMovementOnFinishReached;
+        _player.Died += PlayerOnDied;
     }
 
     private void OnDisable()
@@ -22,6 +23,7 @@ public class CameraChanger : MonoBehaviour
         _player.Landed -= PlayerOnLanded;
         _playerMovement.LastHitInitiated -= PlayerMovementOnLastHitInitiated;
         _playerMovement.FinishReached -= PlayerMovementOnFinishReached;
+        _player.Died -= PlayerOnDied;
     }
 
     private IEnumerator DisableLaunchCamera()
@@ -38,6 +40,11 @@ public class CameraChanger : MonoBehaviour
     private void PlayerMovementOnLastHitInitiated()
     {
         _mainCamera.enabled = false;
+    }
+
+    private void PlayerOnDied()
+    {
+        _mainCamera.enabled = true;
     }
 
     private void PlayerOnLanded()

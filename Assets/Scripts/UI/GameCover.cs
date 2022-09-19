@@ -1,23 +1,25 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
-public class GameCover : MonoBehaviour
+public class GameCover : Screen
 {
-    [SerializeField] private Button _restartButton;
+    [SerializeField] private float _enableAfter = 1.13f;
 
-    private void OnEnable()
+    private void Start()
     {
-        _restartButton.onClick.AddListener(OnRestartClick);
+        Close();
+        StartCoroutine(EnableGameCover());
     }
 
-    private void OnDisable()
-    {
-        _restartButton.onClick.RemoveListener(OnRestartClick);
-    }
-
-    private void OnRestartClick()
+    protected override void OnButtonClick()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private IEnumerator EnableGameCover()
+    {
+        yield return new WaitForSeconds(_enableAfter);
+        Open();
     }
 }
