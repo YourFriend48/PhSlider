@@ -2569,6 +2569,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 609064383019843383}
     m_Modifications:
+    - target: {fileID: -8713829291510779928, guid: d883d205e2776944d91da5ab46c7fe74, type: 3}
+      propertyPath: m_ConnectedBody
+      value: 
+      objectReference: {fileID: 3206040634167979356}
+    - target: {fileID: -8713829291510779928, guid: d883d205e2776944d91da5ab46c7fe74, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.0044646715
+      objectReference: {fileID: 0}
+    - target: {fileID: -8713829291510779928, guid: d883d205e2776944d91da5ab46c7fe74, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 0.45623684
+      objectReference: {fileID: 0}
+    - target: {fileID: -8713829291510779928, guid: d883d205e2776944d91da5ab46c7fe74, type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0.02641039
+      objectReference: {fileID: 0}
     - target: {fileID: 3821300472643702006, guid: d883d205e2776944d91da5ab46c7fe74, type: 3}
       propertyPath: m_Name
       value: BoxingGlove
