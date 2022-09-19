@@ -1,15 +1,17 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Player))]
+[RequireComponent(typeof(Player), typeof(PlayerMovement))]
 public class PlayerParticlesHandler : MonoBehaviour
 {
     [SerializeField] private Transform[] _particles;
 
     private Player _player;
+    private PlayerMovement _playerMovement;
 
     private void Awake()
     {
         _player = GetComponent<Player>();
+        _playerMovement = GetComponent<PlayerMovement>();
         DisableParticles();
     }
 
@@ -17,12 +19,14 @@ public class PlayerParticlesHandler : MonoBehaviour
     {
         _player.Landed += PlayerOnLanded;
         _player.Died += PlayerOnDied;
+        _playerMovement.FinishReached += PlayerMovementOnFinishReached;
     }
 
     private void OnDisable()
     {
         _player.Landed -= PlayerOnLanded;
         _player.Died -= PlayerOnDied;
+        _playerMovement.FinishReached -= PlayerMovementOnFinishReached;
     }
 
     private void DisableParticles()
@@ -39,6 +43,11 @@ public class PlayerParticlesHandler : MonoBehaviour
         {
             particle.gameObject.SetActive(true);
         }
+    }
+
+    private void PlayerMovementOnFinishReached()
+    {
+        DisableParticles();
     }
 
     private void PlayerOnDied()
