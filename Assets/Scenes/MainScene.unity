@@ -1928,6 +1928,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 713167683}
@@ -5636,6 +5637,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 1472533484}
@@ -6447,6 +6449,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 1591457155}
@@ -8699,6 +8702,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 1954554864}
@@ -9588,6 +9592,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 1159264629}
@@ -9824,6 +9829,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 2109113006}
@@ -10437,6 +10443,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 913637171}
@@ -10658,6 +10665,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 1650441612}
@@ -11490,6 +11498,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 221400993}
@@ -11984,6 +11993,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 411147162}
@@ -14623,6 +14633,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 359672509}
@@ -16475,6 +16486,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 245862440}
@@ -23364,6 +23376,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 941616791}
@@ -32259,6 +32272,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 651342417}
@@ -34141,6 +34155,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 258867375}
@@ -37214,6 +37229,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 1457628997}
@@ -37487,6 +37503,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 628567991}
@@ -37614,6 +37631,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 190231337}
@@ -41129,6 +41147,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 779425660}
@@ -42049,6 +42068,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 2082799587}
@@ -43684,6 +43704,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 96464224}
@@ -44417,6 +44438,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 995091772}
@@ -49412,6 +49434,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 842420215}
@@ -50065,6 +50088,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 531203900}
@@ -52822,6 +52846,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 1226951464}
@@ -55836,6 +55861,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 1649716284}
@@ -56730,6 +56756,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 324185330}
@@ -60911,6 +60938,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 1263120817}
@@ -76618,6 +76646,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 672536982}
@@ -82995,6 +83024,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 1180062914}
@@ -83714,6 +83744,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 1153484962}
@@ -96948,6 +96979,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 1983566048}
@@ -97075,6 +97107,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 1749374373}
@@ -99000,6 +99033,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 1397054720}

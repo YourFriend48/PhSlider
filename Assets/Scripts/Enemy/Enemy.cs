@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour, ICharacter
     [SerializeField] private float _impactForce = 43f;
     [SerializeField] private float _hideSecAfterKill = 3f;
     [SerializeField] private Material _deathMaterial;
+    [SerializeField] private float _destroySecAfterHide = 2f;
     [SerializeField] private ParticleSystem _hitEffect;
     [SerializeField] private ParticleSystem _fieldEffect;
     [SerializeField] private PowerCanvas _powerCanvas;
@@ -91,6 +92,12 @@ public class Enemy : MonoBehaviour, ICharacter
         }
     }
 
+    private IEnumerator DestroyBody()
+    {
+        yield return new WaitForSeconds(_destroySecAfterHide);
+        Destroy(gameObject);
+    }
+
     private IEnumerator HideBody()
     {
         yield return new WaitForSeconds(_hideSecAfterKill);
@@ -99,6 +106,8 @@ public class Enemy : MonoBehaviour, ICharacter
         {
             currentCollider.enabled = false;
         }
+
+        StartCoroutine(DestroyBody());
     }
 
     private void IgnoreCollisionWith(Collider ignoredCollider)
