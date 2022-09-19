@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class WinCover : Screen
 {
     [SerializeField] private PlayerMovement _playerMovement;
+    [SerializeField] private Transform _confetti;
     [SerializeField] private float _enableAfterWin = 0.805f;
 
     private Animator _animator;
@@ -41,6 +42,7 @@ public class WinCover : Screen
 
         Open();
         _animator.enabled = true;
+        _confetti.gameObject.SetActive(true);
     }
 
     private void PlayerMovementOnFinishReached()
