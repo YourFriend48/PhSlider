@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnEnable()
     {
-        _player.Landed += LandingOnLanded;
+        _player.Landed += PlayerOnLanded;
         _player.Died += PlayerOnDied;
     }
 
@@ -88,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDisable()
     {
-        _player.Landed -= LandingOnLanded;
+        _player.Landed -= PlayerOnLanded;
         _player.Died -= PlayerOnDied;
     }
 
@@ -99,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
         MovementEnabled?.Invoke();
     }
 
-    private void LandingOnLanded()
+    private void PlayerOnLanded()
     {
         StartCoroutine(EnableMovement());
     }
