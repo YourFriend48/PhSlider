@@ -10077,7 +10077,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1, y: 1}
+    m_SensorSize: {x: 0.5625, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -10094,7 +10094,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1313666574}
   m_LocalRotation: {x: 0.15215443, y: -0.18088724, z: 0.028337508, w: 0.97124964}
-  m_LocalPosition: {x: -37.569866, y: 25.923353, z: -13.522974}
+  m_LocalPosition: {x: 8.10013, y: 28.430117, z: -14.48979}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16101,7 +16101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad980451443d70438faac0bc6c235a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TrackedObjectOffset: {x: -4.751, y: 1.472, z: -1.896}
+  m_TrackedObjectOffset: {x: -4.751, y: 1.472, z: -0.7}
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 0
   m_LookaheadIgnoreY: 0
