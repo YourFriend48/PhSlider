@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float _delayAfterLanding = 1.35f;
-    [SerializeField] private float _speed = 19f;
+    [SerializeField] private float _speed = 17f;
 
     private bool _isMovementEnabled;
     private Platform _nextPlatform;

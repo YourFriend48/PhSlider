@@ -93306,7 +93306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _delayAfterLanding: 1.35
-  _speed: 19
+  _speed: 17
 --- !u!114 &1846224341
 MonoBehaviour:
   m_ObjectHideFlags: 0
