@@ -1171,6 +1171,7 @@ GameObject:
   - component: {fileID: 2855548333009855358}
   - component: {fileID: 5412938535433232978}
   - component: {fileID: 7035818631319860104}
+  - component: {fileID: 6436555279993356100}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
@@ -1240,7 +1241,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18d4f7e7fb0ad004f935c638831e8a63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inital: 1
+  _inital: 0
 --- !u!114 &5412938535433232978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1256,6 +1257,7 @@ MonoBehaviour:
   _impactForce: 43
   _hideSecAfterKill: 2
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
+  _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _powerCanvas: {fileID: 7444555115465193476}
@@ -1269,6 +1271,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: addd4724d5f76f449b02627024153b5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6436555279993356100
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3951641141606494064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4af6f636628c7d74c811811f5604f88b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4031926149942748240

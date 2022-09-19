@@ -9,6 +9,7 @@ public class PowerVisualizer : MonoBehaviour
     [SerializeField] private float _increaseTextSpeed = 8f;
 
     private Vector3 _initalTextScale;
+    private bool _isStart;
     private bool _isTextScalable;
     private bool _textIncreaed;
 
@@ -20,6 +21,7 @@ public class PowerVisualizer : MonoBehaviour
     private void Start()
     {
         _initalTextScale = _displayText.transform.localScale;
+        _isStart = true;
     }
 
     private void Update()
@@ -52,10 +54,10 @@ public class PowerVisualizer : MonoBehaviour
         _power.Changed -= PowerOnChanged;
     }
 
-    private void PowerOnChanged(int initalPower, int currentPower)
+    private void PowerOnChanged(int currentPower)
     {
         _displayText.text = currentPower.ToString();
-        _isTextScalable = currentPower > initalPower;
+        _isTextScalable = _isStart;
     }
 
     private void SetNewTextScale(Vector3 current, Vector3 target)

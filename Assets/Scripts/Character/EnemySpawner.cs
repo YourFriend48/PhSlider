@@ -4,6 +4,7 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private ActiveBuildingArea[] _activeHouseAreas;
     [SerializeField] private Enemy _enemyPrefab;
+    [SerializeField] private Enemy _bossEnemyPrefab;
     [SerializeField] private Material _enemyPlatform;
 
     private void Start()
@@ -26,8 +27,29 @@ public class EnemySpawner : MonoBehaviour
                     continue;
                 }
 
+                var platform = colorablePartCollider.GetComponentInParent<Platform>();
+
+                if (platform == null)
+                {
+                    continue;
+                }
+
                 Vector3 platformCenter = colorablePartCollider.bounds.center;
-                Instantiate(_enemyPrefab, platformCenter, _enemyPrefab.transform.rotation);
+                var finishPlatform = colorablePartCollider.GetComponentInParent<FinishPlatform>();
+
+                Enemy enemy = finishPlatform != null
+                                  ? Instantiate(_bossEnemyPrefab, platformCenter, _bossEnemyPrefab.transform.rotation)
+                                  : Instantiate(_enemyPrefab, platformCenter, _enemyPrefab.transform.rotation);
+
+                if (enemy.TryGetComponent(out Power power) == false)
+                {
+                    continue;
+                }
+
+                while (power.Current < platform.Power)
+                {
+                    power.Increase();
+                }
             }
         }
     }

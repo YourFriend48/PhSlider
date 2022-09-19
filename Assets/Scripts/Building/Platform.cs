@@ -4,12 +4,15 @@ public class Platform : MonoBehaviour
 {
     [SerializeField] private float _addToSizeY = 0.5f;
     [SerializeField] private float _sizeChangeSpeed = 1.8f;
+    [SerializeField] private int _power;
 
     private Vector3 _finalPosition;
     private bool _grownUp;
     private bool _isActivated;
     private bool _isCycleComplete;
     private Vector3 _startingPosition;
+
+    public int Power => _power;
 
     private void Start()
     {
