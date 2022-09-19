@@ -56345,6 +56345,11 @@ Transform:
   m_Father: {fileID: 1867211222}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1106104360 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1069063858531071006, guid: 979e2761b3d2d5142b15a85e3c9970c4, type: 3}
+  m_PrefabInstance: {fileID: 1313901508}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1106559889
 GameObject:
   m_ObjectHideFlags: 0
@@ -80671,7 +80676,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1623432154}
-  - component: {fileID: 1623432155}
   m_Layer: 0
   m_Name: Effects
   m_TagString: Untagged
@@ -80697,18 +80701,6 @@ Transform:
   m_Father: {fileID: 1846224345}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1623432155
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1623432153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11d5fba75334c944694ee5bcb353ea1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1624614452
 GameObject:
   m_ObjectHideFlags: 0
@@ -93236,6 +93228,7 @@ GameObject:
   - component: {fileID: 1846224335}
   - component: {fileID: 1846224334}
   - component: {fileID: 1846224333}
+  - component: {fileID: 1846224346}
   - component: {fileID: 1846224332}
   m_Layer: 3
   m_Name: Player
@@ -93312,7 +93305,6 @@ MonoBehaviour:
   _boxingGlove: {fileID: 531369723}
   _powerCanvas: {fileID: 1984861867}
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
-  _effectsObject: {fileID: 1623432155}
   _reboundForce: 3
 --- !u!114 &1846224337
 MonoBehaviour:
@@ -93450,6 +93442,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &1846224346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846224331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a69c9d0d9f7fb5c4494491771fca14b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _particles:
+  - {fileID: 1079525738}
+  - {fileID: 149299603}
+  - {fileID: 877840443}
+  - {fileID: 1106104360}
 --- !u!1 &1846794365
 GameObject:
   m_ObjectHideFlags: 0

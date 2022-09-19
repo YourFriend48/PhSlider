@@ -7,7 +7,6 @@ public class Player : MonoBehaviour, ICharacter
     [SerializeField] private Transform _boxingGlove;
     [SerializeField] private PowerCanvas _powerCanvas;
     [SerializeField] private Material _deathMaterial;
-    [SerializeField] private EffectsObject _effectsObject;
     [SerializeField] private float _reboundForce = 3f;
 
     private bool _died;
@@ -29,7 +28,6 @@ public class Player : MonoBehaviour, ICharacter
         Died?.Invoke();
         GetComponentInChildren<SkinnedMeshRenderer>().material = _deathMaterial;
 
-        Destroy(_effectsObject.gameObject);
         Destroy(_powerCanvas.gameObject);
 
         killerPower.Increase();
