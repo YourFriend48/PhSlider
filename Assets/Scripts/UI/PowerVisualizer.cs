@@ -54,10 +54,10 @@ public class PowerVisualizer : MonoBehaviour
         _power.Changed -= PowerOnChanged;
     }
 
-    private void PowerOnChanged(int currentPower)
+    private void PowerOnChanged(int initalPower, int currentPower)
     {
         _displayText.text = currentPower.ToString();
-        _isTextScalable = _isStart;
+        _isTextScalable = _isStart && initalPower > currentPower;
     }
 
     private void SetNewTextScale(Vector3 current, Vector3 target)

@@ -7,7 +7,7 @@ public class Power : MonoBehaviour
 
     private int _current;
 
-    public event UnityAction<int> Changed;
+    public event UnityAction<int, int> Changed;
 
     public int Current
     {
@@ -15,7 +15,7 @@ public class Power : MonoBehaviour
         private set
         {
             _current = value;
-            Changed?.Invoke(_current);
+            Changed?.Invoke(_inital, _current);
         }
     }
 
@@ -24,8 +24,11 @@ public class Power : MonoBehaviour
         Current++;
     }
 
-    private void Awake()
+    private void Start()
     {
-        Current = _inital;
+        if (Current == 0)
+        {
+            Current = _inital;
+        }
     }
 }
