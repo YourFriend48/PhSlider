@@ -62,7 +62,8 @@ public class Enemy : MonoBehaviour, ICharacter
             }
         }
 
-        Instantiate(_hitEffect, collision.contacts[0].point, Quaternion.identity);
+        Vector3 hitEffectPosition = collision.GetContact(collision.contactCount - 1).point;
+        Instantiate(_hitEffect, hitEffectPosition, Quaternion.identity);
 
         _died = true;
         Died?.Invoke();
