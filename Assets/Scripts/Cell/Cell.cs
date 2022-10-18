@@ -7,6 +7,7 @@ public class Cell : MonoBehaviour
 {
     [SerializeField] private WalkableType _walkableType;
 
+    private Gem _gem;
     private CellView _emptyTemplate;
     private CellView _wallTemplate;
     private CellView _roadTemplate;
@@ -16,41 +17,48 @@ public class Cell : MonoBehaviour
     public WalkableType Type => _walkableType;
     public CellView CellView => _cellView;
 
-    public void Init(CellView emptyTemplate, CellView wallTemplate, CellView roadTemplate)
+    public void Init(CellView emptyTemplate, CellView wallTemplate, CellView roadTemplate, Gem gem)
     {
         _emptyTemplate = emptyTemplate;
         _wallTemplate = wallTemplate;
         _roadTemplate = roadTemplate;
+        _gem = gem;
 
         _walkableType = WalkableType.Unwalkable;
         SetWall();
     }
 
-    private void InstiateAsPrefb(CellView template)
+    private T InstiateAsPrefb<T>(T template) where T : MonoBehaviour
     {
-        _cellView = Instantiate(template, transform);
-        _cellView = PrefabUtility.ConnectGameObjectToPrefab(_cellView.gameObject, template.gameObject).GetComponent<CellView>();
+        T instance = Instantiate(template, transform);
+        return PrefabUtility.ConnectGameObjectToPrefab(instance.gameObject, template.gameObject).GetComponent<T>();
     }
 
     [ContextMenu("SetWall")]
     private void SetWall()
     {
         TryDestroyPreviousView();
-        InstiateAsPrefb(_wallTemplate);
+        _cellView = InstiateAsPrefb(_wallTemplate);
     }
 
     [ContextMenu("SetEmpty")]
     private void SetEmpty()
     {
         TryDestroyPreviousView();
-        InstiateAsPrefb(_emptyTemplate);
+        _cellView = InstiateAsPrefb(_emptyTemplate);
     }
 
     [ContextMenu("SetRoad")]
     private void SetRoad()
     {
         TryDestroyPreviousView();
-        InstiateAsPrefb(_roadTemplate);
+        _cellView = InstiateAsPrefb(_roadTemplate);
+    }
+
+    [ContextMenu("CreateGem")]
+    private void CreateGem()
+    {
+        InstiateAsPrefb(_gem);
     }
 
     private void TryDestroyPreviousView()
