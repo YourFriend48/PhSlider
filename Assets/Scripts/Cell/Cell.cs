@@ -32,7 +32,8 @@ public class Cell : MonoBehaviour
     private T InstiateAsPrefb<T>(T template) where T : MonoBehaviour
     {
         T instance = Instantiate(template, transform);
-        return PrefabUtility.ConnectGameObjectToPrefab(instance.gameObject, template.gameObject).GetComponent<T>();
+        //return PrefabUtility.ConnectGameObjectToPrefab(instance.gameObject, template.gameObject).GetComponent<T>();
+        return instance;
     }
 
     [ContextMenu("SetWall")]

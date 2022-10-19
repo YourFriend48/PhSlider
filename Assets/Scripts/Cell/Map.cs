@@ -74,7 +74,7 @@ public class Map : MonoBehaviour
     {
         Vector3 position = new Vector3(i * _cellSize, 0, j * _cellSize);
         Cell cell = Instantiate(_template, transform);
-        cell = PrefabUtility.ConnectGameObjectToPrefab(cell.gameObject, _template.gameObject).GetComponent<Cell>();
+        //cell = PrefabUtility.ConnectGameObjectToPrefab(cell.gameObject, _template.gameObject).GetComponent<Cell>();
         cell.transform.position = position;
         cell.transform.rotation = Quaternion.identity;
         cell.Init(_emptyTemplate, _wallTemplate, _roadTemplate, _gemTemplate);
