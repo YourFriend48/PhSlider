@@ -1,34 +1,45 @@
 using UnityEngine;
-using UnityEngine.Events;
+using System;
 
 public class Power : MonoBehaviour
 {
-    [SerializeField] private int _inital;
-
+    [SerializeField] private MonoBehaviour _floatParametr;
+    
+    private IFloatParametr _iFloatParametr => (IFloatParametr)_floatParametr;
     private int _current;
 
-    public event UnityAction<int, int> Changed;
+    public event Action<int> Changed;
 
-    public int Current
+    public int Current => _current;
+
+    private void OnValidate()
     {
-        get => _current;
-        private set
+        if (_floatParametr != null && _floatParametr is not IFloatParametr)
         {
-            _current = value;
-            Changed?.Invoke(_inital, _current);
+            Debug.LogError(nameof(_floatParametr) + " needs to implement " + nameof(IFloatParametr));
+            _floatParametr = null;
         }
+    }
+
+    private void OnEnable()
+    {
+        OnUpgraded();
+        _iFloatParametr.Upgraded+= OnUpgraded;
+    }
+
+    private void OnDisable()
+    {
+        _iFloatParametr.Upgraded -= OnUpgraded;
     }
 
     public void Increase()
     {
-        Current++;
+        _current++;
+        Changed?.Invoke(_current);
     }
-
-    private void Start()
+    private void OnUpgraded()
     {
-        if (Current == 0)
-        {
-            Current = _inital;
-        }
+        _current = (int)_iFloatParametr.Value;
+        Changed?.Invoke(_current);
     }
 }
