@@ -20,7 +20,7 @@ public class Map : MonoBehaviour
 
     private Cell[,] _map;
     private Vector2Int _playerPosition;
-    private int _length;
+    [SerializeField, HideInInspector] private int _length;
     private int _width;
     public Vector2Int PlayerPosition => _playerPosition;
 
@@ -63,7 +63,7 @@ public class Map : MonoBehaviour
 
         for (int i = 0; i < row.Length; i++)
         {
-            Cell cell = Spawn(i, _lol.Length);
+            Cell cell = Spawn(i, _length);
             row[i] = cell;
         }
 
@@ -85,6 +85,7 @@ public class Map : MonoBehaviour
     public void AddRow()
     {
         Cell[] newRow = CreateRow();
+        _length++;
         _lol = ArrayUtility.AddRow(_lol, newRow);
     }
 

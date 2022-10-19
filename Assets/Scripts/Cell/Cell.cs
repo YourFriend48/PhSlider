@@ -6,6 +6,7 @@ using UnityEditor;
 public class Cell : MonoBehaviour
 {
     [SerializeField] private WalkableType _walkableType;
+    [SerializeField] private ViewType _viewType;
 
     private Gem _gem;
     private CellView _emptyTemplate;

@@ -16,9 +16,11 @@ public static class ArrayUtility
             newArray[i] = oldArray[i];
         }
 
-        for (int i = oldArray.Length; i < newArray.Length; i++)
+        int j = 0;
+
+        for (int i = oldArray.Length; i < newArray.Length; i++, j++)
         {
-            newArray[i] = newRow[i];
+            newArray[i] = newRow[j];
         }
 
         return newArray;
