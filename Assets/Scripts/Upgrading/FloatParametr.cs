@@ -8,4 +8,5 @@ public class FloatParametr : MonoBehaviour , IFloatParametr
     public float Value => _value;
 
     public event Action Upgraded;
+    public event Action Setted;
 }

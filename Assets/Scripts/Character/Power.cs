@@ -24,12 +24,20 @@ public class Power : MonoBehaviour
     private void OnEnable()
     {
         OnUpgraded();
+        _iFloatParametr.Setted += OnSetted;
         _iFloatParametr.Upgraded+= OnUpgraded;
     }
 
     private void OnDisable()
     {
         _iFloatParametr.Upgraded -= OnUpgraded;
+        _iFloatParametr.Setted -= OnSetted;
+    }
+
+    private void OnSetted()
+    {
+        _current = (int)_iFloatParametr.Value;
+        Changed?.Invoke(_current);
     }
 
     public void Increase()

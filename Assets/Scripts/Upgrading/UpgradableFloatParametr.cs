@@ -12,6 +12,7 @@ public class UpgradableFloatParametr : MonoBehaviour, IFloatParametr
     private Action _targetFunction;
 
     public event Action Upgraded;
+    public event Action Setted;
     public event Action ExtremumReached;
 
     public float NextValue { get; private set; }
@@ -42,6 +43,7 @@ public class UpgradableFloatParametr : MonoBehaviour, IFloatParametr
         }
 
         _targetFunction.Invoke();
+        Setted?.Invoke();
     }
 
     public void IncreaseParameter()

@@ -16,12 +16,19 @@ public class CurrentFloatValueView : MonoBehaviour
     private void OnEnable()
     {
         OnUpgraded();
+        _floatParametr.Setted += OnSetted;
         _floatParametr.Upgraded += OnUpgraded;
     }
 
     private void OnDisable()
     {
+        _floatParametr.Setted -= OnSetted;
         _floatParametr.Upgraded -= OnUpgraded;
+    }
+
+    private void OnSetted()
+    {
+        _text.text = _floatParametr.Value.ToString();
     }
 
     private void OnUpgraded()
