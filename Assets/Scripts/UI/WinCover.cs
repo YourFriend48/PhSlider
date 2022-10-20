@@ -1,15 +1,26 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using General;
+using Agava.YandexGames;
+using YandexSDK;
+using System;
 
 [RequireComponent(typeof(Animator))]
-public class WinCover : Screen
+public class WinCover : Screen, IGameSpeedGhangable
 {
     [SerializeField] private PlayerMovement _playerMovement;
     [SerializeField] private Transform _confetti;
     [SerializeField] private float _enableAfterWin = 0.805f;
 
     private Animator _animator;
+
+    public event Action<float> GameSpeedChanged;
+    //public Action<bool> AddClosed;
+
+    //private void Awake()
+    //{
+    //    AddClosed = (bool flag) => OnAdClose(true);
+    //}
 
     private void OnEnable()
     {
@@ -34,7 +45,20 @@ public class WinCover : Screen
 
     protected override void OnButtonClick()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+#if UNITY_WEBGL && !UNITY_EDITOR
+        InterstitialAd.Show(onOpenCallback: OnAdOpen,onCloseCallback: OnAdClose);
+#endif
+        LevelLoader.Instance.LoadNext();
+    }
+
+    private void OnAdOpen()
+    {
+        GameSpeedChanged?.Invoke(0f);
+    }
+
+    private void OnAdClose(bool _)
+    {
+        GameSpeedChanged?.Invoke(1f);
     }
 
     private IEnumerator EnableCover()

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3486828061741436219}
   - component: {fileID: 3486828061741436218}
   - component: {fileID: 3486828061741436217}
+  - component: {fileID: 4956620725916871436}
   m_Layer: 0
   m_Name: WebEventSystem
   m_TagString: Untagged
@@ -68,3 +69,15 @@ MonoBehaviour:
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
   m_ForceModuleActive: 0
+--- !u!114 &4956620725916871436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3486828061741436216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83d0749416bc9274d9ce598bbe5d01cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

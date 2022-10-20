@@ -1,10 +1,13 @@
 using UnityEngine;
+using System;
 
 [RequireComponent(typeof(PlayerMovement))]
 public class MouseInput : MonoBehaviour
 {
     private Vector3 _mousePreviousPosition;
     private PlayerMovement _playerMovement;
+
+    public event Action Swipped;
 
     private void Start()
     {
@@ -24,7 +27,10 @@ public class MouseInput : MonoBehaviour
         {
             return;
         }
-        
+
+        Swipped?.Invoke();
+
+
         if (Mathf.Abs(mousePosition.x - _mousePreviousPosition.x)
             > Mathf.Abs(mousePosition.y - _mousePreviousPosition.y))
         {
