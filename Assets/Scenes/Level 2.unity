@@ -7679,6 +7679,10 @@ PrefabInstance:
       propertyPath: _floatParametr
       value: 
       objectReference: {fileID: 1174084606}
+    - target: {fileID: 3219832325834319008, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
+      propertyPath: _gameSpeedChangers.Array.data[1]
+      value: 
+      objectReference: {fileID: 1174084607}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
 --- !u!114 &889491472802808025 stripped

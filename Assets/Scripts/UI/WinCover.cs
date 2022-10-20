@@ -13,6 +13,7 @@ public class WinCover : Screen, IGameSpeedGhangable
     [SerializeField] private float _enableAfterWin = 0.805f;
 
     private Animator _animator;
+    private bool _isAdShowed = false;
 
     public event Action<float> GameSpeedChanged;
     //public Action<bool> AddClosed;
@@ -48,17 +49,23 @@ public class WinCover : Screen, IGameSpeedGhangable
 #if UNITY_WEBGL && !UNITY_EDITOR
         InterstitialAd.Show(onOpenCallback: OnAdOpen,onCloseCallback: OnAdClose);
 #endif
+        if(_isAdShowed == false)
+        {
         LevelLoader.Instance.LoadNext();
+        }
     }
 
     private void OnAdOpen()
     {
+        _isAdShowed = true;
         GameSpeedChanged?.Invoke(0f);
     }
 
     private void OnAdClose(bool _)
     {
         GameSpeedChanged?.Invoke(1f);
+        _isAdShowed = false;
+        LevelLoader.Instance.LoadNext();
     }
 
     private IEnumerator EnableCover()

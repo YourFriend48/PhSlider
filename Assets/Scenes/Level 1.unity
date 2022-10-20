@@ -7672,6 +7672,22 @@ PrefabInstance:
       propertyPath: _price
       value: 
       objectReference: {fileID: 1174084605}
+    - target: {fileID: 2501285597185904696, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2501285597185904696, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2501285597185904696, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2501285597185904696, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2501285597290296162, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
       propertyPath: _floatParametr
       value: 
@@ -7684,6 +7700,10 @@ PrefabInstance:
       propertyPath: _floatParametr
       value: 
       objectReference: {fileID: 1174084606}
+    - target: {fileID: 3219832325834319008, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
+      propertyPath: _gameSpeedChangers.Array.data[1]
+      value: 
+      objectReference: {fileID: 1174084607}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
 --- !u!1001 &1623213232511364312

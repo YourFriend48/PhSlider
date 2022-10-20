@@ -2646,6 +2646,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameSpeedChangers:
   - {fileID: 889491472740711506}
+  - {fileID: 0}
 --- !u!1 &889491473764994969
 GameObject:
   m_ObjectHideFlags: 0
