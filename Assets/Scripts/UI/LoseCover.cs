@@ -7,14 +7,9 @@ public class LoseCover : Screen
 {
     [SerializeField] private Player _player;
     [SerializeField] private float _enableAfterLose = 0.805f;
+    [SerializeField] private GemLeaderboard _leaderboard;
 
     private Animator _animator;
-
-    private void OnEnable()
-    {
-        _player.Died += PlayerOnDied;
-        OnEnableBase();
-    }
 
     private void Start()
     {
@@ -22,12 +17,6 @@ public class LoseCover : Screen
 
         _animator = GetComponent<Animator>();
         _animator.enabled = false;
-    }
-
-    private void OnDisable()
-    {
-        _player.Died -= PlayerOnDied;
-        OnDisableBase();
     }
 
     protected override void OnButtonClick()
@@ -46,5 +35,17 @@ public class LoseCover : Screen
     private void PlayerOnDied()
     {
         StartCoroutine(EnableCover());
+    }
+
+    protected override void Disable()
+    {
+        //_player.Died -= PlayerOnDied;
+    }
+
+    protected override void Enable()
+    {
+        StartCoroutine(EnableCover());
+        //_player.Died += PlayerOnDied;
+        _leaderboard.TryShow();
     }
 }

@@ -2,7 +2,7 @@ using System;
 
 namespace YandexSDK
 {
-    public interface IGameSpeedGhangable
+    public interface IGameSpeedChangable
     {
         public event Action<float> GameSpeedChanged;
     }

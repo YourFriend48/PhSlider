@@ -22,4 +22,12 @@ public class GameCover : Screen
         yield return new WaitForSeconds(_enableAfter);
         Open();
     }
+
+    protected override void Disable()
+    {
+    }
+
+    protected override void Enable()
+    {
+    }
 }

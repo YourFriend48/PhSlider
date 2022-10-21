@@ -35,23 +35,19 @@ public abstract class Screen : MonoBehaviour
 
     private void OnEnable()
     {
-        OnEnableBase();
+        Button.onClick.AddListener(OnButtonClick);
+        Enable();
     }
 
     private void OnDisable()
     {
-        OnDisableBase();
+        Button.onClick.RemoveListener(OnButtonClick);
+        Disable();
     }
 
     protected abstract void OnButtonClick();
 
-    protected void OnDisableBase()
-    {
-        Button.onClick.RemoveListener(OnButtonClick);
-    }
+    protected abstract void Disable();
 
-    protected void OnEnableBase()
-    {
-        Button.onClick.AddListener(OnButtonClick);
-    }
+    protected abstract void Enable();
 }

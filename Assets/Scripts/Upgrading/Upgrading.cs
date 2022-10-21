@@ -5,7 +5,7 @@ using Agava.YandexGames;
 using YandexSDK;
 using System;
 
-public class Upgrading : MonoBehaviour, IGameSpeedGhangable
+public class Upgrading : MonoBehaviour, IGameSpeedChangable
 {
     [SerializeField] private UpgradableFloatParametr _floatParametr;
     [SerializeField] private Price _price;
@@ -51,8 +51,8 @@ public class Upgrading : MonoBehaviour, IGameSpeedGhangable
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
         VideoAd.Show(onOpenCallback: OnAdOpen, onRewardedCallback: OnRewarded, onCloseCallback: OnAdClose);
-#endif    
-        }
+#endif
+    }
 
     private void OnAdOpen()
     {
