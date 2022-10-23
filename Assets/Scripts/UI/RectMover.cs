@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using System;
 
 [RequireComponent(typeof(RectTransform))]
 public class RectMover : MonoBehaviour
@@ -7,6 +8,7 @@ public class RectMover : MonoBehaviour
     private RectTransform _rectTransform;
     private Coroutine _moving;
 
+    public event Action Completed;
 
     private void Awake()
     {
@@ -42,5 +44,7 @@ public class RectMover : MonoBehaviour
             _rectTransform.anchoredPosition = Vector2.Lerp(_rectTransform.anchoredPosition, target, progress);
             yield return null;
         }
+
+        Completed?.Invoke();
     }
 }
