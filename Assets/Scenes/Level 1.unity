@@ -5524,7 +5524,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 0.7807757, y: 1}
+    m_SensorSize: {x: 0.46153846, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -5597,7 +5597,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 0.7807757, y: 1}
+    m_SensorSize: {x: 0.46153846, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -7644,9 +7644,9 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8119056863962952670, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
-      propertyPath: _resultsWindow
+      propertyPath: _mouseInput
       value: 
-      objectReference: {fileID: 889491472802808025}
+      objectReference: {fileID: 1623213232511364313}
     - target: {fileID: 8119056863962952670, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
       propertyPath: _tableStringTemplate
       value: 
@@ -7685,11 +7685,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
---- !u!224 &889491472802808025 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1477984005548726148, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
-  m_PrefabInstance: {fileID: 889491472802808024}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &889491472802808026 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8119056863962952670, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}

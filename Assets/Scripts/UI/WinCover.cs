@@ -6,7 +6,7 @@ using YandexSDK;
 using System;
 
 [RequireComponent(typeof(Animator))]
-public class WinCover : Screen, IGameSpeedChangable
+public class WinCover : EndScreen, IGameSpeedChangable
 {
     [SerializeField] private PlayerMovement _playerMovement;
     [SerializeField] private Transform _confetti;

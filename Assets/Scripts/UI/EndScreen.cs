@@ -3,7 +3,7 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(CanvasGroup))]
-public abstract class Screen : MonoBehaviour
+public abstract class EndScreen : MonoBehaviour
 {
     [SerializeField] protected Button Button;
 

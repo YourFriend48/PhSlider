@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using General;
 using YandexSDK;
@@ -19,7 +17,7 @@ public class Boot : MonoBehaviour
 
     private void OnYandexInitialized()
     {
-        StartGame();
+        Authorize();
     }
 
     private void OnFailed()
@@ -31,11 +29,11 @@ public class Boot : MonoBehaviour
     {
         if (PlayerAccount.IsAuthorized)
         {
-            //OnSucsessAuthorize();
+            OnSucsessAuthorize();
         }
         else
         {
-            PlayerAccount.Authorize();
+            PlayerAccount.Authorize(OnSucsessAuthorize);
         }
 
         StartGame();
@@ -43,14 +41,17 @@ public class Boot : MonoBehaviour
 
     private void OnSucsessAuthorize()
     {
-        //we can use leaderboard        
+        PlayerAccount.GetProfileData(WriteData);
+    }
+
+    private void WriteData(PlayerAccountProfileDataResponse data)
+    {
+        PlayerData.Data = data;
     }
 
     private void StartGame()
     {
         //GameAnalytics.Initialize();
-        //_integrationMetric.OnGameStart();
         _levelLoader.enabled = true;
-        //_integrationMetric.SetUserProperty();
     }
 }

@@ -30,6 +30,11 @@ public class RectMover : MonoBehaviour
         float time = 0;
         float progress;
 
+        if (_rectTransform == null)
+        {
+            Completed?.Invoke();
+        }
+
         while (time != requireTime)//(_rectTransform.anchoredPosition != target)
         {
             time += Time.deltaTime;

@@ -1,6 +1,7 @@
 using UnityEngine;
 using Agava.YandexGames;
 using Finance;
+using System.Collections;
 
 public class GemLeaderboard : MonoBehaviour
 {
@@ -18,12 +19,17 @@ public class GemLeaderboard : MonoBehaviour
 
     [SerializeField] private float _targetScaleMultiplier;
 
+    [SerializeField] private MouseInput _mouseInput;
+
     private Vector3 _originalScale;
     private Vector3 _targetScale;
-    private LeaderboardEntryResponse _oldPlayerResult;
     private TableString _playerString;
-    private Vector2 _yourRecordTargetPosition;
-    private Vector2 _panelOfOpponentsRecordsEndPosition;
+    private LeaderboardEntryResponse[] _tableAtStartLevel;
+
+    private void OnEnable()
+    {
+        _mouseInput.Swipped += OnSwipped;
+    }
 
     private void OnDisable()
     {
@@ -32,36 +38,41 @@ public class GemLeaderboard : MonoBehaviour
             _playerString.Scaled -= MoveTable;
         }
 
+        _mouseInput.Swipped -= OnSwipped;
         _panelOfOpponentsRecords.MovementCompleted -= OnMovementCompleted;
     }
 
     public void TryShow()
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
-        if (PlayerAccount.IsAuthorized)
+        if(PlayerData.Data!=null)
         {
-        _leaderbordPanel.gameObject.SetActive(true);
-            Leaderboard.GetPlayerEntry(LeaderboardName, onSuccessCallback: OnSucsess);
-        }
+        Show();
+                }
 #endif
-        //_leaderbordPanel.gameObject.SetActive(true);
-        //CreateFakeTable();
     }
 
-    public void ShowLeaderboard()
+    private void OnSwipped()
     {
+        _mouseInput.Swipped -= OnSwipped;
 #if UNITY_WEBGL && !UNITY_EDITOR
-        if (PlayerAccount.IsAuthorized)
+        if(PlayerData.Data!=null)
         {
-        _leaderbordPanel.gameObject.SetActive(true);
-        Leaderboard.GetEntries(LeaderboardName, onSuccessCallback: FillOldTable, onErrorCallback: null, 5, 5, false);
+        _text.text += " PlayerData.Data!=null ";
+        Leaderboard.GetEntries(LeaderboardName, WriteStartData, null, 0, 5, true);
         }
 #endif
     }
 
-    public void Hide()
+    private void WriteStartData(LeaderboardGetEntriesResponse leaderboardGetEntriesResponse)
     {
-        _leaderbordPanel.gameObject.SetActive(false);
+        _tableAtStartLevel = leaderboardGetEntriesResponse.entries;
+    }
+
+    private void Show()
+    {
+        _leaderbordPanel.gameObject.SetActive(true);
+        Leaderboard.GetPlayerEntry(LeaderboardName, OnSucsess);
     }
 
     private void OnSucsess(LeaderboardEntryResponse leaderboardEntryResponse)
@@ -72,63 +83,54 @@ public class GemLeaderboard : MonoBehaviour
         {
             highestResult = WalletHolder.Instance.Value;
             Leaderboard.SetScore(LeaderboardName, highestResult);
-            //просто показать результат
+            Leaderboard.GetEntries(LeaderboardName, WriteStartData, null, 0, 5, true);
+            CreateOldTable(_tableAtStartLevel);
         }
         else
         {
-            _oldPlayerResult = leaderboardEntryResponse;
             highestResult = Mathf.Max(leaderboardEntryResponse.score, WalletHolder.Instance.Value);
-            Leaderboard.GetEntries(LeaderboardName, onSuccessCallback: FillOldTable, onErrorCallback: null, 0, 5, true);
-
-
-            //if(leaderboardEntryResponse != null)
+            CreateOldTable(_tableAtStartLevel);
             Leaderboard.SetScore(LeaderboardName, highestResult);
-            Leaderboard.GetEntries(LeaderboardName, onSuccessCallback: FillNewTable, onErrorCallback: null, 0, 5, true);
-            Animate();
+            Leaderboard.GetEntries(LeaderboardName, FillNewTable, null, 0, 5, true);
         }
     }
 
-    private void FillOldTableWithoutPlayer(LeaderboardGetEntriesResponse table)
+    private void FillNewTable(LeaderboardGetEntriesResponse table)//call twice?
     {
         LeaderboardEntryResponse[] leaderboardEntries = table.entries;
-
-        CreateOldTableWithoutPlayer(leaderboardEntries);
+        StartCoroutine(WaitWhileGetEntries(leaderboardEntries));
     }
 
-    private void CreateOldTableWithoutPlayer(LeaderboardEntryResponse[] table)
+    private IEnumerator WaitWhileGetEntries(LeaderboardEntryResponse[] leaderboardEntries)
     {
-        for (int i = 0; i < table.Length; i++)
+        yield return new WaitUntil(() => CheckLeaderboardEntryResponse(leaderboardEntries));
+        CreateNewTable(leaderboardEntries);
+    }
+
+    private bool CheckLeaderboardEntryResponse(LeaderboardEntryResponse[] leaderboardEntries)
+    {
+        foreach (LeaderboardEntryResponse entry in leaderboardEntries)
         {
-            LeaderboardEntryResponse entry = table[i];
-            TableString tableString = Create(entry, i, _startPosition, Vector2.down);
+            if (entry == null)
+            {
+                return false;
+            }
         }
+
+        return true;
     }
 
-    private void FillOldTable(LeaderboardGetEntriesResponse table)
-    {
-        LeaderboardEntryResponse[] leaderboardEntries = table.entries;
-
-        CreateOldTable(leaderboardEntries, _oldPlayerResult);
-    }
-
-    private void FillNewTable(LeaderboardGetEntriesResponse table)//успех
-    {
-        LeaderboardEntryResponse[] leaderboardEntries = table.entries;
-
-        CreateNewTable(leaderboardEntries, _oldPlayerResult);
-    }
-
-    private void CreateOldTable(LeaderboardEntryResponse[] table, LeaderboardEntryResponse leaderboardEntryResponse)
+    private void CreateOldTable(LeaderboardEntryResponse[] table)
     {
         for (int i = 0; i < table.Length; i++)
         {
             LeaderboardEntryResponse entry = table[i];
             TableString tableString = Create(entry, i, _startPosition, Vector2.down);
 
-            if (table[i].player.uniqueID == leaderboardEntryResponse.player.uniqueID)
+            if (entry.player.uniqueID == PlayerData.Data.uniqueID)
             {
                 _playerString = tableString;
-                _playerString.transform.parent = _resultsWindow.transform;
+                _playerString.transform.parent = _resultsWindow;
             }
         }
     }
@@ -143,37 +145,21 @@ public class GemLeaderboard : MonoBehaviour
         return tableString;
     }
 
-    private void CreateFakeTable()
-    {
-        for (int i = 0; i < 5; i++)
-        {
-            FakeCreate(i, _startPosition, Vector2.down);
-        }
-    }
-
-    private TableString FakeCreate(int index, Vector2 startPosition, Vector2 direction)
-    {
-        TableString tableString = Instantiate(_tableStringTemplate, _panelOfOpponentsRecords.transform);
-        Vector2 rectPosition = startPosition + _offset * index * direction;
-        tableString.SetRectPosition(rectPosition);
-        return tableString;
-    }
-
-    private void CreateNewTable(LeaderboardEntryResponse[] table, LeaderboardEntryResponse leaderboardEntryResponse)
+    private void CreateNewTable(LeaderboardEntryResponse[] table)
     {
         int positionIndex = 0;
 
         for (int i = table.Length - 1; i >= 0; i--, positionIndex++)
         {
             LeaderboardEntryResponse entry = table[i];
-            TableString tableString = Create(entry, positionIndex, _newRecordsStartPosition, Vector2.up);
 
-            if (table[i].player.uniqueID == leaderboardEntryResponse.player.uniqueID)
+            if (table[i].player.uniqueID != PlayerData.Data.uniqueID)
             {
-                //_yourRecordTargetPosition = _startPosition + 
-                tableString.gameObject.SetActive(false);
+                TableString tableString = Create(entry, positionIndex, _newRecordsStartPosition, Vector2.up);
             }
         }
+
+        Animate();
     }
 
     private void Animate()
@@ -189,7 +175,7 @@ public class GemLeaderboard : MonoBehaviour
         _playerString.Scaled -= MoveTable;
         int tableStringsCount = 15;
         Vector2 startPosition = _panelOfOpponentsRecords.GetComponent<RectTransform>().anchoredPosition;
-        _panelOfOpponentsRecords.MoveTo(tableStringsCount * _offset * startPosition, _animationTime);
+        _panelOfOpponentsRecords.MoveTo(tableStringsCount * _offset * Vector2.down + startPosition, _animationTime);
         _panelOfOpponentsRecords.MovementCompleted += OnMovementCompleted;
     }
 

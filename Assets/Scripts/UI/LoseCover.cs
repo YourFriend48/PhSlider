@@ -3,7 +3,7 @@ using UnityEngine;
 using General;
 
 [RequireComponent(typeof(Animator))]
-public class LoseCover : Screen
+public class LoseCover : EndScreen
 {
     [SerializeField] private Player _player;
     [SerializeField] private float _enableAfterLose = 0.805f;

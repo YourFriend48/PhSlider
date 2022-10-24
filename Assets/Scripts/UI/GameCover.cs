@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameCover : Screen
+public class GameCover : EndScreen
 {
     [SerializeField] private float _enableAfter = 1.13f;
 

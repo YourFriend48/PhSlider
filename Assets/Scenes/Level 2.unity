@@ -7695,6 +7695,14 @@ PrefabInstance:
       propertyPath: _floatParametr
       value: 
       objectReference: {fileID: 1174084606}
+    - target: {fileID: 2841936152389455509, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2841936152389455509, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 3219832325834319008, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
       propertyPath: _powerUpgrade
       value: 
@@ -7703,6 +7711,10 @@ PrefabInstance:
       propertyPath: _gameSpeedChangers.Array.data[1]
       value: 
       objectReference: {fileID: 1174084607}
+    - target: {fileID: 8119056863962952670, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
+      propertyPath: _mouseInput
+      value: 
+      objectReference: {fileID: 1623213232511364313}
     - target: {fileID: 8119056863962952670, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
       propertyPath: _tableStringTemplate
       value: 
