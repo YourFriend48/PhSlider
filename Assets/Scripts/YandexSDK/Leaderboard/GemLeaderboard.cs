@@ -54,8 +54,9 @@ public class GemLeaderboard : MonoBehaviour
 
     public void TryShow()
     {
+        //if (PlayerData.Data != null)
 #if UNITY_WEBGL && !UNITY_EDITOR
-        if(PlayerData.Data!=null)
+        if (PlayerAccount.IsAuthorized)
         {
         Show();
         }

@@ -41,6 +41,11 @@ public class Boot : MonoBehaviour
 
     private void OnSucsessAuthorize()
     {
+        PlayerAccount.RequestPersonalProfileDataPermission(OnPersonalDataRequested);
+    }
+
+    private void OnPersonalDataRequested()
+    {
         PlayerAccount.GetProfileData(WriteData);
     }
 
