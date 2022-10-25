@@ -5,6 +5,8 @@ using System;
 [RequireComponent(typeof(RectTransform))]
 public class RectMover : MonoBehaviour
 {
+    [SerializeField] private AnimationCurve _dependencyOfProgressByTimeShare;
+
     private RectTransform _rectTransform;
     private Coroutine _moving;
 
@@ -29,13 +31,9 @@ public class RectMover : MonoBehaviour
     {
         float time = 0;
         float progress;
+        Vector2 startPosition = _rectTransform.anchoredPosition;
 
-        if (_rectTransform == null)
-        {
-            Completed?.Invoke();
-        }
-
-        while (time != requireTime)//(_rectTransform.anchoredPosition != target)
+        while (time != requireTime)
         {
             time += Time.deltaTime;
 
@@ -44,9 +42,8 @@ public class RectMover : MonoBehaviour
                 time = requireTime;
             }
 
-            progress = time / requireTime;
-
-            _rectTransform.anchoredPosition = Vector2.Lerp(_rectTransform.anchoredPosition, target, progress);
+            progress = _dependencyOfProgressByTimeShare.Evaluate(time / requireTime);
+            _rectTransform.anchoredPosition = Vector2.Lerp(startPosition, target, progress);
             yield return null;
         }
 
