@@ -21,8 +21,6 @@ public class GemLeaderboard : MonoBehaviour
 
     [SerializeField] private float _targetScaleMultiplier;
 
-    [SerializeField] private MouseInput _mouseInput;
-
     private Vector3 _originalScale;
     private Vector3 _targetScale;
     private TableString _playerString;

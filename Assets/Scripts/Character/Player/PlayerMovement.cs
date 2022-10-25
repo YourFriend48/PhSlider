@@ -165,6 +165,13 @@ public class PlayerMovement : MonoBehaviour
         {
             RaycastHit raycastHit = raycastHits[i];
 
+            if (raycastHit.collider.TryGetComponent(out SwitchButton switchButton))
+            {
+                //switchButton.
+                //requiredPlatform = currentPlatform;
+                continue;
+            }
+
             if (raycastHit.collider.TryGetComponent(out Platform currentPlatform))
             {
                 requiredPlatform = currentPlatform;
