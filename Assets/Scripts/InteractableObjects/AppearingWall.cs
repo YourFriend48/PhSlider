@@ -1,19 +1,16 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Collider))]
-public class AppearingWall : InactiveRoof
+public class AppearingWall : MonoBehaviour
 {
+    [SerializeField] private Transform _center;
     [SerializeField] private Transform _startPosition;
     [SerializeField] private Transform _endPosition;
     [SerializeField] private Switcher _button;
     [SerializeField] private TowardsMover _model;
 
-    private Collider _collider;
+    public bool IsRaised { get; private set; }
 
-    private void Awake()
-    {
-        _collider = GetComponent<Collider>();
-    }
+    public Vector3 Center => _center.position;
 
     private void OnEnable()
     {
@@ -32,13 +29,13 @@ public class AppearingWall : InactiveRoof
 
     private void OnButtonOff()
     {
-        _collider.enabled = false;
+        IsRaised = false;
         _model.MoveTowards(_startPosition.position);
     }
 
     private void OnButtonOn()
     {
-        _collider.enabled = true;
+        IsRaised = true;
         _model.MoveTowards(_endPosition.position);
     }
 }

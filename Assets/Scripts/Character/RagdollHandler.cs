@@ -1,9 +1,10 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Animator), typeof(ICharacter))]
+[RequireComponent(typeof(ICharacter))]
 public class RagdollHandler : MonoBehaviour
 {
-    private Animator _animator;
+    [SerializeField] private Animator _animator;
+
     private ICharacter _character;
     private Rigidbody[] _ragdollRigidbodies;
 
@@ -16,10 +17,9 @@ public class RagdollHandler : MonoBehaviour
     private void Awake()
     {
         _character = GetComponent<ICharacter>();
-        _animator = GetComponent<Animator>();
         _ragdollRigidbodies = GetComponentsInChildren<Rigidbody>();
 
-        ChangeRagdollState(RagdollState.Disable);
+        //ChangeRagdollState(RagdollState.Disable);
     }
 
     private void OnEnable()

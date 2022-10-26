@@ -8044,6 +8044,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1623213233081321740, guid: 31e9124d4f5fc2744a43c6830e03f303, type: 3}
+      propertyPath: _maxMovement
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1623213233081321741, guid: 31e9124d4f5fc2744a43c6830e03f303, type: 3}
       propertyPath: _platform
       value: 
@@ -8052,12 +8056,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1623213233081321748, guid: 31e9124d4f5fc2744a43c6830e03f303, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1623213233081321749, guid: 31e9124d4f5fc2744a43c6830e03f303, type: 3}
       propertyPath: _floatParametr
       value: 
       objectReference: {fileID: 1174084606}
-    - target: {fileID: 1623213233081321751, guid: 31e9124d4f5fc2744a43c6830e03f303, type: 3}
-      propertyPath: m_Enabled
+    - target: {fileID: 5667583515693978460, guid: 31e9124d4f5fc2744a43c6830e03f303, type: 3}
+      propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

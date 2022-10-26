@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Platform : MonoBehaviour
 {
+    [SerializeField] private Transform _center;
     [SerializeField] private float _addToSizeY = 0.5f;
     [SerializeField] private float _sizeChangeSpeed = 1.8f;
     [SerializeField] private int _power;
@@ -13,6 +14,7 @@ public class Platform : MonoBehaviour
     private Vector3 _startingPosition;
 
     public int Power => _power;
+    public Vector3 Center => _center.position;
 
     private void Start()
     {

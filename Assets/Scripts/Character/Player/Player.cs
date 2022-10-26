@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -24,6 +25,7 @@ public class Player : MonoBehaviour, ICharacter
             return;
         }
 
+        StartCoroutine(ScaleTo(_gloveInitalScale));
         _died = true;
         Died?.Invoke();
         GetComponentInChildren<SkinnedMeshRenderer>().material = _deathMaterial;
@@ -50,19 +52,19 @@ public class Player : MonoBehaviour, ICharacter
         }
 
         _isLanded = true;
-        _rigidbody.isKinematic = true;
+        //_rigidbody.isKinematic = true;
 
         Landed?.Invoke();
     }
 
-    private void Update()
+    private IEnumerator ScaleTo(Vector3 target)
     {
-        if (_died && _boxingGlove.transform.localScale != _gloveInitalScale)
+        Vector3 startScale = _boxingGlove.transform.localScale;
+
+        while (_boxingGlove.transform.localScale != _gloveInitalScale)
         {
-            _boxingGlove.transform.localScale = Vector3.Lerp(
-                _boxingGlove.transform.localScale,
-                _gloveInitalScale,
-                _reboundForce * Time.deltaTime);
+            _boxingGlove.transform.localScale = Vector3.Lerp(startScale, target, _reboundForce * Time.deltaTime);
+            yield return null;
         }
     }
 

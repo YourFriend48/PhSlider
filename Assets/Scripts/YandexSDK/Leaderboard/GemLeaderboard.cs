@@ -40,12 +40,12 @@ public class GemLeaderboard : MonoBehaviour
         OldTableFilled -= OnOldTableFilled;
         _entriesWaiting.Completed -= CreateNewTable;
         _entriesWaiting.Completed -= CreateOldTable;
-        _playerString.Scaled -= OnScaleUpCompleted;
-        _playerString.Scaled -= OnScaleDownComleted;
         _panelOfOpponentsRecords.MovementCompleted -= OnMovementCompleted;
 
         if (_playerString != null)
         {
+            _playerString.Scaled -= OnScaleDownComleted;
+            _playerString.Scaled -= OnScaleUpCompleted;
             _playerString.Scaled -= MoveTable;
         }
     }

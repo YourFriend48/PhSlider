@@ -5,6 +5,9 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Collider), typeof(EnemyAnimator), typeof(Power))]
 public class Enemy : MonoBehaviour, ICharacter
 {
+    [SerializeField] private GameObject _enemyModel;
+    [SerializeField] private GameObject _ragdoll;
+
     [SerializeField] private float _impactForce = 43f;
     [SerializeField] private float _hideSecAfterKill = 3f;
     [SerializeField] private Material _deathMaterial;
@@ -12,13 +15,21 @@ public class Enemy : MonoBehaviour, ICharacter
     [SerializeField] private ParticleSystem _hitEffect;
     [SerializeField] private ParticleSystem _fieldEffect;
     [SerializeField] private PowerCanvas _powerCanvas;
+    [SerializeField] private Rigidbody _rootBone;
 
     private EnemyAnimator _animator;
     private Collider[] _childrenColliders;
-    private bool _died;
+    private Collider _collider;
     private Power _power;
+    private Vector3 _center;
 
     public event UnityAction Died;
+
+    private void Awake()
+    {
+        _collider = GetComponent<Collider>();
+        _center = _collider.bounds.center;
+    }
 
     private void Start()
     {
@@ -27,70 +38,50 @@ public class Enemy : MonoBehaviour, ICharacter
         _animator = GetComponent<EnemyAnimator>();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.TryGetComponent(out HitArea hitArea) == false)
+        Debug.Log(other.name);
+
+        if (other.TryGetComponent(out Player player))
         {
-            return;
-        }
+            Debug.Log("Enter");
+            _collider.enabled = false;
+            Power playerPower = player.GetComponent<Power>();
 
-        IgnoreCollisionWith(collision.collider);
-
-        if (_died)
-        {
-            return;
-        }
-
-        var strikerPower = hitArea.GetComponentInParent<Power>();
-
-        if (strikerPower == null)
-        {
-            return;
-        }
-
-        if (strikerPower.Current < _power.Current)
-        {
-            if (strikerPower.TryGetComponent(out Player striker))
+            if (playerPower.Current < _power.Current)
             {
-                Bounds colliderBounds = GetComponent<Collider>().bounds;
-                Instantiate(_fieldEffect, colliderBounds.center, Quaternion.identity);
+                //Bounds colliderBounds = _collider.bounds;
+                Instantiate(_fieldEffect, _center, Quaternion.identity);
 
                 _animator.RunIdleToVictory();
-                striker.Die(_power);
+                player.Die(_power);
+            }
+            else
+            {
+                //Vector3 hitEffectPosition = collision.GetContact(collision.contactCount - 1).point;
+                Vector3 hitEffectPosition = transform.position;
+                Instantiate(_hitEffect, hitEffectPosition, Quaternion.identity);
 
-                return;
+                Died?.Invoke();
+
+                //Destroy(_powerCanvas.gameObject);
+
+                playerPower.Increase();
+
+                ChangeBodyToDead();
+
+                TakeHit(player);
+
+                //StartCoroutine(HideBody());
+                //StartCoroutine(DestroyBody());
             }
         }
-
-        Vector3 hitEffectPosition = collision.GetContact(collision.contactCount - 1).point;
-        Instantiate(_hitEffect, hitEffectPosition, Quaternion.identity);
-
-        _died = true;
-        Died?.Invoke();
-
-        Destroy(_powerCanvas.gameObject);
-
-        strikerPower.Increase();
-
-        ChangeBodyToDead();
-
-        TakeHit(collision);
-
-        StartCoroutine(HideBody());
     }
 
     private void ChangeBodyToDead()
     {
-        GetComponentInChildren<SkinnedMeshRenderer>().material = _deathMaterial;
-        EnemyEmotion[] emotions = GetComponentsInChildren<EnemyEmotion>();
-
-        foreach (EnemyEmotion emotion in emotions)
-        {
-            if (emotion.TryGetComponent(out SpriteRenderer spriteRenderer))
-            {
-                spriteRenderer.enabled = spriteRenderer.enabled == false;
-            }
-        }
+        _enemyModel.SetActive(false);
+        _ragdoll.SetActive(true);
     }
 
     private IEnumerator DestroyBody()
@@ -99,38 +90,12 @@ public class Enemy : MonoBehaviour, ICharacter
         Destroy(gameObject);
     }
 
-    private IEnumerator HideBody()
+    private void TakeHit(Player player)
     {
-        yield return new WaitForSeconds(_hideSecAfterKill);
-
-        foreach (Collider currentCollider in _childrenColliders)
-        {
-            currentCollider.enabled = false;
-        }
-
-        StartCoroutine(DestroyBody());
-    }
-
-    private void IgnoreCollisionWith(Collider ignoredCollider)
-    {
-        foreach (Collider currentCollider in _childrenColliders)
-        {
-            Physics.IgnoreCollision(currentCollider, ignoredCollider);
-        }
-    }
-
-    private void TakeHit(Collision collision)
-    {
-        Quaternion hitQuaternion = collision.transform.rotation;
-        var player = collision.gameObject.GetComponentInParent<Player>();
-
-        if (player != null)
-        {
-            hitQuaternion = player.transform.rotation;
-        }
+        Quaternion hitQuaternion = player.transform.rotation;
 
         Vector3 hitDirection = (hitQuaternion * Vector3.forward) + Vector3.up;
-        var hipsBone = GetComponent<Animator>().GetBoneTransform(HumanBodyBones.Hips).GetComponent<Rigidbody>();
-        hipsBone.AddForce(hitDirection * _impactForce, ForceMode.VelocityChange);
+        _rootBone.AddForce(hitDirection * _impactForce, ForceMode.VelocityChange);
+        _animator.enabled = false;
     }
 }

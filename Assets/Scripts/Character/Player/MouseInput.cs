@@ -36,22 +36,22 @@ public class MouseInput : MonoBehaviour
         {
             if (mousePosition.x > _mousePreviousPosition.x)
             {
-                _playerMovement.MoveRight();
+                _playerMovement.Move(Vector3.forward);
             }
             else
             {
-                _playerMovement.MoveLeft();
+                _playerMovement.Move(Vector3.back);
             }
         }
         else
         {
             if (mousePosition.y > _mousePreviousPosition.y)
             {
-                _playerMovement.MoveForward();
+                _playerMovement.Move(Vector3.left);
             }
             else
             {
-                _playerMovement.MoveBack();
+                _playerMovement.Move(Vector3.right);
             }
         }
     }
