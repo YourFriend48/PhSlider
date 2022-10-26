@@ -16,11 +16,13 @@ public class PlayerMovement : MonoBehaviour
     private Coroutine _moving;
     private Vector3 _direction;
     private bool _isInputEnable = true;
+    private bool _isMoving = false;
 
     public event Action FinishReached;
     public event Action LastHitInitiated;
     public event Action MovementEnabled;
     public event Action Completed;
+    public event Action TurnEnded;
 
     private void Awake()
     {
@@ -138,6 +140,12 @@ public class PlayerMovement : MonoBehaviour
     {
         _isInputEnable = true;
         _playerAnimator.RunFlightToIdle();
+
+        if(_isMoving)
+        {
+            TurnEnded?.Invoke();
+            _isMoving = false;
+        }
     }
 
     private void OnCompleted()
@@ -148,6 +156,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void MoveTo(Vector3 target)
     {
+        _isMoving = true;
+
         if (_moving != null)
         {
             StopCoroutine(_moving);
