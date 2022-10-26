@@ -693,6 +693,7 @@ MonoBehaviour:
   _playerMovement: {fileID: 0}
   _lastHitTimeScale: 0.315
   _finishTimeScale: 1
+  _cameraChanger: {fileID: 1314023543684564605}
 --- !u!114 &1314023543684564592
 MonoBehaviour:
   m_ObjectHideFlags: 0

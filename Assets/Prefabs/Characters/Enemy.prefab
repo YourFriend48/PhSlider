@@ -1208,11 +1208,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d606de75d5606e14fad6934e5b69b515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyModel: {fileID: 1980141779278917084}
+  _model: {fileID: 1980141779278917084}
   _ragdoll: {fileID: 7769670969134757582}
   _impactForce: 43
-  _hideSecAfterKill: 2
-  _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
   _destroySecAfterHide: 2
   _hitEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
   _fieldEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}

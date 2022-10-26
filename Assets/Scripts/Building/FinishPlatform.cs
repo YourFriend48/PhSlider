@@ -1,5 +1,5 @@
 using UnityEngine;
 
-public class FinishPlatform : MonoBehaviour
+public class FinishPlatform : Platform
 {
 }

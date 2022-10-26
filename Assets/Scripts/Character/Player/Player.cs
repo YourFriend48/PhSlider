@@ -5,18 +5,37 @@ using UnityEngine.Events;
 [RequireComponent(typeof(Rigidbody))]
 public class Player : MonoBehaviour, ICharacter
 {
+    [SerializeField] private GameObject _model;
+    [SerializeField] private GameObject _ragdoll;
+
     [SerializeField] private Transform _boxingGlove;
-    [SerializeField] private PowerCanvas _powerCanvas;
-    [SerializeField] private Material _deathMaterial;
     [SerializeField] private float _reboundForce = 3f;
+    [SerializeField] private Rigidbody _rootBone;
+    [SerializeField] private float _impactForce = 43f;
 
     private bool _died;
     private Vector3 _gloveInitalScale;
     private bool _isLanded;
-    private Rigidbody _rigidbody;
 
     public event UnityAction Died;
     public event UnityAction Landed;
+
+    private void Start()
+    {
+        _gloveInitalScale = _boxingGlove.transform.localScale;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (_isLanded || other.TryGetComponent(out Platform _) == false)
+        {
+            return;
+        }
+
+        _isLanded = true;
+
+        Landed?.Invoke();
+    }
 
     public void Die(Power killerPower)
     {
@@ -28,33 +47,24 @@ public class Player : MonoBehaviour, ICharacter
         StartCoroutine(ScaleTo(_gloveInitalScale));
         _died = true;
         Died?.Invoke();
-        GetComponentInChildren<SkinnedMeshRenderer>().material = _deathMaterial;
-
-        Destroy(_powerCanvas.gameObject);
+        ChangeBodyToDead();
+        TakeHit();
 
         killerPower.Increase();
-
-        DisableHitAreas();
-        ApplyRebound();
     }
 
-    private void Start()
+    private void ChangeBodyToDead()
     {
-        _rigidbody = GetComponent<Rigidbody>();
-        _gloveInitalScale = _boxingGlove.transform.localScale;
+        _model.SetActive(false);
+        _ragdoll.SetActive(true);
     }
 
-    private void OnTriggerEnter(Collider collision)
+    private void TakeHit()
     {
-        if (_isLanded || collision.TryGetComponent(out Platform _) == false)
-        {
-            return;
-        }
+        Quaternion hitQuaternion = transform.rotation;
 
-        _isLanded = true;
-        //_rigidbody.isKinematic = true;
-
-        Landed?.Invoke();
+        Vector3 hitDirection = (hitQuaternion * Vector3.forward) + Vector3.up;
+        _rootBone.AddForce(hitDirection * _impactForce, ForceMode.VelocityChange);
     }
 
     private IEnumerator ScaleTo(Vector3 target)
@@ -65,35 +75,6 @@ public class Player : MonoBehaviour, ICharacter
         {
             _boxingGlove.transform.localScale = Vector3.Lerp(startScale, target, _reboundForce * Time.deltaTime);
             yield return null;
-        }
-    }
-
-    private void ApplyRebound()
-    {
-        Vector3 rebound = ((transform.rotation * Vector3.back) + Vector3.up) * _reboundForce;
-        Rigidbody[] rigidbodies = GetComponentsInChildren<Rigidbody>();
-
-        foreach (Rigidbody currentRigidbody in rigidbodies)
-        {
-            currentRigidbody.velocity = rebound;
-        }
-    }
-
-    private void DisableHitAreas()
-    {
-        HitArea[] hitAreas = GetComponentsInChildren<HitArea>();
-
-        if (hitAreas.Length < 1)
-        {
-            return;
-        }
-
-        foreach (HitArea hitArea in hitAreas)
-        {
-            if (hitArea.TryGetComponent(out Collider hitAreaCollider))
-            {
-                hitAreaCollider.enabled = false;
-            }
         }
     }
 }

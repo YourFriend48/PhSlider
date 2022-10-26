@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -37,9 +38,10 @@ public class EnemySpawner : MonoBehaviour
                 Vector3 platformCenter = colorablePartCollider.bounds.center;
                 var finishPlatform = colorablePartCollider.GetComponentInParent<FinishPlatform>();
 
-                Enemy enemy = finishPlatform != null
-                                  ? Instantiate(_bossEnemyPrefab, platformCenter, _bossEnemyPrefab.transform.rotation)
-                                  : Instantiate(_enemyPrefab, platformCenter, _enemyPrefab.transform.rotation);
+                Enemy enemyPrefab = finishPlatform != null ? _bossEnemyPrefab : _enemyPrefab;
+                Enemy enemy = Instantiate(enemyPrefab, platformCenter, _bossEnemyPrefab.transform.rotation);
+
+
 
                 if (enemy.TryGetComponent(out Power power) == false)
                 {

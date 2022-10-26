@@ -52,7 +52,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 219c65e05c503cb47b0184396e978940, type: 2}
+  - {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1410,10 +1410,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac6918609bb91cb4d96d4e23c37698e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _model: {fileID: 7618681842149353772}
+  _ragdoll: {fileID: 4466928212729701985}
   _boxingGlove: {fileID: 1228487265836081024}
   _powerCanvas: {fileID: 3456985598434968670}
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
   _reboundForce: 3
+  _rootBone: {fileID: 3315796596804670763}
+  _impactForce: 43
+  _animator: {fileID: 5667583515693978460}
 --- !u!114 &1623213233081321750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1467,7 +1472,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1623213233081321747}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: addd4724d5f76f449b02627024153b5d, type: 3}
   m_Name: 
@@ -2041,8 +2046,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8759634735364776901}
-  - component: {fileID: 5442203063891852901}
-  - component: {fileID: 4067274035511839215}
   m_Layer: 3
   m_Name: Ragdoll
   m_TagString: Untagged
@@ -2067,38 +2070,6 @@ Transform:
   m_Father: {fileID: 1623213233081321729}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &5442203063891852901
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4466928212729701985}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: a0c2539e67fb77648ac2e80dfde44092, type: 3}
-  m_Controller: {fileID: 9100000, guid: 5dbd42e9155519c41bb754197d4dbaa3, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4067274035511839215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4466928212729701985}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d224a4210923b5a4c9b3010bf4f0fa69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &5106493420465244847
 GameObject:
   m_ObjectHideFlags: 0

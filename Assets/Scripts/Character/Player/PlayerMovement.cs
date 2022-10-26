@@ -12,9 +12,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject _model;
     [SerializeField] private PlayerAnimator _playerAnimator;
 
-    private bool _isMovementEnabled;
-    private Platform _nextPlatform;
-    private Vector3 _nextPosition;
     private Player _player;
     private Coroutine _moving;
     private Vector3 _direction;
@@ -24,9 +21,6 @@ public class PlayerMovement : MonoBehaviour
     public event Action LastHitInitiated;
     public event Action MovementEnabled;
     public event Action Completed;
-
-    private bool CanMove => _nextPosition != default && transform.position != _nextPosition;
-
 
     private void Awake()
     {
@@ -44,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
         _player.Landed -= PlayerOnLanded;
         _player.Died -= PlayerOnDied;
         Completed -= OnCompleted;
+        Completed -= OnFinishReached;
     }
 
     public void Move(Vector3 direction)
@@ -57,7 +52,6 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator EnableMovement()
     {
         yield return new WaitForSeconds(_delayAfterLanding);
-        _isMovementEnabled = true;
         MovementEnabled?.Invoke();
     }
 
@@ -68,7 +62,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayerOnDied()
     {
-        _isMovementEnabled = false;
         _speed = 0f;
     }
 
@@ -88,7 +81,14 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (other.TryGetComponent(out Platform platform))
         {
-            Move2(platform.Center);
+            if (platform is FinishPlatform)
+            {
+                MoveToFinish(platform.Center);
+            }
+            else
+            {
+                Move2(platform.Center);
+            }
         }
         else if (other.TryGetComponent(out AppearingWall wall))
         {
@@ -100,8 +100,26 @@ public class PlayerMovement : MonoBehaviour
             {
                 Move2(wall.Center);
             }
-
         }
+    }
+
+    private void MoveToFinish(Vector3 target)
+    {
+        if (_isInputEnable)
+        {
+            _playerAnimator.RunIdleToFlight();
+            _isInputEnable = false;
+        }
+
+        Completed += OnFinishReached;
+        MoveTo(target);
+    }
+
+    private void OnFinishReached()
+    {
+        _playerAnimator.RunIdleToVictory();
+        FinishReached?.Invoke();
+        LastHitInitiated?.Invoke();
     }
 
     private void Move2(Vector3 target)
@@ -138,17 +156,6 @@ public class PlayerMovement : MonoBehaviour
         _moving = StartCoroutine(MovingTo(target));
     }
 
-    public void Win()
-    {
-        //if (platform.TryGetComponent(out FinishPlatform _) == false)
-        //{
-        //    return;
-        //}
-
-        FinishReached?.Invoke();
-        _playerAnimator.RunIdleToVictory();
-    }
-
     public void StopMove()
     {
         if (_moving != null)
@@ -168,82 +175,5 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Completed?.Invoke();
-    }
-
-    private void SetNextMovementPlatform(Vector3 direction)
-    {
-        if (_isMovementEnabled == false || CanMove)
-        {
-            return;
-        }
-
-        transform.rotation = Quaternion.LookRotation(direction);
-
-        if (TryGetNextPlatform(out Platform nextPlatform) == false)
-        {
-            return;
-        }
-
-        _playerAnimator.RunIdleToFlight();
-
-        Vector3 platformCenter = nextPlatform.GetComponent<Collider>().bounds.center;
-        _nextPosition = new Vector3(platformCenter.x, transform.position.y, platformCenter.z);
-
-        _nextPlatform = nextPlatform;
-
-        if (nextPlatform.TryGetComponent(out FinishPlatform _))
-        {
-            LastHitInitiated?.Invoke();
-        }
-    }
-
-    private bool TryGetNextPlatform(out Platform platform)
-    {
-        const float RaycastDepth = 0.5f;
-        const int RaycastHitBuffer = 128;
-
-        platform = null;
-
-        Vector3 position = transform.position;
-        position.y -= RaycastDepth;
-
-        var raycastAllHits = new RaycastHit[RaycastHitBuffer];
-        int hits = Physics.RaycastNonAlloc(position, transform.forward, raycastAllHits, Mathf.Infinity);
-
-        if (hits < 1)
-        {
-            return false;
-        }
-
-        var raycastHits = new RaycastHit[hits];
-        Array.Copy(raycastAllHits, raycastHits, hits);
-        Array.Sort(raycastHits, (x, y) => x.distance.CompareTo(y.distance));
-
-        Platform requiredPlatform = null;
-
-        for (int i = 0; i < hits; i++)
-        {
-            RaycastHit raycastHit = raycastHits[i];
-
-            if (raycastHit.collider.TryGetComponent(out Platform currentPlatform))
-            {
-                requiredPlatform = currentPlatform;
-                continue;
-            }
-
-            if (raycastHit.collider.TryGetComponent(out InactiveRoof _))
-            {
-                break;
-            }
-        }
-
-        if (requiredPlatform == null)
-        {
-            return false;
-        }
-
-        platform = requiredPlatform;
-
-        return true;
     }
 }
