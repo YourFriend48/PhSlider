@@ -1,11 +1,14 @@
 using System.Collections;
 using UnityEngine;
+using System;
 
 public class TowardsMover : MonoBehaviour
 {
     [SerializeField] private float _speed;
 
     private Coroutine _moving;
+
+    public event Action Completed;
 
     public void MoveTowards(Vector3 target)
     {
@@ -24,5 +27,7 @@ public class TowardsMover : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, target, _speed * Time.deltaTime);
             yield return null;
         }
+
+        Completed?.Invoke();
     }
 }

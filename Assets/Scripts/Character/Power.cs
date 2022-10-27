@@ -4,11 +4,12 @@ using System;
 public class Power : MonoBehaviour
 {
     [SerializeField] private MonoBehaviour _floatParametr;
-    
+
     private IFloatParametr _iFloatParametr => (IFloatParametr)_floatParametr;
     private int _current;
 
     public event Action<int> Changed;
+    public event Action<int> Setted;
 
     public int Current => _current;
 
@@ -21,11 +22,15 @@ public class Power : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        _iFloatParametr.Setted += OnSetted;
+    }
+
     private void OnEnable()
     {
         OnUpgraded();
-        _iFloatParametr.Setted += OnSetted;
-        _iFloatParametr.Upgraded+= OnUpgraded;
+        _iFloatParametr.Upgraded += OnUpgraded;
     }
 
     private void OnDisable()
@@ -37,7 +42,7 @@ public class Power : MonoBehaviour
     private void OnSetted()
     {
         _current = (int)_iFloatParametr.Value;
-        Changed?.Invoke(_current);
+        Setted?.Invoke(_current);
     }
 
     public void Increase()

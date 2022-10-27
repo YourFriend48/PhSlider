@@ -52,13 +52,25 @@ public class GemLeaderboard : MonoBehaviour
 
     public void TryShow()
     {
-        //if (PlayerData.Data != null)
+        //PlayerAccount.RequestPersonalProfileDataPermission();
+        //if (!PlayerAccount.IsAuthorized)
+        //    PlayerAccount.Authorize(OnPersonalDataRequested);
 #if UNITY_WEBGL && !UNITY_EDITOR
         if (PlayerAccount.IsAuthorized)
         {
         Show();
         }
 #endif
+    }
+
+    private void OnPersonalDataRequested()
+    {
+        PlayerAccount.GetProfileData(WriteData);
+    }
+
+    private void WriteData(PlayerAccountProfileDataResponse data)
+    {
+        PlayerData.Data = data;
     }
 
     private void WriteStartData(LeaderboardGetEntriesResponse leaderboardGetEntriesResponse)

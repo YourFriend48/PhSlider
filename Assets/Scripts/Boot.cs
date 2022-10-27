@@ -17,7 +17,8 @@ public class Boot : MonoBehaviour
 
     private void OnYandexInitialized()
     {
-        Authorize();
+        StartGame();
+        //Authorize();
     }
 
     private void OnFailed()
@@ -27,16 +28,26 @@ public class Boot : MonoBehaviour
 
     private void Authorize()
     {
-        if (PlayerAccount.IsAuthorized)
+        PlayerAccount.RequestPersonalProfileDataPermission();
+        if (PlayerAccount.IsAuthorized == false)
         {
-            OnSucsessAuthorize();
+            PlayerAccount.Authorize(OnPersonalDataRequested);
         }
         else
         {
-            PlayerAccount.Authorize(OnSucsessAuthorize);
+            StartGame();
         }
 
-        StartGame();
+
+        //if (PlayerAccount.IsAuthorized)
+        //{
+        //    OnSucsessAuthorize();
+        //}
+        //else
+        //{
+        //    PlayerAccount.Authorize(OnSucsessAuthorize);
+        //}
+
     }
 
     private void OnSucsessAuthorize()
@@ -52,6 +63,7 @@ public class Boot : MonoBehaviour
     private void WriteData(PlayerAccountProfileDataResponse data)
     {
         PlayerData.Data = data;
+        StartGame();
     }
 
     private void StartGame()

@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Finance;
+using YandexSDK;
+using Agava.YandexGames;
+
 
 public class SceneInitializer : MonoBehaviour
 {
@@ -16,5 +17,19 @@ public class SceneInitializer : MonoBehaviour
         _walletView.Enable();
 
         _powerUpgrading.Init(_walletHolder);
+
+
+        //PlayerAccount.RequestPersonalProfileDataPermission();
+        //if (!PlayerAccount.IsAuthorized)
+        //    PlayerAccount.Authorize(OnPersonalDataRequested);
+    }
+    private void OnPersonalDataRequested()
+    {
+        PlayerAccount.GetProfileData(WriteData);
+    }
+
+    private void WriteData(PlayerAccountProfileDataResponse data)
+    {
+        PlayerData.Data = data;
     }
 }

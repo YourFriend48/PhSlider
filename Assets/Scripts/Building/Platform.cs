@@ -26,39 +26,39 @@ public class Platform : MonoBehaviour
         _finalPosition = finalPosition;
     }
 
-    private void OnTriggerEnter(Collider collision)
-    {
-        if (_isActivated == false && collision.TryGetComponent(out Player _) == false)
-        {
-            return;
-        }
+    //private void OnTriggerEnter(Collider collision)
+    //{
+    //    if (_isActivated == false && collision.TryGetComponent(out Player _) == false)
+    //    {
+    //        return;
+    //    }
 
-        _isActivated = true;
-    }
+    //    _isActivated = true;
+    //}
 
-    private void Update()
-    {
-        if (_isActivated == false || _isCycleComplete)
-        {
-            return;
-        }
+    //private void Update()
+    //{
+    //    if (_isActivated == false || _isCycleComplete)
+    //    {
+    //        return;
+    //    }
 
-        if (_grownUp == false && transform.position != _finalPosition)
-        {
-            transform.position = GetNewPosition(transform.position, _finalPosition);
-            return;
-        }
+    //    if (_grownUp == false && transform.position != _finalPosition)
+    //    {
+    //        transform.position = GetNewPosition(transform.position, _finalPosition);
+    //        return;
+    //    }
 
-        _grownUp = true;
+    //    _grownUp = true;
 
-        if (transform.position != _startingPosition)
-        {
-            transform.position = GetNewPosition(transform.position, _startingPosition);
-            return;
-        }
+    //    if (transform.position != _startingPosition)
+    //    {
+    //        transform.position = GetNewPosition(transform.position, _startingPosition);
+    //        return;
+    //    }
 
-        _isCycleComplete = true;
-    }
+    //    _isCycleComplete = true;
+    //}
 
     private Vector3 GetNewPosition(Vector3 current, Vector3 target)
     {
