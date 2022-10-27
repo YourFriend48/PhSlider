@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Collider))]
 public class Player : MonoBehaviour, ICharacter
 {
     [SerializeField] private GameObject _model;
@@ -16,9 +17,15 @@ public class Player : MonoBehaviour, ICharacter
     private bool _died;
     private Vector3 _gloveInitalScale;
     private bool _isLanded;
+    private Collider _collider;
 
     public event UnityAction Died;
     public event UnityAction Landed;
+
+    private void Awake()
+    {
+        _collider = GetComponent<Collider>();
+    }
 
     private void Start()
     {
@@ -37,20 +44,21 @@ public class Player : MonoBehaviour, ICharacter
         Landed?.Invoke();
     }
 
-    public void Die(Power killerPower)
+    public void Die()//(Power killerPower)
     {
         if (_died)
         {
             return;
         }
 
+        _collider.enabled = false;
         StartCoroutine(ScaleTo(_gloveInitalScale));
         _died = true;
         Died?.Invoke();
         ChangeBodyToDead();
         TakeHit();
 
-        killerPower.Increase();
+        //killerPower.Increase();
     }
 
     private void ChangeBodyToDead()

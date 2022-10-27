@@ -28,6 +28,14 @@ public class Lazer : MonoBehaviour
         _lazerTurret.TimeChanged -= OnTimeChanged;
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out Player player))
+        {
+            player.Die();
+        }
+    }
+
     private void OnTimeChanged(int value)
     {
         switch (value)

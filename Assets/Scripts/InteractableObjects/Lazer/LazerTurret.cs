@@ -19,7 +19,7 @@ public class LazerTurret : MonoBehaviour
 
     private void Start()
     {
-
+        Init();
     }
 
     private void OnEnable()
@@ -50,7 +50,8 @@ public class LazerTurret : MonoBehaviour
         if (_currentTime < 0)
         {
             _currentTime = _totalTime;
-            TimeChanged?.Invoke(_currentTime);
         }
+
+        TimeChanged?.Invoke(_currentTime);
     }
 }

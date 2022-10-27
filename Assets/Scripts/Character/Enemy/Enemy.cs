@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour, ICharacter
                 Instantiate(_fieldEffect, _center, Quaternion.identity);
 
                 _animator.RunIdleToVictory();
-                player.Die(_power);
+                player.Die();// (_power);
             }
             else
             {

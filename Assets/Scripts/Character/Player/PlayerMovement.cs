@@ -64,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayerOnDied()
     {
+        StopMove();
         _speed = 0f;
     }
 
@@ -141,7 +142,7 @@ public class PlayerMovement : MonoBehaviour
         _isInputEnable = true;
         _playerAnimator.RunFlightToIdle();
 
-        if(_isMoving)
+        if (_isMoving)
         {
             TurnEnded?.Invoke();
             _isMoving = false;

@@ -718,6 +718,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1314023543794749426}
   - component: {fileID: 1314023543794749427}
+  - component: {fileID: 6285904696115798632}
   m_Layer: 0
   m_Name: EffectCamera
   m_TagString: Untagged
@@ -771,7 +772,7 @@ Camera:
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 2560
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -783,6 +784,19 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &6285904696115798632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314023543794749437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 406038d3b69bdc2408de1a1b81e14b46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _target: {fileID: 1314023543684564601}
 --- !u!1001 &1314023542495247924
 PrefabInstance:
   m_ObjectHideFlags: 0
