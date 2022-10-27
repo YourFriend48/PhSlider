@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
 public class Lazer : MonoBehaviour
 {
-    //сделать таймер отдельным классом
-    [SerializeField] private LazerTurret _lazerTurret;
+    [SerializeField] private TurnTimer _turnTimer;
     [SerializeField] private GameObject _lazer;
     [SerializeField] private ParticleSystem _lightSignal;
 
@@ -19,13 +16,13 @@ public class Lazer : MonoBehaviour
 
     private void OnEnable()
     {
-        OnTimeChanged(_lazerTurret.CurrentTime);
-        _lazerTurret.TimeChanged += OnTimeChanged;
+        OnTimeChanged(_turnTimer.CurrentTime);
+        _turnTimer.TimeChanged += OnTimeChanged;
     }
 
     private void OnDisable()
     {
-        _lazerTurret.TimeChanged -= OnTimeChanged;
+        _turnTimer.TimeChanged -= OnTimeChanged;
     }
 
     private void OnTriggerEnter(Collider other)
