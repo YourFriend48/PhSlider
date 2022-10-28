@@ -52,10 +52,16 @@ public class GemLeaderboard : MonoBehaviour
 
     public void TryShow()
     {
-        //PlayerAccount.RequestPersonalProfileDataPermission();
-        //if (!PlayerAccount.IsAuthorized)
-        //    PlayerAccount.Authorize(OnPersonalDataRequested);
 #if UNITY_WEBGL && !UNITY_EDITOR
+        if (!PlayerAccount.IsAuthorized)
+        {
+            PlayerAccount.RequestPersonalProfileDataPermission();
+            PlayerAccount.Authorize(OnSucsessAuthorize);
+        }
+        else
+        {
+            PlayerAccount.Authorize(OnSucsessAuthorize);
+        }
         if (PlayerAccount.IsAuthorized)
         {
         Show();
@@ -63,7 +69,7 @@ public class GemLeaderboard : MonoBehaviour
 #endif
     }
 
-    private void OnPersonalDataRequested()
+    private void OnSucsessAuthorize()
     {
         PlayerAccount.GetProfileData(WriteData);
     }
