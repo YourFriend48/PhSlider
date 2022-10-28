@@ -104,6 +104,17 @@ public class PlayerMovement : MonoBehaviour
                 Move2(wall.Center);
             }
         }
+        else if (other.TryGetComponent(out NavigationPlatform navigationPlatform))
+        {
+            if (navigationPlatform.IsMovable == false)
+            {
+                Stop();
+            }
+            else
+            {
+                Move2(navigationPlatform.Center);
+            }
+        }
     }
 
     private void MoveToFinish(Vector3 target)
