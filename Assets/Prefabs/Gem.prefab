@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 4729146893668177521}
   - component: {fileID: 8548136537879298834}
   - component: {fileID: 7804598471657708371}
+  - component: {fileID: 1827090128890936205}
+  - component: {fileID: 1515754679343035299}
   m_Layer: 0
   m_Name: Gem
   m_TagString: Untagged
@@ -77,9 +79,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0757066365c1dc4aa3afc36ce65389e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _value: 1
   _scaler: {fileID: 5261186260942618581}
   _sparkles: {fileID: 7509272279246278531}
+--- !u!114 &1827090128890936205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810900583905080490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b77f6b79b3ae4ab488bedadf6d9e073d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _floatParametr: {fileID: 0}
+--- !u!114 &1515754679343035299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810900583905080490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9574c779140a8cd41a83bb2b85a2db13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 20
 --- !u!1001 &1015991175940731219
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,20 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Finance;
 
 [RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(GemCost))]
+[RequireComponent(typeof(Scaler))]
 public class Gem : MonoBehaviour
 {
-    [SerializeField, Min(1)] private int _value;
-    [SerializeField] private Scaler _scaler;
     [SerializeField] private ParticleSystem _sparkles;
 
+    private Scaler _scaler;
     private Collider _collider;
+    private GemCost _cost;
 
     private void Awake()
     {
         _collider = GetComponent<Collider>();
+        _cost = GetComponent<GemCost>();
+        _scaler = GetComponent<Scaler>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -28,7 +30,7 @@ public class Gem : MonoBehaviour
     private void Collect()
     {
         _collider.enabled = false;
-        WalletHolder.Instance.PutIn(_value);
+        WalletHolder.Instance.PutIn(_cost.Current);
         _scaler.Completed += OnScaleCompleted;
         _scaler.ScaleTo(Vector3.zero);
         _sparkles.Play();

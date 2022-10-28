@@ -1,8 +1,6 @@
 using UnityEngine;
 using Finance;
-using YandexSDK;
 using Agava.YandexGames;
-
 
 public class SceneInitializer : MonoBehaviour
 {
@@ -10,6 +8,7 @@ public class SceneInitializer : MonoBehaviour
     [SerializeField] private WalletView _walletView;
 
     [SerializeField] private Upgrading _powerUpgrading;
+    [SerializeField] private Upgrading _gemUpgrading;
 
     private void Start()
     {
@@ -17,11 +16,7 @@ public class SceneInitializer : MonoBehaviour
         _walletView.Enable();
 
         _powerUpgrading.Init(_walletHolder);
-
-
-        //PlayerAccount.RequestPersonalProfileDataPermission();
-        //if (!PlayerAccount.IsAuthorized)
-        //    PlayerAccount.Authorize(OnPersonalDataRequested);
+        _gemUpgrading.Init(_walletHolder);
     }
     private void OnPersonalDataRequested()
     {
