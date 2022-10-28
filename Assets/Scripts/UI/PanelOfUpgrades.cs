@@ -1,83 +1,65 @@
-using System.Collections;
 using UnityEngine;
 using System;
 
 [RequireComponent(typeof(RectTransform))]
 [RequireComponent(typeof(CanvasGroup))]
+[RequireComponent(typeof(RectMover))]
 public class PanelOfUpgrades : MonoBehaviour
 {
     [SerializeField] private float _speed;
-    [SerializeField] private MouseInput _mouseInput;
+    [SerializeField] private PlayerMovement _playerMovement;
+    [SerializeField] private float _panelAnimationTime = 1f;
 
     private RectTransform _rectTransform;
     private CanvasGroup _canvasGroup;
-    private Coroutine _moving;
+
+    private RectMover _rectMover;
+    private Vector2 _startPosition;
+    private Vector2 _endPosition;
 
     public event Action Completed;
 
     private void Awake()
     {
+        _rectMover = GetComponent<RectMover>();
         _rectTransform = GetComponent<RectTransform>();
         _canvasGroup = GetComponent<CanvasGroup>();
-    }
 
-    private void Start()
-    {
-        Appear();
+        _startPosition = _rectTransform.anchoredPosition;
+        _endPosition = new Vector2(_startPosition.x, _rectTransform.sizeDelta.y / 2);
     }
 
     private void OnEnable()
     {
-        _mouseInput.Swipped += OnSwipped;
+        _playerMovement.MovementEnabled += Appear;
     }
 
     private void OnDisable()
     {
-        _mouseInput.Swipped -= OnSwipped;
+        _playerMovement.MovementEnabled -= Appear;
+        _playerMovement.Swipped -= OnSwipped;
         Completed -= OnDisapearCompleted;
     }
 
     private void Appear()
     {
-        Vector2 target = new Vector2(_rectTransform.anchoredPosition.x, _rectTransform.sizeDelta.y / 2);
-
-        if (_moving != null)
-        {
-            StopCoroutine(_moving);
-        }
-
-        _moving = StartCoroutine(MoveTo(target));
+        _playerMovement.MovementEnabled -= Appear;
+        _playerMovement.Swipped += OnSwipped;
+        _rectMover.MoveTo(_endPosition, _panelAnimationTime);
     }
 
     private void OnSwipped()
     {
+        _playerMovement.Swipped -= OnSwipped;
         _canvasGroup.blocksRaycasts = false;
         _canvasGroup.interactable = false;
-        Vector2 target = new Vector2(_rectTransform.anchoredPosition.x, -_rectTransform.sizeDelta.y / 2);
-       
-        if(_moving!=null)
-        {
-            StopCoroutine(_moving);
-        }
-
-        Completed += OnDisapearCompleted;
-        _moving = StartCoroutine(MoveTo(target));
+        _rectMover.Completed += OnDisapearCompleted;
+        _rectMover.MoveTo(_startPosition, _panelAnimationTime);
     }
 
     private void OnDisapearCompleted()
     {
         Completed -= OnDisapearCompleted;
         gameObject.SetActive(false);
-    }
-
-    private IEnumerator MoveTo(Vector2 target)
-    {
-        while(_rectTransform.anchoredPosition != target)
-        {
-        _rectTransform.anchoredPosition = Vector2.MoveTowards(_rectTransform.anchoredPosition,target, _speed * Time.deltaTime);
-            yield return null;
-        }
-
-        Completed?.Invoke();
     }
 }

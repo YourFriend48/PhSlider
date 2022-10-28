@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     public event Action MovementEnabled;
     public event Action Completed;
     public event Action TurnEnded;
+    public event Action Swipped;
 
     private void Awake()
     {
@@ -70,6 +71,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnSwipped(Vector3 direction)
     {
+        Swipped?.Invoke();
         _model.transform.rotation = Quaternion.LookRotation(direction);
         _direction = direction;
         Collider other = _colliderChecker.Check(direction);
