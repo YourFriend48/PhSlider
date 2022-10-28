@@ -33,13 +33,13 @@ public class SwitchButton : MonoBehaviour
 
     private void OnButtonOn()
     {
-        _model.MoveTowards(_startPosition.position);
+        _model.MoveTowards(_startPosition.localPosition);
         _meshRenderer.material = _greenMaterial;
     }
 
     private void OnButtonOff()
     {
-        _model.MoveTowards(_endPosition.position);
+        _model.MoveTowards(_endPosition.localPosition);
         _meshRenderer.material = _redMaterial;
     }
 }

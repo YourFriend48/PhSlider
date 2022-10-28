@@ -244,7 +244,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levels:
   - Level 1
-  - Level 2
+  - AppearingWall
+  - Lazer
+  - MovablePlatform
 --- !u!4 &1190961024
 Transform:
   m_ObjectHideFlags: 0

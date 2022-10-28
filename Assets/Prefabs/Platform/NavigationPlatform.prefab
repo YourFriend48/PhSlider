@@ -11,12 +11,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: NavigationPlatform
       objectReference: {fileID: 0}
+    - target: {fileID: 2434342192777692828, guid: 3d7d869d4f709544e836b4a4750344f8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2491374959662682184, guid: 3d7d869d4f709544e836b4a4750344f8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2799564159074066012, guid: 3d7d869d4f709544e836b4a4750344f8, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2799564159074066013, guid: 3d7d869d4f709544e836b4a4750344f8, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2799564159074066014, guid: 3d7d869d4f709544e836b4a4750344f8, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2960601438132768417, guid: 3d7d869d4f709544e836b4a4750344f8, type: 3}
@@ -73,6 +85,14 @@ PrefabInstance:
     - {fileID: 9035778729912556222, guid: 3d7d869d4f709544e836b4a4750344f8, type: 3}
     - {fileID: 4805200560050637020, guid: 3d7d869d4f709544e836b4a4750344f8, type: 3}
     - {fileID: 2296724421278241002, guid: 3d7d869d4f709544e836b4a4750344f8, type: 3}
+    - {fileID: 8893555267670099127, guid: 3d7d869d4f709544e836b4a4750344f8, type: 3}
+    - {fileID: 5991050631646804065, guid: 3d7d869d4f709544e836b4a4750344f8, type: 3}
+    - {fileID: 108200312025283481, guid: 3d7d869d4f709544e836b4a4750344f8, type: 3}
+    - {fileID: 5889790169188743762, guid: 3d7d869d4f709544e836b4a4750344f8, type: 3}
+    - {fileID: 4040243639619581447, guid: 3d7d869d4f709544e836b4a4750344f8, type: 3}
+    - {fileID: 7492201267914532276, guid: 3d7d869d4f709544e836b4a4750344f8, type: 3}
+    - {fileID: 4818972580987210499, guid: 3d7d869d4f709544e836b4a4750344f8, type: 3}
+    - {fileID: 904852300980844495, guid: 3d7d869d4f709544e836b4a4750344f8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3d7d869d4f709544e836b4a4750344f8, type: 3}
 --- !u!1 &4570755697915878937 stripped
 GameObject:

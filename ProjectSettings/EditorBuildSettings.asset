@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Level 1.unity
     guid: bd4e846f47ca756448b22a1cbff33d79
   - enabled: 1
-    path: Assets/Scenes/Level 2.unity
-    guid: 8eeab969417ad04489c91c338a7d5ccd
+    path: Assets/Scenes/AppearingWall.unity
+    guid: 07fa218f73422704d826b71a1712aaad
+  - enabled: 1
+    path: Assets/Scenes/Lazer.unity
+    guid: 1d3c083cdf9659e438a5c0fe9d01b2ea
+  - enabled: 1
+    path: Assets/Scenes/MovablePlatform.unity
+    guid: 1c7b146b8e2bc984493581f109a50f7d
   m_configObjects: {}

@@ -30,12 +30,12 @@ public class AppearingWall : MonoBehaviour
     private void OnButtonOff()
     {
         IsRaised = false;
-        _model.MoveTowards(_startPosition.position);
+        _model.MoveTowards(_startPosition.localPosition);
     }
 
     private void OnButtonOn()
     {
         IsRaised = true;
-        _model.MoveTowards(_endPosition.position);
+        _model.MoveTowards(_endPosition.localPosition);
     }
 }

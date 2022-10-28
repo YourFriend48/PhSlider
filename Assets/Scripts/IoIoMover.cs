@@ -9,7 +9,7 @@ public class IoIoMover : MonoBehaviour
     private void Awake()
     {
         _towardsMover = GetComponent<TowardsMover>();
-        _startPosition = transform.position;
+        _startPosition = transform.localPosition;
     }
 
     private void OnDisable()
@@ -19,7 +19,7 @@ public class IoIoMover : MonoBehaviour
 
     public void Move(Vector3 translation)
     {
-        _towardsMover.MoveTowards(transform.position + translation);
+        _towardsMover.MoveTowards(translation);
         _towardsMover.Completed += OnComleted;
     }
 

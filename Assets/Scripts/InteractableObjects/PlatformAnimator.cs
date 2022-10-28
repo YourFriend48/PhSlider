@@ -22,8 +22,8 @@ public class PlatformAnimator : MonoBehaviour
         if (other.GetComponent<Player>())
         {
             _trigger.gameObject.SetActive(false);
-            _cube.Move(_translation);
-            _colorablePart.Move(_translation);
+            _cube.Move(_cube.transform.localPosition + _translation);
+            _colorablePart.Move(_colorablePart.transform.localPosition + _translation);
         }
     }
 }

@@ -22,9 +22,9 @@ public class TowardsMover : MonoBehaviour
 
     private IEnumerator MovingTowards(Vector3 target)
     {
-        while (transform.position != target)
+        while (transform.localPosition != target)
         {
-            transform.position = Vector3.MoveTowards(transform.position, target, _speed * Time.deltaTime);
+            transform.localPosition = Vector3.MoveTowards(transform.localPosition, target, _speed * Time.deltaTime);
             yield return null;
         }
 
