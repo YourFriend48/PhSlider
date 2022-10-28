@@ -13,6 +13,7 @@ public class Player : MonoBehaviour, ICharacter
     [SerializeField] private float _reboundForce = 3f;
     [SerializeField] private Rigidbody _rootBone;
     [SerializeField] private float _impactForce = 43f;
+    [SerializeField] private ParticleSystem _boltsOfLighting;
 
     private bool _died;
     private Vector3 _gloveInitalScale;
@@ -59,6 +60,11 @@ public class Player : MonoBehaviour, ICharacter
         TakeHit();
 
         //killerPower.Increase();
+    }
+
+    public void PlayBoltsOfLightingEffect()
+    {
+        _boltsOfLighting.Play();
     }
 
     private void ChangeBodyToDead()

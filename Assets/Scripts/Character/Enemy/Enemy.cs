@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour, ICharacter
     [SerializeField] private float _destroySecAfterHide = 2f;
     [SerializeField] private ParticleSystem _hitEffect;
     [SerializeField] private ParticleSystem _fieldEffect;
-    [SerializeField] private PowerCanvas _powerCanvas;
+    [SerializeField] private CameraRotator _powerCanvas;
     [SerializeField] private Rigidbody _rootBone;
 
     private EnemyAnimator _animator;
