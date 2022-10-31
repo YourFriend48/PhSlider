@@ -7618,6 +7618,14 @@ PrefabInstance:
       propertyPath: _floatParametr
       value: 
       objectReference: {fileID: 1174084606}
+    - target: {fileID: 1776565391928679348, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776565392855125104, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1776565393103876073, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
       propertyPath: _floatParametr
       value: 
@@ -7634,6 +7642,10 @@ PrefabInstance:
       propertyPath: _price
       value: 
       objectReference: {fileID: 1174084605}
+    - target: {fileID: 2501285597035712763, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2501285597185904696, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -7682,6 +7694,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2846249419235485840, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2846249419320141907, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -7698,11 +7714,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3219832325834319008, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
+    - target: {fileID: 0}
       propertyPath: _powerUpgrade
       value: 
       objectReference: {fileID: 1174084607}
-    - target: {fileID: 3219832325834319008, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
+    - target: {fileID: 0}
       propertyPath: _gameSpeedChangers.Array.data[1]
       value: 
       objectReference: {fileID: 1174084607}
@@ -7733,6 +7749,14 @@ PrefabInstance:
     - target: {fileID: 7760017659218830412, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
       propertyPath: m_RootOrder
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8012923905929962268, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8012923906890953944, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8119056863962952670, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
       propertyPath: _mouseInput

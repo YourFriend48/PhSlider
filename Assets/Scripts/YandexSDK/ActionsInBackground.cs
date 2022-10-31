@@ -40,7 +40,7 @@ namespace YandexSDK
 
         private void OnEnable()
         {
-            _winCover.GameSpeedChanged += OnGameSpeedChanged;
+            //_winCover.GameSpeedChanged += OnGameSpeedChanged;
             _powerUpgrade.GameSpeedChanged += OnGameSpeedChanged;
             WebApplication.InBackgroundChangeEvent += OnInBackgroundChange;
 
@@ -52,7 +52,7 @@ namespace YandexSDK
 
         private void OnDisable()
         {
-            _winCover.GameSpeedChanged -= OnGameSpeedChanged;
+            //_winCover.GameSpeedChanged -= OnGameSpeedChanged;
             _powerUpgrade.GameSpeedChanged -= OnGameSpeedChanged;
             WebApplication.InBackgroundChangeEvent -= OnInBackgroundChange;
 

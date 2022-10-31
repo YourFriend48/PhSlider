@@ -16,6 +16,8 @@ public class Upgrading : MonoBehaviour, IGameSpeedChangable
     private WalletHolder _walletHolder;
 
     public event Action<float> GameSpeedChanged;
+    public static event Action AdOpened;
+    public static event Action AdClosed;
 
     public float FloatParametr => _floatParametr.Value;
 
@@ -56,7 +58,8 @@ public class Upgrading : MonoBehaviour, IGameSpeedChangable
 
     private void OnAdOpen()
     {
-        GameSpeedChanged?.Invoke(0f);
+        AdOpened?.Invoke();
+        //GameSpeedChanged?.Invoke(0f);
     }
 
     private void OnRewarded()
@@ -67,7 +70,8 @@ public class Upgrading : MonoBehaviour, IGameSpeedChangable
 
     private void OnAdClose()
     {
-        GameSpeedChanged?.Invoke(1f);
+        AdClosed?.Invoke();
+        //GameSpeedChanged?.Invoke(1f);
     }
 
     private void OnExtremumReached()

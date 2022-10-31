@@ -6,7 +6,7 @@ using YandexSDK;
 using System;
 
 [RequireComponent(typeof(Animator))]
-public class WinCover : EndScreen, IGameSpeedChangable
+public class WinCover : EndScreen//, IGameSpeedChangable
 {
     [SerializeField] private PlayerMovement _playerMovement;
     [SerializeField] private Transform _confetti;
@@ -15,7 +15,9 @@ public class WinCover : EndScreen, IGameSpeedChangable
 
     private Animator _animator;
 
-    public event Action<float> GameSpeedChanged;
+    public static event Action<float> GameSpeedChanged;
+    public static event Action AdOpened;
+    public static event Action AdClosed;
 
     private void Start()
     {
@@ -36,12 +38,12 @@ public class WinCover : EndScreen, IGameSpeedChangable
 
     private void OnAdOpen()
     {
-        GameSpeedChanged?.Invoke(0f);
+        AdOpened?.Invoke();
     }
 
     private void OnAdClose(bool _)
     {
-        GameSpeedChanged?.Invoke(1f);
+        AdClosed?.Invoke();
     }
 
     private IEnumerator EnableCover()

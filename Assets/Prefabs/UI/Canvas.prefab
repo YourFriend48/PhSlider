@@ -1457,7 +1457,6 @@ GameObject:
   - component: {fileID: 889491473752283177}
   - component: {fileID: 889491473752283176}
   - component: {fileID: 889491473752283180}
-  - component: {fileID: 3219832325834319008}
   - component: {fileID: 8119056863962952670}
   - component: {fileID: 38876369435240851}
   m_Layer: 5
@@ -1572,23 +1571,6 @@ MonoBehaviour:
   _gameCover: {fileID: 889491473571739405}
   _winCover: {fileID: 889491472740711506}
   _loseCover: {fileID: 889491473595939560}
---- !u!114 &3219832325834319008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 889491473752283191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83d0749416bc9274d9ce598bbe5d01cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _gameSpeedChangers:
-  - {fileID: 889491472740711506}
-  - {fileID: 0}
-  _winCover: {fileID: 889491472740711506}
-  _powerUpgrade: {fileID: 0}
 --- !u!114 &8119056863962952670
 MonoBehaviour:
   m_ObjectHideFlags: 0
