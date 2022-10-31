@@ -1,69 +1,35 @@
 using UnityEngine;
 using General;
 using YandexSDK;
-using Agava.YandexGames;
 
 public class Boot : MonoBehaviour
 {
     [SerializeField] private LevelLoader _levelLoader;
-    [SerializeField] private YandexInitializer _yandexInitializer;
 
     private void Start()
     {
-        _yandexInitializer.Initialized += OnYandexInitialized;
-        _yandexInitializer.Failed += OnFailed;
-        _yandexInitializer.Init();
+        YandexInitializing.Initialized += OnYandexInitialized;
+        YandexInitializing.Failed += OnYandexInitializeFailed;
+
+        StartCoroutine(YandexInitializing.Initialize());
     }
 
     private void OnYandexInitialized()
     {
-        StartGame();
-        //Authorize();
-    }
-
-    private void OnFailed()
-    {
+        Unsubscribe();
         StartGame();
     }
 
-    private void Authorize()
+    private void OnYandexInitializeFailed()
     {
-        PlayerAccount.RequestPersonalProfileDataPermission();
-        if (PlayerAccount.IsAuthorized == false)
-        {
-            PlayerAccount.Authorize(OnPersonalDataRequested);
-        }
-        else
-        {
-            StartGame();
-        }
-
-
-        //if (PlayerAccount.IsAuthorized)
-        //{
-        //    OnSucsessAuthorize();
-        //}
-        //else
-        //{
-        //    PlayerAccount.Authorize(OnSucsessAuthorize);
-        //}
-
-    }
-
-    private void OnSucsessAuthorize()
-    {
-        PlayerAccount.RequestPersonalProfileDataPermission(OnPersonalDataRequested);
-    }
-
-    private void OnPersonalDataRequested()
-    {
-        PlayerAccount.GetProfileData(WriteData);
-    }
-
-    private void WriteData(PlayerAccountProfileDataResponse data)
-    {
-        PlayerData.Data = data;
+        Unsubscribe();
         StartGame();
+    }
+
+    private void Unsubscribe()
+    {
+        YandexInitializing.Initialized -= OnYandexInitialized;
+        YandexInitializing.Failed -= OnYandexInitializeFailed;
     }
 
     private void StartGame()

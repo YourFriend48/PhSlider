@@ -1,8 +1,8 @@
-using UnityEngine;
 using Agava.YandexGames;
 using Finance;
-using System.Collections;
 using System;
+using UnityEngine;
+using YandexSDK;
 
 [RequireComponent(typeof(EntriesWaiting))]
 public class GemLeaderboard : MonoBehaviour
@@ -35,8 +35,17 @@ public class GemLeaderboard : MonoBehaviour
         _entriesWaiting = GetComponent<EntriesWaiting>();
     }
 
+    private void OnEnable()
+    {
+        YandexAuthorizing.Authorized += OnSucsessAuthorize;
+        YandexPersonalData.DataPermissioned += Show;
+    }
+
     private void OnDisable()
     {
+        YandexAuthorizing.Authorized -= OnSucsessAuthorize;
+        YandexPersonalData.DataPermissioned -= Show;
+
         OldTableFilled -= OnOldTableFilled;
         _entriesWaiting.Completed -= CreateNewTable;
         _entriesWaiting.Completed -= CreateOldTable;
@@ -52,31 +61,24 @@ public class GemLeaderboard : MonoBehaviour
 
     public void TryShow()
     {
-#if UNITY_WEBGL && !UNITY_EDITOR
-        if (!PlayerAccount.IsAuthorized)
+        if (YandexAuthorizing.GetIsAuthorized())
         {
-            PlayerAccount.RequestPersonalProfileDataPermission();
-            PlayerAccount.Authorize(OnSucsessAuthorize);
+            if (YandexPersonalData.GetDataIsAvailabled() == false)
+            {
+                YandexPersonalData.RequestData();
+            }
+
+            Show();
         }
         else
         {
-            PlayerAccount.Authorize(OnSucsessAuthorize);
+            YandexAuthorizing.Authorize();
         }
-        if (PlayerAccount.IsAuthorized)
-        {
-        Show();
-        }
-#endif
     }
 
     private void OnSucsessAuthorize()
     {
-        PlayerAccount.GetProfileData(WriteData);
-    }
-
-    private void WriteData(PlayerAccountProfileDataResponse data)
-    {
-        PlayerData.Data = data;
+        TryShow();
     }
 
     private void WriteStartData(LeaderboardGetEntriesResponse leaderboardGetEntriesResponse)
@@ -137,7 +139,7 @@ public class GemLeaderboard : MonoBehaviour
             LeaderboardEntryResponse entry = table[i];
             TableString tableString = Create(entry, i, _startPosition, Vector2.down);
 
-            if (entry.player.uniqueID == PlayerData.Data.uniqueID)
+            if (entry.player.uniqueID == YandexPersonalData.Data.uniqueID)
             {
                 _playerString = tableString;
                 _playerString.transform.parent = _resultsWindow;
@@ -176,7 +178,7 @@ public class GemLeaderboard : MonoBehaviour
         {
             LeaderboardEntryResponse entry = table[i];
 
-            if (table[i].player.uniqueID != PlayerData.Data.uniqueID)
+            if (table[i].player.uniqueID != YandexPersonalData.Data.uniqueID)
             {
                 TableString tableString = Create(entry, positionIndex, _newRecordsStartPosition, Vector2.up);
             }
