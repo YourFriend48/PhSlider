@@ -19,6 +19,8 @@ public class Upgrading : MonoBehaviour, IGameSpeedChangable
     public static event Action AdOpened;
     public static event Action AdClosed;
 
+    public event Action Upgraded;
+
     public float FloatParametr => _floatParametr.Value;
 
     public void Init(WalletHolder walletHolder)
@@ -47,6 +49,7 @@ public class Upgrading : MonoBehaviour, IGameSpeedChangable
         _price.SetPrice(_price.Value * 2);
         _walletHolder.Withdraw(expendeture);
         _floatParametr.IncreaseParameter();
+        Upgraded?.Invoke();
     }
 
     public void OnAdsUpgrade()

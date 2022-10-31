@@ -7,6 +7,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private Enemy _enemyPrefab;
     [SerializeField] private Enemy _bossEnemyPrefab;
     [SerializeField] private Material _enemyPlatform;
+    [SerializeField] private Player _player;
 
     private void Start()
     {
@@ -40,7 +41,7 @@ public class EnemySpawner : MonoBehaviour
 
                 Enemy enemyPrefab = finishPlatform != null ? _bossEnemyPrefab : _enemyPrefab;
                 Enemy enemy = Instantiate(enemyPrefab, platformCenter, _bossEnemyPrefab.transform.rotation);
-
+                enemy.Init(_player);
 
 
                 if (enemy.TryGetComponent(out Power power) == false)

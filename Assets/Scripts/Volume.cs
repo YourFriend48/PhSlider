@@ -3,7 +3,7 @@ using Agava.WebUtility;
 
 public class Volume : MonoBehaviour
 {
-    private float _value;
+    private float _value = 1f;
 
     private void OnEnable()
     {

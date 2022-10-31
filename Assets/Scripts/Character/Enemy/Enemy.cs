@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-[RequireComponent(typeof(Collider), typeof(EnemyAnimator), typeof(Power))]
+[RequireComponent(typeof(Collider), typeof(Power), typeof(EnemyRotator))]
 public class Enemy : MonoBehaviour, ICharacter
 {
     [SerializeField] private GameObject _model;
@@ -15,19 +15,20 @@ public class Enemy : MonoBehaviour, ICharacter
     [SerializeField] private Rigidbody _rootBone;
     [SerializeField] private bool _isBoss;
 
-    private EnemyAnimator _animator;
+    private EnemyRotator _enemyRotator;
     private Collider _collider;
     private Power _power;
     private Vector3 _center;
 
     public event Action Died;
+    public event Action Struck;
 
     private void Awake()
     {
         _collider = GetComponent<Collider>();
         _center = _collider.bounds.center;
         _power = GetComponent<Power>();
-        _animator = GetComponent<EnemyAnimator>();
+        _enemyRotator = GetComponent<EnemyRotator>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -40,8 +41,7 @@ public class Enemy : MonoBehaviour, ICharacter
             if (playerPower.Current < _power.Current)
             {
                 Instantiate(_fieldEffect, _center, Quaternion.identity);
-
-                _animator.RunIdleToVictory();
+                Struck?.Invoke();
                 player.Die();// (_power);
             }
             else
@@ -53,6 +53,7 @@ public class Enemy : MonoBehaviour, ICharacter
                 }
                 else
                 {
+                    _enemyRotator.StopRotating();
                     Vector3 hitEffectPosition = transform.position;
                     Instantiate(_hitEffect, hitEffectPosition, Quaternion.identity);
 
@@ -65,6 +66,15 @@ public class Enemy : MonoBehaviour, ICharacter
                     TakeHit(player);
                 }
             }
+        }
+    }
+
+    public void Init(Player player)
+    {
+        if (_isBoss == false)
+        {
+            _enemyRotator.Init(player);
+            _enemyRotator.StartRotating();
         }
     }
 
@@ -91,9 +101,7 @@ public class Enemy : MonoBehaviour, ICharacter
 
     private void TakeHit(Player player)
     {
-        Quaternion hitQuaternion = player.transform.rotation;
-
-        Vector3 hitDirection = (hitQuaternion * Vector3.forward) + Vector3.up;
+        Vector3 hitDirection = _rootBone.transform.position - player.transform.position;
         _rootBone.AddForce(hitDirection * _impactForce, ForceMode.VelocityChange);
     }
 }

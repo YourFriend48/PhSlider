@@ -9,7 +9,7 @@ public class TimeScaler : MonoBehaviour
     [SerializeField] private float _finishTimeScale = 1f;
     [SerializeField] private CameraChanger _cameraChanger;
 
-    private float _timeScale;
+    private float _timeScale = 1f;
 
     public float LastHitTimeScale => _lastHitTimeScale;
 
