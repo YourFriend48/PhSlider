@@ -53,6 +53,7 @@ public class WinCover : EndScreen//, IGameSpeedChangable
         Open();
         _animator.enabled = true;
         _confetti.gameObject.SetActive(true);
+        _leaderboard.TryShow();
     }
 
     private void PlayerMovementOnFinishReached()
@@ -69,6 +70,5 @@ public class WinCover : EndScreen//, IGameSpeedChangable
     {
         StartCoroutine(EnableCover());
         //_playerMovement.FinishReached += PlayerMovementOnFinishReached;
-        _leaderboard.TryShow();
     }
 }

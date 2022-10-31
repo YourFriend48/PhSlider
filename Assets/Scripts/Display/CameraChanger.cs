@@ -19,8 +19,6 @@ public class CameraChanger : MonoBehaviour
     {
         _player.Landed += PlayerOnLanded;
         _player.Won += OnWon;
-        //_playerMovement.LastHitInitiated += PlayerMovementOnLastHitInitiated;
-        //_playerMovement.FinishReached += PlayerMovementOnFinishReached;
         _player.Died += PlayerOnDied;
     }
 
@@ -28,8 +26,6 @@ public class CameraChanger : MonoBehaviour
     {
         _player.Landed -= PlayerOnLanded;
         _player.Won -= OnWon;
-        //_playerMovement.LastHitInitiated -= PlayerMovementOnLastHitInitiated;
-        //_playerMovement.FinishReached -= PlayerMovementOnFinishReached;
         _player.Died -= PlayerOnDied;
     }
 

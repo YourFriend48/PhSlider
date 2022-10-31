@@ -30,6 +30,7 @@ public class LoseCover : EndScreen
 
         Open();
         _animator.enabled = true;
+        _leaderboard.TryShow();
     }
 
     private void PlayerOnDied()
@@ -46,6 +47,5 @@ public class LoseCover : EndScreen
     {
         StartCoroutine(EnableCover());
         //_player.Died += PlayerOnDied;
-        _leaderboard.TryShow();
     }
 }
