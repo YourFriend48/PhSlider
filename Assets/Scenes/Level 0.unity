@@ -7002,6 +7002,10 @@ PrefabInstance:
       value: 0.38380483
       objectReference: {fileID: 0}
     - target: {fileID: 1314023543684564594, guid: a27676791519d9e4589a51b804dc5620, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 1846224336}
+    - target: {fileID: 1314023543684564594, guid: a27676791519d9e4589a51b804dc5620, type: 3}
       propertyPath: _activeHouseAreas.Array.data[0]
       value: 
       objectReference: {fileID: 1924744160}
@@ -7122,6 +7126,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3188590292977634692, guid: 31e9124d4f5fc2744a43c6830e03f303, type: 3}
+      propertyPath: _upgradings.Array.data[0]
+      value: 
+      objectReference: {fileID: 889491472802808027}
+    - target: {fileID: 3188590292977634692, guid: 31e9124d4f5fc2744a43c6830e03f303, type: 3}
+      propertyPath: _upgradings.Array.data[1]
+      value: 
+      objectReference: {fileID: 1174084607}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31e9124d4f5fc2744a43c6830e03f303, type: 3}
 --- !u!114 &1623213232511364313 stripped

@@ -1373,7 +1373,7 @@ MonoBehaviour:
   _speed: 17
   _maxMovement: 1
   _colliderChecker: {fileID: 6575335570893288264}
-  _model: {fileID: 7618681842149353772}
+  _model: {fileID: 6586531305761594629}
   _playerAnimator: {fileID: 7492931599747400869}
 --- !u!114 &1623213233081321738
 MonoBehaviour:
@@ -3175,6 +3175,7 @@ MonoBehaviour:
   _playerMovement: {fileID: 0}
   _player: {fileID: 0}
   _landing: {fileID: 0}
+  _upgradings: []
 --- !u!1 &7719514445129117727
 GameObject:
   m_ObjectHideFlags: 0
@@ -4193,3 +4194,6 @@ MonoBehaviour:
   _playerMovement: {fileID: 1623213233081321740}
   _player: {fileID: 1623213233081321736}
   _landing: {fileID: 1623213233081321741}
+  _upgradings:
+  - {fileID: 0}
+  - {fileID: 0}

@@ -6452,11 +6452,6 @@ Transform:
   m_Father: {fileID: 810454865}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1977627837 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6586531305761594629, guid: 31e9124d4f5fc2744a43c6830e03f303, type: 3}
-  m_PrefabInstance: {fileID: 1623213232511364312}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2012799827 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1314023542769076313, guid: a27676791519d9e4589a51b804dc5620, type: 3}
@@ -7924,8 +7919,12 @@ PrefabInstance:
       objectReference: {fileID: 384188128}
     - target: {fileID: 1314023542522021291, guid: a27676791519d9e4589a51b804dc5620, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.31777403
+      value: 0.31777397
       objectReference: {fileID: 0}
+    - target: {fileID: 1314023543684564594, guid: a27676791519d9e4589a51b804dc5620, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 1846224336}
     - target: {fileID: 1314023543684564594, guid: a27676791519d9e4589a51b804dc5620, type: 3}
       propertyPath: _activeHouseAreas.Array.data[0]
       value: 
@@ -7952,7 +7951,7 @@ PrefabInstance:
       objectReference: {fileID: 1846224340}
     - target: {fileID: 1314023543684564606, guid: a27676791519d9e4589a51b804dc5620, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.31777403
+      value: 0.31777397
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a27676791519d9e4589a51b804dc5620, type: 3}
@@ -8019,14 +8018,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1623213233081321740, guid: 31e9124d4f5fc2744a43c6830e03f303, type: 3}
-      propertyPath: _model
-      value: 
-      objectReference: {fileID: 1977627837}
-    - target: {fileID: 1623213233081321740, guid: 31e9124d4f5fc2744a43c6830e03f303, type: 3}
-      propertyPath: _maxMovement
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1623213233081321741, guid: 31e9124d4f5fc2744a43c6830e03f303, type: 3}
       propertyPath: _platform
       value: 
@@ -8043,6 +8034,14 @@ PrefabInstance:
       propertyPath: _floatParametr
       value: 
       objectReference: {fileID: 1174084606}
+    - target: {fileID: 3188590292977634692, guid: 31e9124d4f5fc2744a43c6830e03f303, type: 3}
+      propertyPath: _upgradings.Array.data[0]
+      value: 
+      objectReference: {fileID: 889491472802808025}
+    - target: {fileID: 3188590292977634692, guid: 31e9124d4f5fc2744a43c6830e03f303, type: 3}
+      propertyPath: _upgradings.Array.data[1]
+      value: 
+      objectReference: {fileID: 1174084607}
     - target: {fileID: 5667583515693978460, guid: 31e9124d4f5fc2744a43c6830e03f303, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0

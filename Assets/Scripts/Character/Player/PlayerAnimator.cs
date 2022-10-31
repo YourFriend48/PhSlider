@@ -6,18 +6,14 @@ public class PlayerAnimator : MonoBehaviour
     [SerializeField] private PlayerMovement _playerMovement;
     [SerializeField] private Player _player;
     [SerializeField] private Landing _landing;
-
-    private readonly int _flightToIdleHash = Animator.StringToHash("FlightToIdle");
-    private readonly int _idleToFlightHash = Animator.StringToHash("IdleToFlight");
-    private readonly int _idleToVictoryHash = Animator.StringToHash("IdleToVictory");
+    [SerializeField] private Upgrading[] _upgradings;
 
     private const string Run = "Run";
     private const string Idle = "Idle";
     private const string Fall = "Fall";
     private const string Kick = "Kick";
     private const string JumpFinished = "JumpFinished";
-    //private const string Wo = "Idle";
-
+    private const string Upgrade = "Upgrade";
 
     private Animator _animator;
 
@@ -33,6 +29,11 @@ public class PlayerAnimator : MonoBehaviour
         _player.Won += OnWon;
         _player.Died += OnDied;
         _landing.Landed += OnLanded;
+
+        foreach (Upgrading upgrading in _upgradings)
+        {
+            upgrading.Upgraded += OnUpgraded;
+        }
     }
 
     private void OnDisable()
@@ -42,6 +43,16 @@ public class PlayerAnimator : MonoBehaviour
         _player.Won -= OnWon;
         _player.Died -= OnDied;
         _landing.Landed -= OnLanded;
+
+        foreach (Upgrading upgrading in _upgradings)
+        {
+            upgrading.Upgraded -= OnUpgraded;
+        }
+    }
+
+    private void OnUpgraded()
+    {
+        _animator.SetTrigger(Upgrade);
     }
 
     private void OnLanded()
@@ -72,21 +83,5 @@ public class PlayerAnimator : MonoBehaviour
     public void Strike()
     {
         _player.Strike();
-    }
-
-    public void RunFlightToIdle()
-    {
-        _animator.SetBool(_flightToIdleHash, true);
-    }
-
-    public void RunIdleToFlight()
-    {
-        _animator.SetBool(_flightToIdleHash, false);
-        _animator.SetTrigger(_idleToFlightHash);
-    }
-
-    public void RunIdleToVictory()
-    {
-        _animator.SetTrigger(_idleToVictoryHash);
     }
 }
