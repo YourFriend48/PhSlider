@@ -1,6 +1,6 @@
 using UnityEngine;
 using System.Collections;
-using UnityEngine.Events;
+using System;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Collider))]
@@ -20,8 +20,10 @@ public class Player : MonoBehaviour, ICharacter
     private bool _isLanded;
     private Collider _collider;
 
-    public event UnityAction Died;
-    public event UnityAction Landed;
+    public event Action Died;
+    public event Action Landed;
+    public event Action Won;
+    public event Action<Player> Collided;
 
     private void Awake()
     {
@@ -56,10 +58,20 @@ public class Player : MonoBehaviour, ICharacter
         StartCoroutine(ScaleTo(_gloveInitalScale));
         _died = true;
         Died?.Invoke();
-        ChangeBodyToDead();
-        TakeHit();
+        //ChangeBodyToDead();
+        //TakeHit();
 
         //killerPower.Increase();
+    }
+
+    public void Strike()
+    {
+        Collided?.Invoke(this);
+    }
+
+    public void Win()
+    {
+        Won?.Invoke();
     }
 
     public void PlayBoltsOfLightingEffect()

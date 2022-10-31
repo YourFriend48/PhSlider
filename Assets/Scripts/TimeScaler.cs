@@ -11,9 +11,11 @@ public class TimeScaler : MonoBehaviour
 
     private float _timeScale;
 
+    public float LastHitTimeScale => _lastHitTimeScale;
+
     private void OnEnable()
     {
-        _playerMovement.LastHitInitiated += PlayerMovementOnLastHitInitiated;
+        _player.Won += PlayerMovementOnLastHitInitiated;
         _cameraChanger.Showed += PlayerMovementOnFinishReached;
         _player.Died += PlayerOnDied;
         WebApplication.InBackgroundChangeEvent += OnInBackgroundChange;
@@ -25,7 +27,7 @@ public class TimeScaler : MonoBehaviour
 
     private void OnDisable()
     {
-        _playerMovement.LastHitInitiated -= PlayerMovementOnLastHitInitiated;
+        _player.Won -= PlayerMovementOnLastHitInitiated;
         _cameraChanger.Showed -= PlayerMovementOnFinishReached;
         _player.Died -= PlayerOnDied;
         WebApplication.InBackgroundChangeEvent -= OnInBackgroundChange;

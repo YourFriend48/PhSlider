@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using System;
 
 public class Landing : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class Landing : MonoBehaviour
     private bool _isLanded;
     private Vector3 _landingPosition;
     private GameObject _mark;
+
+    public event Action Landed;
 
     private void Start()
     {
@@ -31,7 +34,7 @@ public class Landing : MonoBehaviour
         }
 
         _isLanded = true;
-
+        Landed?.Invoke();
         _mark = Instantiate(_landingMark, transform.position, _landingMark.transform.rotation);
         Instantiate(_landingEffect, transform.position, _landingEffect.transform.rotation);
 

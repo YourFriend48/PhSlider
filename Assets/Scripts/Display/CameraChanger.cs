@@ -10,13 +10,16 @@ public class CameraChanger : MonoBehaviour
     [SerializeField] private float _waitBeforeLaunchCameraDisable = 0.5f;
     [SerializeField] private CinemachineVirtualCamera _launchCamera;
     [SerializeField] private CinemachineVirtualCamera _mainCamera;
+    [SerializeField] private float _intervaOfWaiting = 3f;
+    [SerializeField] private TimeScaler _timeScaler;
 
     public event Action Showed;
 
     private void OnEnable()
     {
         _player.Landed += PlayerOnLanded;
-        _playerMovement.LastHitInitiated += PlayerMovementOnLastHitInitiated;
+        _player.Won += OnWon;
+        //_playerMovement.LastHitInitiated += PlayerMovementOnLastHitInitiated;
         //_playerMovement.FinishReached += PlayerMovementOnFinishReached;
         _player.Died += PlayerOnDied;
     }
@@ -24,7 +27,8 @@ public class CameraChanger : MonoBehaviour
     private void OnDisable()
     {
         _player.Landed -= PlayerOnLanded;
-        _playerMovement.LastHitInitiated -= PlayerMovementOnLastHitInitiated;
+        _player.Won -= OnWon;
+        //_playerMovement.LastHitInitiated -= PlayerMovementOnLastHitInitiated;
         //_playerMovement.FinishReached -= PlayerMovementOnFinishReached;
         _player.Died -= PlayerOnDied;
     }
@@ -43,11 +47,11 @@ public class CameraChanger : MonoBehaviour
 
     private IEnumerator Waiting()
     {
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSeconds(_intervaOfWaiting * _timeScaler.LastHitTimeScale);
         PlayerMovementOnFinishReached();
     }
 
-    private void PlayerMovementOnLastHitInitiated()
+    private void OnWon()
     {
         _mainCamera.enabled = false;
         StartCoroutine(Waiting());

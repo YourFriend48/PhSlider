@@ -1,6 +1,6 @@
-using UnityEngine.Events;
+using System;
 
 public interface ICharacter
 {
-    public event UnityAction Died;
+    public event Action Died;
 }

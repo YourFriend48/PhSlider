@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.Events;
+using System;
 
 [RequireComponent(typeof(Collider), typeof(EnemyAnimator), typeof(Power))]
 public class Enemy : MonoBehaviour, ICharacter
@@ -13,13 +13,14 @@ public class Enemy : MonoBehaviour, ICharacter
     [SerializeField] private ParticleSystem _fieldEffect;
     [SerializeField] private CameraRotator _powerCanvas;
     [SerializeField] private Rigidbody _rootBone;
+    [SerializeField] private bool _isBoss;
 
     private EnemyAnimator _animator;
     private Collider _collider;
     private Power _power;
     private Vector3 _center;
 
-    public event UnityAction Died;
+    public event Action Died;
 
     private void Awake()
     {
@@ -45,18 +46,41 @@ public class Enemy : MonoBehaviour, ICharacter
             }
             else
             {
-                Vector3 hitEffectPosition = transform.position;
-                Instantiate(_hitEffect, hitEffectPosition, Quaternion.identity);
+                if (_isBoss)
+                {
+                    player.Win();
+                    player.Collided += OnCollided;
+                }
+                else
+                {
+                    Vector3 hitEffectPosition = transform.position;
+                    Instantiate(_hitEffect, hitEffectPosition, Quaternion.identity);
 
-                Died?.Invoke();
+                    Died?.Invoke();
 
-                playerPower.Increase();
+                    playerPower.Increase();
 
-                ChangeBodyToDead();
+                    ChangeBodyToDead();
 
-                TakeHit(player);
+                    TakeHit(player);
+                }
             }
         }
+    }
+
+    private void OnCollided(Player player)
+    {
+        player.Collided -= OnCollided;//Unscribe does not garantee
+        Vector3 hitEffectPosition = transform.position;
+        Instantiate(_hitEffect, hitEffectPosition, Quaternion.identity);
+
+        Died?.Invoke();
+
+        //playerPower.Increase();
+
+        ChangeBodyToDead();
+
+        TakeHit(player);
     }
 
     private void ChangeBodyToDead()

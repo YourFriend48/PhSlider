@@ -149,10 +149,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.2
       objectReference: {fileID: 0}
-    - target: {fileID: 3720575322915197500, guid: 404cd0620cf470042bccb190deaff1fb, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.0000001
-      objectReference: {fileID: 0}
     - target: {fileID: 3951641141606494064, guid: 404cd0620cf470042bccb190deaff1fb, type: 3}
       propertyPath: m_Name
       value: Boss
@@ -224,14 +220,6 @@ PrefabInstance:
     - target: {fileID: 9107686435488614144, guid: 404cd0620cf470042bccb190deaff1fb, type: 3}
       propertyPath: m_LocalScale.z
       value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9107686435488614144, guid: 404cd0620cf470042bccb190deaff1fb, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.00000005960466
-      objectReference: {fileID: 0}
-    - target: {fileID: 9107686435488614144, guid: 404cd0620cf470042bccb190deaff1fb, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 404cd0620cf470042bccb190deaff1fb, type: 3}

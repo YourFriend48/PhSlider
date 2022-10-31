@@ -25,6 +25,10 @@ public class PlayerMovement : MonoBehaviour
     public event Action TurnEnded;
     public event Action Swipped;
 
+    public event Action Stopped;
+    public event Action MovingStarted;
+    public event Action Won;
+
     private void Awake()
     {
         _player = GetComponent<Player>();
@@ -123,7 +127,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (_isInputEnable)
         {
-            _playerAnimator.RunIdleToFlight();
+            //_playerAnimator.RunIdleToFlight();
+            MovingStarted?.Invoke();
             _isInputEnable = false;
         }
 
@@ -133,7 +138,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnFinishReached()
     {
-        _playerAnimator.RunIdleToVictory();
+        //_playerAnimator.RunIdleToVictory();
+        Won?.Invoke();
         FinishReached?.Invoke();
         LastHitInitiated?.Invoke();
     }
@@ -142,7 +148,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (_isInputEnable)
         {
-            _playerAnimator.RunIdleToFlight();
+            //_playerAnimator.RunIdleToFlight();
+            MovingStarted?.Invoke();
             _isInputEnable = false;
         }
 
@@ -153,7 +160,8 @@ public class PlayerMovement : MonoBehaviour
     private void Stop()
     {
         _isInputEnable = true;
-        _playerAnimator.RunFlightToIdle();
+        //_playerAnimator.RunFlightToIdle();
+        Stopped?.Invoke();
 
         if (_isMoving)
         {
