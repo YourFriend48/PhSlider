@@ -6,7 +6,7 @@ using YandexSDK;
 using System;
 
 [RequireComponent(typeof(Animator))]
-public class WinCover : EndScreen//, IGameSpeedChangable
+public class WinCover : EndScreen
 {
     [SerializeField] private PlayerMovement _playerMovement;
     [SerializeField] private Transform _confetti;
@@ -18,15 +18,6 @@ public class WinCover : EndScreen//, IGameSpeedChangable
     public static event Action<float> GameSpeedChanged;
     public static event Action AdOpened;
     public static event Action AdClosed;
-
-    private void Start()
-    {
-        Close();
-        _confetti.gameObject.SetActive(false);
-
-        _animator = GetComponent<Animator>();
-        _animator.enabled = false;
-    }
 
     protected override void OnButtonClick()
     {
@@ -49,7 +40,11 @@ public class WinCover : EndScreen//, IGameSpeedChangable
     private IEnumerator EnableCover()
     {
         yield return new WaitForSeconds(_enableAfterWin);
+        Win();
+    }
 
+    private void Win()
+    {
         Open();
         _animator.enabled = true;
         _confetti.gameObject.SetActive(true);
@@ -63,12 +58,16 @@ public class WinCover : EndScreen//, IGameSpeedChangable
 
     protected override void Disable()
     {
-        //_playerMovement.FinishReached -= PlayerMovementOnFinishReached;
     }
 
     protected override void Enable()
     {
-        StartCoroutine(EnableCover());
-        //_playerMovement.FinishReached += PlayerMovementOnFinishReached;
+        Win();
+        //StartCoroutine(EnableCover());
+    }
+
+    protected override void OnAwake()
+    {
+        _animator = GetComponent<Animator>();
     }
 }

@@ -11,11 +11,13 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private ColliderChecker _colliderChecker;
     [SerializeField] private GameObject _model;
     [SerializeField] private PlayerAnimator _playerAnimator;
+    [SerializeField] private float _depthOfFall;
+    [SerializeField] private float _delayOfLose;
 
     private Player _player;
     private Coroutine _moving;
     private Vector3 _direction;
-    private bool _isInputEnable = true;
+    private bool _isInputEnable = false;
     private bool _isMoving = false;
 
     public event Action FinishReached;
@@ -28,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     public event Action Stopped;
     public event Action MovingStarted;
     public event Action Won;
+    public event Action Fell;
 
     private void Awake()
     {
@@ -60,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
     {
         yield return new WaitForSeconds(_delayAfterLanding);
         MovementEnabled?.Invoke();
+        _isInputEnable = true;
     }
 
     private void PlayerOnLanded()
@@ -114,13 +118,53 @@ public class PlayerMovement : MonoBehaviour
         {
             if (navigationPlatform.IsMovable == false)
             {
-                Stop();
+                MoveAndMake(navigationPlatform.Center, StayOverAnAbyss);
+                //Stop();
             }
             else
             {
                 Move2(navigationPlatform.Center);
             }
         }
+    }
+
+    private void MoveAndMake(Vector3 target, Action nextAction)
+    {
+        if (_isInputEnable)
+        {
+            MovingStarted?.Invoke();
+            _isInputEnable = false;
+        }
+
+        Completed += nextAction;
+        MoveTo(target);
+    }
+
+    private void StayOverAnAbyss()
+    {
+        Fell?.Invoke();
+    }
+
+    public void Fall()
+    {
+        MoveAndMake(transform.position + _depthOfFall * Vector3.down, DoNothing);
+        _player.Lose();
+        //StartDelayLose();
+    }
+    private void DoNothing()
+    {
+    }
+
+    private void StartDelayLose()
+    {
+        //_player.Lose();
+        StartCoroutine(DelayLose());
+    }
+
+    private IEnumerator DelayLose()
+    {
+        yield return new WaitForSeconds(_delayOfLose);
+        _player.Lose();
     }
 
     private void MoveToFinish(Vector3 target)
@@ -137,7 +181,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnFinishReached()
     {
-        //_playerAnimator.RunIdleToVictory();
         Won?.Invoke();
         FinishReached?.Invoke();
         LastHitInitiated?.Invoke();

@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PositionIndex: 0
-  _movingTime: 0.5
+  _movingTime: 0.3
 --- !u!114 &8824825942405272728
 MonoBehaviour:
   m_ObjectHideFlags: 0

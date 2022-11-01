@@ -1375,6 +1375,8 @@ MonoBehaviour:
   _colliderChecker: {fileID: 6575335570893288264}
   _model: {fileID: 6586531305761594629}
   _playerAnimator: {fileID: 7492931599747400869}
+  _depthOfFall: 50
+  _delayOfLose: 2
 --- !u!114 &1623213233081321738
 MonoBehaviour:
   m_ObjectHideFlags: 0

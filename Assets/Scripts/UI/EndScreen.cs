@@ -8,9 +8,27 @@ public abstract class EndScreen : MonoBehaviour
     [SerializeField] protected Button Button;
 
     private CanvasGroup _canvasGroup;
-    public event UnityAction Closed;
 
+    public event UnityAction Closed;
     public event UnityAction Opened;
+
+    private void Awake()
+    {
+        _canvasGroup = GetComponent<CanvasGroup>();
+        OnAwake();
+    }
+
+    private void OnEnable()
+    {
+        Button.onClick.AddListener(OnButtonClick);
+        Enable();
+    }
+
+    private void OnDisable()
+    {
+        Button.onClick.RemoveListener(OnButtonClick);
+        Disable();
+    }
 
     public void Close()
     {
@@ -28,26 +46,10 @@ public abstract class EndScreen : MonoBehaviour
         Opened?.Invoke();
     }
 
-    private void Awake()
-    {
-        _canvasGroup = GetComponent<CanvasGroup>();
-    }
-
-    private void OnEnable()
-    {
-        Button.onClick.AddListener(OnButtonClick);
-        Enable();
-    }
-
-    private void OnDisable()
-    {
-        Button.onClick.RemoveListener(OnButtonClick);
-        Disable();
-    }
-
     protected abstract void OnButtonClick();
 
     protected abstract void Disable();
 
     protected abstract void Enable();
+    protected abstract void OnAwake();
 }

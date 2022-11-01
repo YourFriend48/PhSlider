@@ -8,7 +8,6 @@ public class GameCover : EndScreen
 
     private void Start()
     {
-        Close();
         StartCoroutine(EnableGameCover());
     }
 
@@ -28,6 +27,10 @@ public class GameCover : EndScreen
     }
 
     protected override void Enable()
+    {
+    }
+
+    protected override void OnAwake()
     {
     }
 }

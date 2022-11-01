@@ -11,14 +11,6 @@ public class LoseCover : EndScreen
 
     private Animator _animator;
 
-    private void Start()
-    {
-        Close();
-
-        _animator = GetComponent<Animator>();
-        _animator.enabled = false;
-    }
-
     protected override void OnButtonClick()
     {
         LevelLoader.Instance.Reload();
@@ -28,24 +20,28 @@ public class LoseCover : EndScreen
     {
         yield return new WaitForSeconds(_enableAfterLose);
 
+        Lose();
+    }
+
+    private void Lose()
+    {
         Open();
         _animator.enabled = true;
         _leaderboard.TryShow();
     }
 
-    private void PlayerOnDied()
-    {
-        StartCoroutine(EnableCover());
-    }
-
     protected override void Disable()
     {
-        //_player.Died -= PlayerOnDied;
     }
 
     protected override void Enable()
     {
-        StartCoroutine(EnableCover());
-        //_player.Died += PlayerOnDied;
+        Lose();
+        //StartCoroutine(EnableCover());
+    }
+
+    protected override void OnAwake()
+    {
+        _animator = GetComponent<Animator>();
     }
 }

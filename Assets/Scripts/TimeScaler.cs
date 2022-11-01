@@ -18,6 +18,7 @@ public class TimeScaler : MonoBehaviour
         _player.Won += PlayerMovementOnLastHitInitiated;
         _cameraChanger.Showed += PlayerMovementOnFinishReached;
         _player.Died += PlayerOnDied;
+        _player.Failed += PlayerOnDied;
         WebApplication.InBackgroundChangeEvent += OnInBackgroundChange;
         WinCover.AdOpened += OnAdOpened;
         WinCover.AdClosed += OnAdClosed;
@@ -30,6 +31,7 @@ public class TimeScaler : MonoBehaviour
         _player.Won -= PlayerMovementOnLastHitInitiated;
         _cameraChanger.Showed -= PlayerMovementOnFinishReached;
         _player.Died -= PlayerOnDied;
+        _player.Failed -= PlayerOnDied;
         WebApplication.InBackgroundChangeEvent -= OnInBackgroundChange;
         WinCover.AdOpened -= OnAdOpened;
         WinCover.AdClosed -= OnAdClosed;

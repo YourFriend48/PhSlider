@@ -20,6 +20,7 @@ public class CameraChanger : MonoBehaviour
         _player.Landed += PlayerOnLanded;
         _player.Won += OnWon;
         _player.Died += PlayerOnDied;
+        _player.Failed += PlayerOnDied;
     }
 
     private void OnDisable()
@@ -27,6 +28,7 @@ public class CameraChanger : MonoBehaviour
         _player.Landed -= PlayerOnLanded;
         _player.Won -= OnWon;
         _player.Died -= PlayerOnDied;
+        _player.Failed -= PlayerOnDied;
     }
 
     private IEnumerator DisableLaunchCamera()

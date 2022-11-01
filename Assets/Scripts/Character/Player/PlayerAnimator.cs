@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
@@ -14,6 +15,7 @@ public class PlayerAnimator : MonoBehaviour
     private const string Kick = "Kick";
     private const string JumpFinished = "JumpFinished";
     private const string Upgrade = "Upgrade";
+    private const string LookAround = "LookAround";
 
     private Animator _animator;
 
@@ -26,6 +28,7 @@ public class PlayerAnimator : MonoBehaviour
     {
         _playerMovement.Stopped += OnStopped;
         _playerMovement.MovingStarted += OnMovingStarted;
+        _playerMovement.Fell += OnLookAround;
         _player.Won += OnWon;
         _player.Died += OnDied;
         _landing.Landed += OnLanded;
@@ -40,6 +43,7 @@ public class PlayerAnimator : MonoBehaviour
     {
         _playerMovement.Stopped -= OnStopped;
         _playerMovement.MovingStarted -= OnMovingStarted;
+        _playerMovement.Fell -= OnLookAround;
         _player.Won -= OnWon;
         _player.Died -= OnDied;
         _landing.Landed -= OnLanded;
@@ -48,6 +52,16 @@ public class PlayerAnimator : MonoBehaviour
         {
             upgrading.Upgraded -= OnUpgraded;
         }
+    }
+
+    private void OnLookAround()
+    {
+        _animator.SetTrigger(LookAround);
+    }
+
+    private void OnFall()
+    {
+        _playerMovement.Fall();
     }
 
     private void OnUpgraded()

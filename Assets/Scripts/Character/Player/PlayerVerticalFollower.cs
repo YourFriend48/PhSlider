@@ -10,6 +10,7 @@ public class PlayerVerticalFollower : MonoBehaviour
     private void OnEnable()
     {
         _player.Died += PlayerOnDied;
+        _player.Failed += PlayerOnDied;
     }
 
     private void Update()
@@ -28,10 +29,12 @@ public class PlayerVerticalFollower : MonoBehaviour
     private void OnDisable()
     {
         _player.Died -= PlayerOnDied;
+        _player.Failed -= PlayerOnDied;
     }
 
     private void PlayerOnDied()
     {
+        Debug.Log("PlayerOnDied");
         _isStopFollow = true;
     }
 }

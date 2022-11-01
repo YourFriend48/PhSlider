@@ -21,8 +21,9 @@ public class Player : MonoBehaviour, ICharacter
     private Collider _collider;
 
     public event Action Died;
-    public event Action Landed;
+    public event Action Failed;
     public event Action Won;
+    public event Action Landed;
     public event Action<Player> Collided;
 
     private void Awake()
@@ -47,6 +48,11 @@ public class Player : MonoBehaviour, ICharacter
         Landed?.Invoke();
     }
 
+    public void Lose()
+    {
+        Failed?.Invoke();
+    }
+
     public void Die()//(Power killerPower)
     {
         if (_died)
@@ -57,6 +63,7 @@ public class Player : MonoBehaviour, ICharacter
         _collider.enabled = false;
         StartCoroutine(ScaleTo(_gloveInitalScale));
         _died = true;
+        Debug.Log("Died");
         Died?.Invoke();
         //ChangeBodyToDead();
         //TakeHit();
