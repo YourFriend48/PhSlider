@@ -157,8 +157,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Stop()
     {
+        if (_isInputEnable == false)
+        {
+            Stopped?.Invoke();
+        }
+
         _isInputEnable = true;
-        Stopped?.Invoke();
 
         if (_isMoving)
         {
