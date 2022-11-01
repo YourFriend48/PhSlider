@@ -18,9 +18,9 @@ public class EnemySpawner : MonoBehaviour
                 continue;
             }
 
-            ColorablePlatformPart[] colorableParts = activeHouseArea.GetComponentsInChildren<ColorablePlatformPart>();
+            PlayerColorablePlatformPart[] colorableParts = activeHouseArea.GetComponentsInChildren<PlayerColorablePlatformPart>();
 
-            foreach (ColorablePlatformPart colorablePart in colorableParts)
+            foreach (PlayerColorablePlatformPart colorablePart in colorableParts)
             {
                 if (colorablePart.TryGetComponent(out MeshRenderer meshRenderer) == false
                     || meshRenderer.sharedMaterial != _enemyPlatform
@@ -42,6 +42,11 @@ public class EnemySpawner : MonoBehaviour
                 Enemy enemyPrefab = finishPlatform != null ? _bossEnemyPrefab : _enemyPrefab;
                 Enemy enemy = Instantiate(enemyPrefab, platformCenter, _bossEnemyPrefab.transform.rotation);
                 enemy.Init(_player);
+
+                if (finishPlatform != null)
+                {
+                    finishPlatform.Init(enemy);
+                }
 
 
                 if (enemy.TryGetComponent(out Power power) == false)

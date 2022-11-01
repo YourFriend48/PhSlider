@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(MeshRenderer))]
-public class ColorablePlatformPart : MonoBehaviour
+public class ColorablePlatformPart<T> : MonoBehaviour where T : MonoBehaviour
 {
     [SerializeField] private Material _activatedMaterial;
 
@@ -14,7 +14,7 @@ public class ColorablePlatformPart : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<Player>())
+        if (other.GetComponent<T>())
         {
             GetComponent<MeshRenderer>().material = _activatedMaterial;
             _collider.enabled = false;

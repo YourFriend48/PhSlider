@@ -8,13 +8,13 @@ public class ActivePlatformsCalculator : MonoBehaviour
 
     private int _activePlatformCount;
     private bool _isDisabled;
-    private ColorablePlatformPart[] _platformParts;
+    private PlayerColorablePlatformPart[] _platformParts;
 
     public event UnityAction<int, int> QuantityChanged;
 
     private void Start()
     {
-        _platformParts = _roofActiveArea.GetComponentsInChildren<ColorablePlatformPart>();
+        _platformParts = _roofActiveArea.GetComponentsInChildren<PlayerColorablePlatformPart>();
     }
 
     private void Update()
@@ -26,7 +26,7 @@ public class ActivePlatformsCalculator : MonoBehaviour
 
         int activePlatformCount = 0;
 
-        foreach (ColorablePlatformPart colorablePart in _platformParts)
+        foreach (PlayerColorablePlatformPart colorablePart in _platformParts)
         {
             if (colorablePart.TryGetComponent(out MeshRenderer meshRenderer) == false
                 || meshRenderer.sharedMaterial != _platformMaterial)

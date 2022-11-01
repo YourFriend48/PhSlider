@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlatformAnimator : MonoBehaviour
+public class PlatformAnimator<T> : MonoBehaviour where T : MonoBehaviour
 {
     [SerializeField] private Trigger _trigger;
     [SerializeField] private Vector3 _translation = new Vector3(0, 0.5f, 0);
@@ -19,7 +19,7 @@ public class PlatformAnimator : MonoBehaviour
 
     private void OnEnter(Collider other)
     {
-        if (other.GetComponent<Player>())
+        if (other.GetComponent<T>())
         {
             _trigger.gameObject.SetActive(false);
             _cube.Move(_cube.transform.localPosition + _translation);

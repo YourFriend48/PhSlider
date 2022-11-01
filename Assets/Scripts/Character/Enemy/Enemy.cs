@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour, ICharacter
 
     public event Action Died;
     public event Action Struck;
+    public event Action Collided;
 
     private void Awake()
     {
@@ -81,6 +82,7 @@ public class Enemy : MonoBehaviour, ICharacter
     private void OnCollided(Player player)
     {
         player.Collided -= OnCollided;//Unscribe does not garantee
+        Collided?.Invoke();
         Vector3 hitEffectPosition = transform.position;
         Instantiate(_hitEffect, hitEffectPosition, Quaternion.identity);
 
