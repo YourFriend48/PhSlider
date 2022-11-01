@@ -127,7 +127,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (_isInputEnable)
         {
-            //_playerAnimator.RunIdleToFlight();
             MovingStarted?.Invoke();
             _isInputEnable = false;
         }
@@ -148,7 +147,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (_isInputEnable)
         {
-            //_playerAnimator.RunIdleToFlight();
             MovingStarted?.Invoke();
             _isInputEnable = false;
         }
@@ -160,7 +158,6 @@ public class PlayerMovement : MonoBehaviour
     private void Stop()
     {
         _isInputEnable = true;
-        //_playerAnimator.RunFlightToIdle();
         Stopped?.Invoke();
 
         if (_isMoving)
