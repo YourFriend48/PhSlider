@@ -14,6 +14,7 @@ public class Player : MonoBehaviour, ICharacter
     [SerializeField] private Rigidbody _rootBone;
     [SerializeField] private float _impactForce = 43f;
     [SerializeField] private ParticleSystem _boltsOfLighting;
+    [SerializeField] private Power _power;
 
     private bool _died;
     private Vector3 _gloveInitalScale;
@@ -25,6 +26,9 @@ public class Player : MonoBehaviour, ICharacter
     public event Action Won;
     public event Action Landed;
     public event Action<Player> Collided;
+    public event Action<int> PowerChanged;
+
+    public Power Power => _power;
 
     private void Awake()
     {
@@ -34,6 +38,16 @@ public class Player : MonoBehaviour, ICharacter
     private void Start()
     {
         _gloveInitalScale = _boxingGlove.transform.localScale;
+    }
+
+    private void OnEnable()
+    {
+        _power.Changed += OnPowerChanged;
+    }
+
+    private void OnDisable()
+    {
+        _power.Changed -= OnPowerChanged;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -48,12 +62,17 @@ public class Player : MonoBehaviour, ICharacter
         Landed?.Invoke();
     }
 
+    private void OnPowerChanged(int value)
+    {
+        PowerChanged?.Invoke(value);
+    }
+
     public void Lose()
     {
         Failed?.Invoke();
     }
 
-    public void Die()//(Power killerPower)
+    public void Die()
     {
         if (_died)
         {

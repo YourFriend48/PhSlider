@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour, ICharacter
     private Collider _collider;
     private Power _power;
     private Vector3 _center;
+    private Player _player;
 
     public event Action Died;
     public event Action Struck;
@@ -43,7 +44,7 @@ public class Enemy : MonoBehaviour, ICharacter
             {
                 Instantiate(_fieldEffect, _center, Quaternion.identity);
                 Struck?.Invoke();
-                player.Die();// (_power);
+                player.Die();
             }
             else
             {
@@ -72,10 +73,21 @@ public class Enemy : MonoBehaviour, ICharacter
 
     public void Init(Player player)
     {
+        _player = player;
+        _player.PowerChanged += OnPowerChanged;
+
         if (_isBoss == false)
         {
             _enemyRotator.Init(player);
             _enemyRotator.StartRotating();
+        }
+    }
+
+    private void OnPowerChanged(int count)
+    {
+        if (_power.Current < count)
+        {
+            //зеленый
         }
     }
 
