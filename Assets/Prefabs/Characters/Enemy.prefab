@@ -1198,7 +1198,7 @@ MonoBehaviour:
   _rootBone: {fileID: 5492557786272509090}
   _isBoss: 0
   _PowerCanvasField: {fileID: 6478794803490262565}
-  _colorOfWeakEnemy: {r: 0.16598392, g: 1, b: 0, a: 1}
+  _colorOfWeakEnemy: {r: 0.41568625, g: 1, b: 0.2980392, a: 1}
 --- !u!114 &7035818631319860104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4843,6 +4843,18 @@ PrefabInstance:
     - target: {fileID: 2846486305198480835, guid: 87fc584bb7a66ea47b6592d54bd9d754, type: 3}
       propertyPath: m_fontSize
       value: 51.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3040536735011455390, guid: 87fc584bb7a66ea47b6592d54bd9d754, type: 3}
+      propertyPath: m_Color.b
+      value: 0.011246832
+      objectReference: {fileID: 0}
+    - target: {fileID: 3040536735011455390, guid: 87fc584bb7a66ea47b6592d54bd9d754, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3040536735011455390, guid: 87fc584bb7a66ea47b6592d54bd9d754, type: 3}
+      propertyPath: m_Color.r
+      value: 0.851
       objectReference: {fileID: 0}
     - target: {fileID: 4169040587133288314, guid: 87fc584bb7a66ea47b6592d54bd9d754, type: 3}
       propertyPath: _power

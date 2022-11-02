@@ -147,7 +147,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8098ae4a54af6de49a0b39a8ff4ffd3d, type: 2}
+  - {fileID: 2100000, guid: ba845d6460bf02e4a95b92913f703f21, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -368,6 +368,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ColorablePart
       objectReference: {fileID: 0}
+    - target: {fileID: 4568684767560967278, guid: 58fac80359f23b54ba80a5adfa6e2cf6, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c54c262107e115546a45822806735223, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58fac80359f23b54ba80a5adfa6e2cf6, type: 3}
 --- !u!1 &2799564159074066014 stripped
