@@ -1,11 +1,14 @@
 using System.Collections;
 using UnityEngine;
+using System;
 
 public class LerpMover : MonoBehaviour
 {
     [SerializeField] private AnimationCurve _dependencyOfProgressByTimeShare;
 
     private Coroutine _moving;
+
+    public event Action Completed;
 
     public void MoveLerp(Vector3 target, float requireTime)
     {
@@ -36,5 +39,7 @@ public class LerpMover : MonoBehaviour
             transform.position = Vector3.Lerp(startPosition, target, progress);
             yield return null;
         }
+
+        Completed?.Invoke();
     }
 }

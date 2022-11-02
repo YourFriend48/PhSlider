@@ -28,9 +28,11 @@ public class LaserTutorial : MonoBehaviour
     {
         if (other.GetComponent<Player>())
         {
+            _deadendTrigger.Enter -= OnDeadEndEnter;
             _deadendArrow.gameObject.SetActive(false);
             _tutorialCross.gameObject.SetActive(false);
             _arrowOfClearPass.gameObject.SetActive(true);
+            _arrowOfClearPass.Enable();
         }
     }
 
@@ -38,6 +40,7 @@ public class LaserTutorial : MonoBehaviour
     {
         if (other.GetComponent<Player>())
         {
+            _passClearTrigger.Enter -= OnPassClearEnter;
             _arrowOfClearPass.gameObject.SetActive(false);
         }
     }

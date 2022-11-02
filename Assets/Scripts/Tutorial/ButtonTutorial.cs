@@ -42,6 +42,7 @@ public class ButtonTutorial : MonoBehaviour
             //_buttonArrow.gameObject.SetActive(false);
             _deadendArrow.gameObject.SetActive(false);
             _arrowOfClearPass.gameObject.SetActive(true);
+            _arrowOfClearPass.Enable();
         }
     }
 

@@ -35,6 +35,7 @@ public class ChooseEnemyTutorial : MonoBehaviour
             _tutorialCross.gameObject.SetActive(false);
             _deadendArrow.gameObject.SetActive(false);
             _arrowOfClearPass.gameObject.SetActive(true);
+            _arrowOfClearPass.Enable();
         }
     }
 
@@ -44,7 +45,9 @@ public class ChooseEnemyTutorial : MonoBehaviour
         {
             _chooseTrigger.Enter -= OnChooseZoneEnter;
             _tutorialCross.gameObject.SetActive(true);
+            _tutorialCross.Enable();
             _deadendArrow.gameObject.SetActive(true);
+            _deadendArrow.Enable();
         }
     }
 
