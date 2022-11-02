@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CameraRotator : MonoBehaviour
+public class UIRotator : MonoBehaviour
 {
     private Camera _camera;
 

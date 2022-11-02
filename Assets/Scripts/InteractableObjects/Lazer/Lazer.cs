@@ -5,10 +5,16 @@ using UnityEngine.UI;
 public class Lazer : MonoBehaviour
 {
     [SerializeField] private TurnTimer _turnTimer;
-    [SerializeField] private Image _lazer;
     [SerializeField] private ParticleSystem _lightSignal;
     [SerializeField] private TowardsScaler _pivot;
+
+    [Header("Ray")]
+    [SerializeField] private Image _ray;
     [SerializeField] private MaterialYOffsetMover _materialYOffsetMover;
+
+    [Header("Light")]
+    [SerializeField] private IoIoScaler _light;
+    [SerializeField] private Vector3 _lightScale = new Vector3(1, 1.1f, 1);
 
     private Collider _collider;
     private Vector3 _hideVector = new Vector3(0, 1, 1);
@@ -16,7 +22,7 @@ public class Lazer : MonoBehaviour
     private void Awake()
     {
         _collider = GetComponent<Collider>();
-        _materialYOffsetMover.SetMaterial(_lazer.material);
+        _materialYOffsetMover.SetMaterial(_ray.material);
     }
 
     private void OnEnable()
@@ -47,7 +53,7 @@ public class Lazer : MonoBehaviour
             case 0:
                 _collider.enabled = true;
                 Appear();
-                _lazer.gameObject.SetActive(true);
+                _ray.gameObject.SetActive(true);
                 _lightSignal.Stop();
                 break;
             case 1:
@@ -67,6 +73,13 @@ public class Lazer : MonoBehaviour
     {
         _pivot.ScaleTowards(Vector3.one);
         _materialYOffsetMover.Move();
+        _light.Completed += OnLightScaleCompleted;
+        _light.Scale(_lightScale);
+    }
+
+    private void OnLightScaleCompleted()
+    {
+        _light.Scale(_lightScale);
     }
 
     private void Fade()
@@ -78,6 +91,7 @@ public class Lazer : MonoBehaviour
 
     private void OnFadeCompleted()
     {
+        _light.Completed -= OnLightScaleCompleted;
         _pivot.Completed -= OnFadeCompleted;
         _materialYOffsetMover.StopMove();
     }

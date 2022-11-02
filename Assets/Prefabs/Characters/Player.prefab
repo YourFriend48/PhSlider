@@ -1420,6 +1420,7 @@ MonoBehaviour:
   _rootBone: {fileID: 3315796596804670763}
   _impactForce: 43
   _boltsOfLighting: {fileID: 2945422714242328084}
+  _power: {fileID: 1623213233081321749}
 --- !u!114 &1623213233081321750
 MonoBehaviour:
   m_ObjectHideFlags: 0

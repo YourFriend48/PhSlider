@@ -1,5 +1,7 @@
 using UnityEngine;
 using System;
+using UnityEngine.UI;
+using System.Collections;
 
 [RequireComponent(typeof(Collider), typeof(Power), typeof(EnemyRotator))]
 public class Enemy : MonoBehaviour, ICharacter
@@ -11,9 +13,12 @@ public class Enemy : MonoBehaviour, ICharacter
     [SerializeField] private float _destroySecAfterHide = 2f;
     [SerializeField] private ParticleSystem _hitEffect;
     [SerializeField] private ParticleSystem _fieldEffect;
-    [SerializeField] private CameraRotator _powerCanvas;
+    [SerializeField] private UIRotator _powerCanvas;
     [SerializeField] private Rigidbody _rootBone;
     [SerializeField] private bool _isBoss;
+
+    [SerializeField] private Image _PowerCanvasField;
+    [SerializeField] private Color _colorOfWeakEnemy;
 
     private EnemyRotator _enemyRotator;
     private Collider _collider;
@@ -75,6 +80,7 @@ public class Enemy : MonoBehaviour, ICharacter
     {
         _player = player;
         _player.PowerChanged += OnPowerChanged;
+        StartCoroutine(FakeInit());
 
         if (_isBoss == false)
         {
@@ -83,11 +89,18 @@ public class Enemy : MonoBehaviour, ICharacter
         }
     }
 
+    private IEnumerator FakeInit()
+    {
+        yield return null;
+        OnPowerChanged(_player.Power.Current);
+    }
+
     private void OnPowerChanged(int count)
     {
         if (_power.Current < count)
         {
-            //зеленый
+            _player.PowerChanged -= OnPowerChanged;
+            _PowerCanvasField.color = _colorOfWeakEnemy;
         }
     }
 

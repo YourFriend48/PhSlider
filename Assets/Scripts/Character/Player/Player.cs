@@ -82,7 +82,6 @@ public class Player : MonoBehaviour, ICharacter
         _collider.enabled = false;
         StartCoroutine(ScaleTo(_gloveInitalScale));
         _died = true;
-        Debug.Log("Died");
         Died?.Invoke();
         //ChangeBodyToDead();
         //TakeHit();
