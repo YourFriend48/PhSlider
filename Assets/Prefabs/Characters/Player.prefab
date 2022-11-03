@@ -1282,6 +1282,7 @@ GameObject:
   - component: {fileID: 1623213233081321749}
   - component: {fileID: 1623213233081321730}
   - component: {fileID: 1623213233081321748}
+  - component: {fileID: 819459976650992961}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -1482,6 +1483,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 5667583515693978460}
+--- !u!114 &819459976650992961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623213233081321747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9739dd316b4e684b98f20a5f8524ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 1623213233081321736}
+  _landing: {fileID: 8300000, guid: b9839cbaf4ab26049b9200968fe9c8e0, type: 3}
+  _strikes:
+  - {fileID: 8300000, guid: a5c1407b662f68b49a266ec6191af0f0, type: 3}
+  - {fileID: 8300000, guid: bfdf8f4e2119e484590d062b2a31c211, type: 3}
+  - {fileID: 8300000, guid: 6de65bcc67578a848bf26baa9c404e73, type: 3}
+  _scream: {fileID: 8300000, guid: 4b1e4557125458c4da83652067e647b0, type: 3}
+  _lose: {fileID: 8300000, guid: fd9b8bbf8f8348e43877529d3cca3f7d, type: 3}
+  _win: {fileID: 8300000, guid: c3a1ee1e821bf6f44ba8d7cedd3db99f, type: 3}
+  _button: {fileID: 8300000, guid: 86e7c981a66bc5f44a680a6da465e3b4, type: 3}
 --- !u!1 &1623213233148671618
 GameObject:
   m_ObjectHideFlags: 0

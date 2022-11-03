@@ -34,9 +34,10 @@ public class Switcher : MonoBehaviour
 
     private void OnEnter(Collider collider)
     {
-        if (collider.GetComponent<Player>())
+        if (collider.TryGetComponent(out Player player))
         {
             Switch();
+            player.ClickButton();
         }
     }
 

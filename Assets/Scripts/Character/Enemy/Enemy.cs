@@ -38,6 +38,11 @@ public class Enemy : MonoBehaviour, ICharacter
         _enemyRotator = GetComponent<EnemyRotator>();
     }
 
+    private void OnDisable()
+    {
+        _player.Collided -= OnCollided;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out Player player))
@@ -53,6 +58,8 @@ public class Enemy : MonoBehaviour, ICharacter
             }
             else
             {
+                player.StrikeSound();
+
                 if (_isBoss)
                 {
                     player.Win();
@@ -106,7 +113,7 @@ public class Enemy : MonoBehaviour, ICharacter
 
     private void OnCollided(Player player)
     {
-        player.Collided -= OnCollided;//Unscribe does not garantee
+        player.Collided -= OnCollided;
         Collided?.Invoke();
         Vector3 hitEffectPosition = transform.position;
         Instantiate(_hitEffect, hitEffectPosition, Quaternion.identity);

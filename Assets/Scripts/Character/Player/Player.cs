@@ -22,7 +22,10 @@ public class Player : MonoBehaviour, ICharacter
     private bool _isLanded;
     private Collider _collider;
 
+    public event Action ButtonClicked;
+    public event Action Striked;
     public event Action Died;
+    public event Action Fell;
     public event Action Failed;
     public event Action Won;
     public event Action Landed;
@@ -64,6 +67,11 @@ public class Player : MonoBehaviour, ICharacter
         Landed?.Invoke();
     }
 
+    public void ClickButton()
+    {
+        ButtonClicked?.Invoke();
+    }
+
     private void OnPowerChanged(int value)
     {
         PowerChanged?.Invoke(value);
@@ -72,6 +80,11 @@ public class Player : MonoBehaviour, ICharacter
     public void Lose()
     {
         Failed?.Invoke();
+    }
+
+    public void Fall()
+    {
+        Fell?.Invoke();
     }
 
     public void Die()
@@ -87,10 +100,11 @@ public class Player : MonoBehaviour, ICharacter
         StartCoroutine(ScaleTo(_gloveInitalScale));
         _died = true;
         Died?.Invoke();
-        //ChangeBodyToDead();
-        //TakeHit();
+    }
 
-        //killerPower.Increase();
+    public void StrikeSound()
+    {
+        Striked?.Invoke();
     }
 
     public void Strike()
