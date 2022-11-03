@@ -7,6 +7,8 @@ using Finance;
 public class Gem : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _sparkles;
+    [SerializeField] private GameObject _model;
+    //[SerializeField] private GemExplosion _gemExplosion;
 
     private Scaler _scaler;
     private Collider _collider;
@@ -30,6 +32,7 @@ public class Gem : MonoBehaviour
     private void Collect()
     {
         _collider.enabled = false;
+        //_gemExplosion.Explode();
         WalletHolder.Instance.PutIn(_cost.Current);
         _scaler.Completed += OnScaleCompleted;
         _scaler.ScaleTo(Vector3.zero);
@@ -38,6 +41,7 @@ public class Gem : MonoBehaviour
 
     private void OnScaleCompleted()
     {
+        _model.SetActive(false);
         Destroy(this);
     }
 }

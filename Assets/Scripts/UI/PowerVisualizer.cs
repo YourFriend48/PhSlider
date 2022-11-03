@@ -25,6 +25,30 @@ public class PowerVisualizer : MonoBehaviour
         _power.Setted -= PowerOnSetted;
         _power.Changed -= PowerOnChanged;
         _scaler.Completed -= OnScaleCompleted;
+        _scaler.Completed -= OnDisappeared;
+        _scaler.Completed -= OnAppeared;
+    }
+
+    public void Appear()
+    {
+        _scaler.Completed += OnAppeared;
+        _scaler.ScaleTo(_originalScale);
+    }
+
+    public void Disappear()
+    {
+        _scaler.Completed += OnDisappeared;
+        _scaler.ScaleTo(Vector3.zero);
+    }
+
+    private void OnDisappeared()
+    {
+        _scaler.Completed -= OnDisappeared;
+    }
+
+    private void OnAppeared()
+    {
+        _scaler.Completed -= OnAppeared;
     }
 
     private void OnScaleCompleted()

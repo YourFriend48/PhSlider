@@ -15,6 +15,7 @@ public class Player : MonoBehaviour, ICharacter
     [SerializeField] private float _impactForce = 43f;
     [SerializeField] private ParticleSystem _boltsOfLighting;
     [SerializeField] private Power _power;
+    [SerializeField] private PowerVisualizer _powerVisualizer;
 
     private bool _died;
     private Vector3 _gloveInitalScale;
@@ -57,6 +58,7 @@ public class Player : MonoBehaviour, ICharacter
             return;
         }
 
+        _powerVisualizer.Appear();
         _isLanded = true;
 
         Landed?.Invoke();
@@ -74,11 +76,13 @@ public class Player : MonoBehaviour, ICharacter
 
     public void Die()
     {
+        Debug.Log(_died);
         if (_died)
         {
             return;
         }
 
+        _powerVisualizer.Disappear();
         _collider.enabled = false;
         StartCoroutine(ScaleTo(_gloveInitalScale));
         _died = true;
@@ -96,6 +100,7 @@ public class Player : MonoBehaviour, ICharacter
 
     public void Win()
     {
+        _powerVisualizer.Disappear();
         Won?.Invoke();
     }
 

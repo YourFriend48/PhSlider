@@ -97,7 +97,7 @@ public class Enemy : MonoBehaviour, ICharacter
 
     private void OnPowerChanged(int count)
     {
-        if (_power.Current < count)
+        if (_power.Current <= count)
         {
             _player.PowerChanged -= OnPowerChanged;
             _PowerCanvasField.color = _colorOfWeakEnemy;

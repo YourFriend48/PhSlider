@@ -17,25 +17,23 @@ public class GemCollectorView : MonoBehaviour
         _gemPanelScreenPosition = _camera.WorldToScreenPoint(_gemPanel.position);
     }
 
-    private Vector3 GetCanvasProjectionPoint(Vector3 position)
+    private Vector2 GetCanvasProjectionPoint(Vector3 position)
     {
         //Верно ли это? возвращается Vector3
         Vector2 screenPosition = _camera.WorldToScreenPoint(position);
         float ratioX = screenPosition.x / Screen.width;
         float ratioY = screenPosition.y / Screen.height;
-        //Vector2 canvasPoint = _canvas.pixelRect.width
-
-
-        //Vector2 delta = screenPosition - _gemPanelScreenPosition;
-        //Vector3 = new Vector3(delta.x, delta.y, delta.z);
-        //_gemPanel.position + delta;
-        return Vector3.zero;
+        Vector2 canvasPoint = new Vector2(_canvas.pixelRect.width * ratioX, _canvas.pixelRect.height * ratioY);
+        return canvasPoint;
     }
 
-    //private void Instant()
-    //{
-    //    Instantiate(_UICristals, , _gemPanel);
-    //}
+    private void Create(Vector3 position)
+    {
+        Instantiate(_UICristals, _canvas.transform.position, Quaternion.identity, _canvas.transform);
+        RectTransform rectTransform = new RectTransform();
+        rectTransform.anchoredPosition = GetCanvasProjectionPoint(position);
+        rectTransform.parent = _UICristals.transform;
+    }
 
 
 }

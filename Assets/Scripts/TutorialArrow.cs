@@ -9,11 +9,11 @@ public class TutorialArrow : MonoBehaviour
 
     private void Awake()
     {
-        _endPosition = transform.position + _lerpIoIoMover.transform.forward * _offset;
     }
 
     public void Enable()
     {
+        _endPosition = transform.position + _lerpIoIoMover.transform.forward * _offset;
         _lerpIoIoMover.Completed += OnCicleCompleted;
         _lerpIoIoMover.Move(_endPosition);
     }

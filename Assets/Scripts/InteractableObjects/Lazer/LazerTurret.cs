@@ -16,5 +16,6 @@ public class LazerTurret : MonoBehaviour
 
         _lazer.transform.position = middlePoint;
         _lazer.transform.localScale = new Vector3(1, 1, _length);
+        _lazer.Init();
     }
 }

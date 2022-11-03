@@ -25,16 +25,17 @@ public class Lazer : MonoBehaviour
         _materialYOffsetMover.SetMaterial(_ray.material);
     }
 
-    private void OnEnable()
-    {
-        OnTimeChanged(_turnTimer.CurrentTime);
-        _turnTimer.TimeChanged += OnTimeChanged;
-    }
-
     private void OnDisable()
     {
         _pivot.Completed -= OnFadeCompleted;
         _turnTimer.TimeChanged -= OnTimeChanged;
+        _light.Completed -= OnLightScaleCompleted;
+    }
+
+    public void Init()
+    {
+        OnTimeChanged(_turnTimer.CurrentTime);
+        _turnTimer.TimeChanged += OnTimeChanged;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -79,6 +80,7 @@ public class Lazer : MonoBehaviour
 
     private void OnLightScaleCompleted()
     {
+        _light.Completed -= OnLightScaleCompleted;
         _light.Scale(_lightScale);
     }
 

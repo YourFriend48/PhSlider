@@ -46,6 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _walletHolder: {fileID: 0}
   _walletView: {fileID: 0}
-  _swipeInput: {fileID: 0}
-  _map: {fileID: 0}
-  _playerMovement: {fileID: 0}
+  _powerUpgrading: {fileID: 0}
+  _gemUpgrading: {fileID: 0}
+  _poolManager: {fileID: 0}

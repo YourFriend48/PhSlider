@@ -51,7 +51,10 @@ public class EnemyRotator : MonoBehaviour
                 direction = new Vector3(0, 0, (int)offsetZ);
             }
 
-            transform.rotation = Quaternion.LookRotation(direction);
+            if (direction != Vector3.zero)
+            {
+                transform.rotation = Quaternion.LookRotation(direction);
+            }
 
             yield return _waiting;
         }

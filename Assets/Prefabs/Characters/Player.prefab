@@ -1422,6 +1422,7 @@ MonoBehaviour:
   _impactForce: 43
   _boltsOfLighting: {fileID: 2945422714242328084}
   _power: {fileID: 1623213233081321749}
+  _powerVisualizer: {fileID: 4597431474080984446}
 --- !u!114 &1623213233081321750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3476,6 +3477,18 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.106000006
       objectReference: {fileID: 0}
+    - target: {fileID: 3563761234220921562, guid: 87fc584bb7a66ea47b6592d54bd9d754, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3563761234220921562, guid: 87fc584bb7a66ea47b6592d54bd9d754, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3563761234220921562, guid: 87fc584bb7a66ea47b6592d54bd9d754, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4169040587133288314, guid: 87fc584bb7a66ea47b6592d54bd9d754, type: 3}
       propertyPath: _power
       value: 
@@ -3582,6 +3595,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87fc584bb7a66ea47b6592d54bd9d754, type: 3}
+--- !u!114 &4597431474080984446 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4169040587133288314, guid: 87fc584bb7a66ea47b6592d54bd9d754, type: 3}
+  m_PrefabInstance: {fileID: 438594922326512132}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f555ac3586d697448f0359aa204518c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1623213231637242435
 PrefabInstance:
   m_ObjectHideFlags: 0

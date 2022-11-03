@@ -16,6 +16,8 @@ public class LaserTutorial : MonoBehaviour
     {
         _deadendTrigger.Enter += OnDeadEndEnter;
         _passClearTrigger.Enter += OnPassClearEnter;
+        _deadendArrow.Enable();
+        _tutorialCross.Enable();
     }
 
     private void OnDisable()
