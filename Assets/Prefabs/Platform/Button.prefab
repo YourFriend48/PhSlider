@@ -227,7 +227,7 @@ MonoBehaviour:
   _switcher: {fileID: 933794012631385544}
   _meshRenderer: {fileID: 5254548269539264089}
   _greenMaterial: {fileID: 2100000, guid: 364f3865964ee5d41a4034a99092833e, type: 2}
-  _redMaterial: {fileID: 2100000, guid: e8f454235ee6c074cb24c8fb02773e4d, type: 2}
+  _redMaterial: {fileID: 2100000, guid: 484672f821af12d4db6f0db24838dddc, type: 2}
 --- !u!1001 &5673043462351724450
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -238,7 +238,7 @@ PrefabInstance:
     - target: {fileID: -8768133303093192197, guid: dc81687d97951ed489529f450f4d01c3, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: e8f454235ee6c074cb24c8fb02773e4d, type: 2}
+      objectReference: {fileID: 2100000, guid: 484672f821af12d4db6f0db24838dddc, type: 2}
     - target: {fileID: -8679921383154817045, guid: dc81687d97951ed489529f450f4d01c3, type: 3}
       propertyPath: m_RootOrder
       value: 3
