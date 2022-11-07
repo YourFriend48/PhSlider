@@ -7,7 +7,7 @@ namespace General
 {
     public class LevelLoader : MonoBehaviour
     {
-        [SerializeField] private string[] _levels;
+        [SerializeField] private Levels _levels;
         //[SerializeField] private EventsSender _eventsSender;
 
         private int _sceneIndex;
@@ -84,7 +84,7 @@ namespace General
 
         private int GetLevelIndex()
         {
-            if (Level < _levels.Length)
+            if (Level < _levels.Names.Count)
             {
                 return Level;
             }
@@ -94,16 +94,16 @@ namespace General
 
             do
             {
-                newIndex = Level < _levels.Length ? Level : Random.Range(FirstLevelIndex, _levels.Length);
+                newIndex = Level < _levels.Names.Count ? Level : Random.Range(FirstLevelIndex, _levels.Names.Count);
             }
-            while (_sceneIndex == newIndex && ++attempts < _levels.Length);
+            while (_sceneIndex == newIndex && ++attempts < _levels.Names.Count);
 
             return newIndex;
         }
 
         private void Load()
         {
-            SceneManager.LoadScene(_levels[_sceneIndex]);
+            SceneManager.LoadScene(_levels.Names[_sceneIndex]);
         }
     }
 }
