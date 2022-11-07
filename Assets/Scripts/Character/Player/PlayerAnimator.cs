@@ -8,6 +8,7 @@ public class PlayerAnimator : MonoBehaviour
     [SerializeField] private Player _player;
     [SerializeField] private Landing _landing;
     [SerializeField] private Upgrading[] _upgradings;
+    [SerializeField] private ParticleSystem _effectOfUpgrading;
 
     private const string Run = "Run";
     private const string Idle = "Idle";
@@ -67,6 +68,7 @@ public class PlayerAnimator : MonoBehaviour
     private void OnUpgraded()
     {
         _animator.SetTrigger(Upgrade);
+        _effectOfUpgrading.Play();
     }
 
     private void OnLanded()

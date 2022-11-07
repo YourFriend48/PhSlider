@@ -23,6 +23,7 @@ public class SoundEffects : MonoBehaviour
     {
         _player.Landed += OnLanded;
         _player.Striked += OnStriked;
+        _player.Collided += OnCollided;
         _player.Died += OnDied;
         _player.Fell += OnDied;
         _player.Failed += OnFailed;
@@ -34,6 +35,7 @@ public class SoundEffects : MonoBehaviour
     {
         _player.Landed -= OnLanded;
         _player.Striked -= OnStriked;
+        _player.Collided -= OnCollided;
         _player.Died -= OnDied;
         _player.Fell -= OnDied;
         _player.Failed -= OnFailed;
@@ -64,6 +66,11 @@ public class SoundEffects : MonoBehaviour
     private void OnLanded()
     {
         AudioSource.PlayClipAtPoint(_landing, _camera.transform.position);
+    }
+
+    private void OnCollided(Player player)
+    {
+        OnStriked();
     }
 
     private void OnStriked()
