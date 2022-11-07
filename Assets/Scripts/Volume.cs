@@ -1,9 +1,19 @@
+using UnityEngine.UI;
 using UnityEngine;
 using Agava.WebUtility;
 
 public class Volume : MonoBehaviour
 {
-    private float _value = 1f;
+    private const string VolumeKey = "Volume";
+
+    [SerializeField] private Slider _slider;
+
+    private float _value;// = 1f;
+
+    private void Start()
+    {
+        Init();
+    }
 
     private void OnEnable()
     {
@@ -12,6 +22,7 @@ public class Volume : MonoBehaviour
         WinCover.AdClosed += OnAdClosed;
         Upgrading.AdOpened += OnAdOpened;
         Upgrading.AdClosed += OnAdClosed;
+        _slider.onValueChanged.AddListener(OnValueChanged);
     }
 
     private void OnDisable()
@@ -21,6 +32,18 @@ public class Volume : MonoBehaviour
         WinCover.AdClosed -= OnAdClosed;
         Upgrading.AdOpened -= OnAdOpened;
         Upgrading.AdClosed -= OnAdClosed;
+        _slider.onValueChanged.RemoveListener(OnValueChanged);
+    }
+
+    private void Init()
+    {
+        _value = PlayerPrefs.GetFloat(VolumeKey, 1f);
+        _slider.value = _value;
+    }
+
+    private void OnValueChanged(float value)
+    {
+        SetVolume(value);
     }
 
     private void OnAdOpened()
@@ -37,6 +60,7 @@ public class Volume : MonoBehaviour
     {
         _value = value;
         AudioListener.volume = value;
+        PlayerPrefs.SetFloat(VolumeKey, _value);
     }
 
     private void OnInBackgroundChange(bool isInBackground)
