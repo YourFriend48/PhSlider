@@ -65,11 +65,24 @@ public class MovablePlatformBelt : MonoBehaviour
     {
         foreach (MovablePlatform movablePlatform in _models)
         {
-            int positionIndex = GetNextPositionIndex(movablePlatform.PositionIndex);
+            int positionIndex = GetPreviousPositionIndex(movablePlatform.PositionIndex);
+            //int positionIndex = GetNextPositionIndex(movablePlatform.PositionIndex);
             movablePlatform.PositionIndex = positionIndex;
             Vector3 target = _platforms[positionIndex].Center;
             movablePlatform.Move(target);
         }
+    }
+
+    private int GetPreviousPositionIndex(int current)
+    {
+        current--;
+
+        if (current < 0)
+        {
+            current = _platforms.Length - 1;
+        }
+
+        return current;
     }
 
     private int GetNextPositionIndex(int current)
