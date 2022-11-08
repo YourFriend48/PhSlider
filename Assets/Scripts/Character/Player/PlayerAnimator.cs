@@ -1,3 +1,4 @@
+using System.Collections;
 using System;
 using UnityEngine;
 
@@ -78,16 +79,26 @@ public class PlayerAnimator : MonoBehaviour
 
     private void OnDied()
     {
+        //Debug.Log("Fall");
+        _animator.SetTrigger(Fall);
+        //StartCoroutine(Dying());
+    }
+
+    private IEnumerator Dying()
+    {
+        yield return new WaitForSeconds(5f);
         _animator.SetTrigger(Fall);
     }
 
     private void OnStopped()
     {
+        //Debug.Log("Idle");
         _animator.SetTrigger(Idle);
     }
 
     private void OnMovingStarted()
     {
+        //Debug.Log("Run");
         _animator.SetTrigger(Run);
     }
 

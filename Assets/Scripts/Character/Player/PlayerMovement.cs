@@ -10,7 +10,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _maxMovement = 1f;
     [SerializeField] private ColliderChecker _colliderChecker;
     [SerializeField] private GameObject _model;
-    [SerializeField] private PlayerAnimator _playerAnimator;
     [SerializeField] private float _depthOfFall;
     [SerializeField] private float _delayOfLose;
 
@@ -45,10 +44,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDisable()
     {
-        _player.Landed -= PlayerOnLanded;
-        _player.Died -= PlayerOnDied;
-        Completed -= OnCompleted;
-        Completed -= OnFinishReached;
+        Unscribe();
     }
 
     public void Move(Vector3 direction)
@@ -57,6 +53,15 @@ public class PlayerMovement : MonoBehaviour
         {
             OnSwipped(direction);
         }
+    }
+
+    private void Unscribe()
+    {
+        _isInputEnable = false;
+        _player.Landed -= PlayerOnLanded;
+        _player.Died -= PlayerOnDied;
+        Completed -= OnCompleted;
+        Completed -= OnFinishReached;
     }
 
     private IEnumerator EnableMovement()
@@ -234,6 +239,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void StopMove()
     {
+        Unscribe();
+
         if (_moving != null)
         {
             StopCoroutine(_moving);

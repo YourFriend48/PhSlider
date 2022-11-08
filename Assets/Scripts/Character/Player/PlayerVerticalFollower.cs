@@ -34,7 +34,6 @@ public class PlayerVerticalFollower : MonoBehaviour
 
     private void PlayerOnDied()
     {
-        Debug.Log("PlayerOnDied");
         _isStopFollow = true;
     }
 }
