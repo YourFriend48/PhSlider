@@ -6,6 +6,7 @@ public class Volume : MonoBehaviour
     private const string VolumeKey = "Volume";
 
     private float _value;// = 1f;
+    private bool _isAdOpen = false;
 
     public static Volume Instance { get; private set; }
 
@@ -20,11 +21,11 @@ public class Volume : MonoBehaviour
         }
 
         Instance = this;
+        _value = PlayerPrefs.GetFloat(VolumeKey, 1);
     }
 
     private void Start()
     {
-        _value = PlayerPrefs.GetFloat(VolumeKey, 1);
         SetVolume(_value);
 
         DontDestroyOnLoad(gameObject);
@@ -48,24 +49,18 @@ public class Volume : MonoBehaviour
         Upgrading.AdClosed -= OnAdClosed;
     }
 
-    private void Init()
-    {
-        _value = PlayerPrefs.GetFloat(VolumeKey, 1f);
-    }
-
-    private void OnValueChanged(float value)
-    {
-        SetVolume(value);
-    }
-
     private void OnAdOpened()
     {
-        VolumeOff();
+        _isAdOpen = true;
+        AudioListener.volume = 0;
+        AudioListener.pause = IsZero(AudioListener.volume);
     }
 
     private void OnAdClosed()
     {
-        VolumeOn();
+        _isAdOpen = false;
+        AudioListener.volume = _value;
+        AudioListener.pause = IsZero(AudioListener.volume);
     }
 
     private void SetVolume(float value)
@@ -77,35 +72,44 @@ public class Volume : MonoBehaviour
 
     public void VolumeOn()
     {
-        PlaySound();
+        SetVolume(_value);
     }
 
     public void VolumeOff()
     {
-        StopPlaying();
+        SetVolume(0);
     }
 
     private void PlaySound()
     {
-        AudioListener.pause = false;
         AudioListener.volume = _value;
-    }
-
-    private void StopPlaying()
-    {
-        AudioListener.pause = true;
-        AudioListener.volume = 0;
+        AudioListener.pause = IsZero(AudioListener.volume);
     }
 
     private void OnInBackgroundChange(bool isInBackground)
     {
         if (isInBackground)
         {
-            StopPlaying();
+            AudioListener.volume = 0;
+            AudioListener.pause = IsZero(AudioListener.volume);
         }
         else
         {
-            PlaySound();
+            if (_isAdOpen)
+            {
+                AudioListener.volume = 0;
+                AudioListener.pause = IsZero(AudioListener.volume);
+            }
+            else
+            {
+                AudioListener.volume = _value;
+                AudioListener.pause = IsZero(AudioListener.volume);
+            }
         }
+    }
+
+    private bool IsZero(float value)
+    {
+        return value == 0;
     }
 }

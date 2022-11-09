@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(AudioSource))]
 public class BackgroundMusic : MonoBehaviour
@@ -19,9 +20,14 @@ public class BackgroundMusic : MonoBehaviour
         Play();
     }
 
-    private IEnumerator WaitNewClip(float delay)
+    private IEnumerator WaitNewClip()
     {
-        yield return new WaitForSeconds(delay);
+        while (AudioListener.pause || _audioSource.isPlaying)
+        {
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(_delay);
         Play();
     }
 
@@ -30,7 +36,7 @@ public class BackgroundMusic : MonoBehaviour
         AudioClip audioClip = GetRandomClip();
         _audioSource.clip = audioClip;
         _audioSource.Play();
-        StartCoroutine(WaitNewClip(audioClip.length + _delay));
+        StartCoroutine(WaitNewClip());
     }
 
     private AudioClip GetRandomClip()
