@@ -5,6 +5,7 @@ using YandexSDK;
 public class Boot : MonoBehaviour
 {
     [SerializeField] private LevelLoader _levelLoader;
+    [SerializeField] private Volume _volume;
 
     private void Start()
     {
@@ -35,6 +36,7 @@ public class Boot : MonoBehaviour
     private void StartGame()
     {
         //GameAnalytics.Initialize();
+        _volume.enabled = true;
         _levelLoader.enabled = true;
     }
 }

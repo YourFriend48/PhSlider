@@ -1,4 +1,3 @@
-using UnityEngine.UI;
 using UnityEngine;
 using Agava.WebUtility;
 
@@ -6,13 +5,29 @@ public class Volume : MonoBehaviour
 {
     private const string VolumeKey = "Volume";
 
-    [SerializeField] private Slider _slider;
-
     private float _value;// = 1f;
+
+    public static Volume Instance { get; private set; }
+
+    public float Value => _value;
+
+    private void Awake()
+    {
+        if (Instance && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+    }
 
     private void Start()
     {
-        Init();
+        _value = PlayerPrefs.GetFloat(VolumeKey, 1);
+        SetVolume(_value);
+
+        DontDestroyOnLoad(gameObject);
     }
 
     private void OnEnable()
@@ -22,7 +37,6 @@ public class Volume : MonoBehaviour
         WinCover.AdClosed += OnAdClosed;
         Upgrading.AdOpened += OnAdOpened;
         Upgrading.AdClosed += OnAdClosed;
-        _slider.onValueChanged.AddListener(OnValueChanged);
     }
 
     private void OnDisable()
@@ -32,13 +46,11 @@ public class Volume : MonoBehaviour
         WinCover.AdClosed -= OnAdClosed;
         Upgrading.AdOpened -= OnAdOpened;
         Upgrading.AdClosed -= OnAdClosed;
-        _slider.onValueChanged.RemoveListener(OnValueChanged);
     }
 
     private void Init()
     {
         _value = PlayerPrefs.GetFloat(VolumeKey, 1f);
-        _slider.value = _value;
     }
 
     private void OnValueChanged(float value)
@@ -48,32 +60,52 @@ public class Volume : MonoBehaviour
 
     private void OnAdOpened()
     {
-        SetVolume(0);
+        VolumeOff();
     }
 
     private void OnAdClosed()
     {
-        SetVolume(1);
+        VolumeOn();
     }
 
     private void SetVolume(float value)
     {
         _value = value;
-        AudioListener.volume = value;
-        PlayerPrefs.SetFloat(VolumeKey, _value);
+        PlayerPrefs.SetFloat(VolumeKey, value);
+        PlaySound();
+    }
+
+    public void VolumeOn()
+    {
+        PlaySound();
+    }
+
+    public void VolumeOff()
+    {
+        StopPlaying();
+    }
+
+    private void PlaySound()
+    {
+        AudioListener.pause = false;
+        AudioListener.volume = _value;
+    }
+
+    private void StopPlaying()
+    {
+        AudioListener.pause = true;
+        AudioListener.volume = 0;
     }
 
     private void OnInBackgroundChange(bool isInBackground)
     {
         if (isInBackground)
         {
-            AudioListener.pause = false;
-            AudioListener.volume = 0;
+            StopPlaying();
         }
         else
         {
-            AudioListener.pause = true;
-            AudioListener.volume = _value;
+            PlaySound();
         }
     }
 }

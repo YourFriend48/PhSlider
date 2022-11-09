@@ -37,14 +37,14 @@ public class GemLeaderboard : MonoBehaviour
 
     private void OnEnable()
     {
-        YandexAuthorizing.Authorized += OnSucsessAuthorize;
-        YandexPersonalData.DataPermissioned += Show;
+        //YandexAuthorizing.Authorized += OnSucsessAuthorize;
+        //YandexPersonalData.DataPermissioned += Show;
     }
 
     private void OnDisable()
     {
-        YandexAuthorizing.Authorized -= OnSucsessAuthorize;
-        YandexPersonalData.DataPermissioned -= Show;
+        //YandexAuthorizing.Authorized -= OnSucsessAuthorize;
+        //YandexPersonalData.DataPermissioned -= Show;
 
         OldTableFilled -= OnOldTableFilled;
         _entriesWaiting.Completed -= CreateNewTable;
