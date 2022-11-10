@@ -8202,7 +8202,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 889491473394510625, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
       propertyPath: m_hasFontAssetChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 889491473571739402, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
       propertyPath: m_IsActive
