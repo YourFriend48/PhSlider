@@ -21,6 +21,8 @@ namespace General
         public int Level { get; private set; }
         public static LevelLoader Instance { get; private set; }
 
+        public int Count => _levels.Names.Count;
+
         private void Awake()
         {
             if (Instance && Instance != this)
@@ -30,14 +32,16 @@ namespace General
             }
 
             Instance = this;
+
+            SendStartEvents();
+            Level = PlayerPrefs.GetInt(LevelKey, StartLevel);
+
         }
 
         private void Start()
         {
             //_eventsSender.Init();
-            SendStartEvents();
 
-            Level = PlayerPrefs.GetInt(LevelKey, StartLevel);
             _sceneIndex = GetLevelIndex();
 
             if (SceneManager.GetActiveScene().buildIndex > 0)
@@ -84,21 +88,28 @@ namespace General
 
         private int GetLevelIndex()
         {
-            if (Level < _levels.Names.Count)
-            {
-                return Level;
-            }
+            return Level - Level / _levels.Names.Count * _levels.Names.Count;
 
-            int attempts = 0;
-            int newIndex;
+            //if (Level < _levels.Names.Count)
+            //{
+            //    return Level;
+            //}
+            //else
+            //{
+            //}
 
-            do
-            {
-                newIndex = Level < _levels.Names.Count ? Level : Random.Range(FirstLevelIndex, _levels.Names.Count);
-            }
-            while (_sceneIndex == newIndex && ++attempts < _levels.Names.Count);
 
-            return newIndex;
+
+            //int attempts = 0;
+            //int newIndex;
+
+            //do
+            //{
+            //    newIndex = Level < _levels.Names.Count ? Level : Random.Range(FirstLevelIndex, _levels.Names.Count);
+            //}
+            //while (_sceneIndex == newIndex && ++attempts < _levels.Names.Count);
+
+            //return newIndex;
         }
 
         private void Load()

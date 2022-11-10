@@ -15,8 +15,9 @@ namespace General
 
         private void Start()
         {
+            //Lean.Localization.LeanLocalization.SetCurrentLanguageAll("English");
             int level = LevelLoader.Instance.Level + 1;
-            _text.text = "LEVEL " + level.ToString();
+            _text.text = Lean.Localization.LeanLocalization.GetTranslationText("Level") + " " + level.ToString();
         }
     }
 }

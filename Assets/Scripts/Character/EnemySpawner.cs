@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using General;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -54,7 +55,7 @@ public class EnemySpawner : MonoBehaviour
                     continue;
                 }
 
-                while (power.Current < platform.Power)
+                while (power.Current < platform.Power + LevelLoader.Instance.Level / LevelLoader.Instance.Count)
                 {
                     power.Increase();
                 }

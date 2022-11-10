@@ -1,6 +1,7 @@
 using UnityEngine;
 using General;
 using YandexSDK;
+using Agava.YandexGames;
 
 public class Boot : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class Boot : MonoBehaviour
     private void OnYandexInitializeFailed()
     {
         Unsubscribe();
+        string currentLanguge = YandexGamesSdk.Environment.i18n.lang;
+        Lean.Localization.LeanLocalization.SetCurrentLanguageAll(currentLanguge);
         StartGame();
     }
 
