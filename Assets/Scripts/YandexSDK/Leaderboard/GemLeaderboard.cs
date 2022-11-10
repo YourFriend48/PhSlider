@@ -98,14 +98,17 @@ public class GemLeaderboard : MonoBehaviour
         {
             _highestResult = WalletHolder.Instance.Value;
             Leaderboard.SetScore(LeaderboardName, _highestResult);
-            Leaderboard.GetEntries(LeaderboardName, WriteStartData, null, 0, 5, true);
-            CreateOldTable(_tableAtStartLevel);
+            Leaderboard.GetEntries(LeaderboardName, CreateStaticTable, null, 0, 5, true);
+            //Leaderboard.GetEntries(LeaderboardName, WriteStartData, null, 0, 5, true);
+            //CreateOldTable(_tableAtStartLevel);
         }
         else
         {
             _highestResult = Mathf.Max(leaderboardEntryResponse.score, WalletHolder.Instance.Value);
-            OldTableFilled += OnOldTableFilled;
-            Leaderboard.GetEntries(LeaderboardName, FillOldTable, null, 0, 5, true);
+            Leaderboard.SetScore(LeaderboardName, _highestResult);
+            Leaderboard.GetEntries(LeaderboardName, CreateStaticTable, null, 0, 5, true);
+            //OldTableFilled += OnOldTableFilled;
+            //Leaderboard.GetEntries(LeaderboardName, FillOldTable, null, 0, 5, true);
         }
     }
 
@@ -167,6 +170,17 @@ public class GemLeaderboard : MonoBehaviour
 
         tableString.SetScore(entry.score);
         return tableString;
+    }
+
+    private void CreateStaticTable(LeaderboardGetEntriesResponse leaderboardGetEntriesResponse)
+    {
+        LeaderboardEntryResponse[] table = leaderboardGetEntriesResponse.entries;
+
+        for (int i = 0; i < table.Length; i++)
+        {
+            LeaderboardEntryResponse entry = table[i];
+            Create(entry, i, _startPosition, Vector2.down);
+        }
     }
 
     private void CreateNewTable(LeaderboardEntryResponse[] table)
