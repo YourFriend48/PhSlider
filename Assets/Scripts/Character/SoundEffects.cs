@@ -50,7 +50,7 @@ public class SoundEffects : MonoBehaviour
 
     private void OnWon()
     {
-        AudioSource.PlayClipAtPoint(_win, _camera.transform.position);
+        AudioSource.PlayClipAtPoint(_win, _camera.transform.position, 4f);
     }
 
     private void OnFailed()

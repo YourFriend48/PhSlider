@@ -96,7 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 1000
   _playerMovement: {fileID: 0}
-  _panelAnimationTime: 0.5
+  _panelAnimationTime: 0.3
 --- !u!114 &4127906903589726784
 MonoBehaviour:
   m_ObjectHideFlags: 0

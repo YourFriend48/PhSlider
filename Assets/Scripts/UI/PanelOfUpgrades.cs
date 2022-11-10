@@ -29,21 +29,19 @@ public class PanelOfUpgrades : MonoBehaviour
         _endPosition = new Vector2(_startPosition.x, _rectTransform.sizeDelta.y / 2);
     }
 
-    private void OnEnable()
+    private void Start()
     {
-        _playerMovement.MovementEnabled += Appear;
+        Appear();
     }
 
     private void OnDisable()
     {
-        _playerMovement.MovementEnabled -= Appear;
         _playerMovement.Swipped -= OnSwipped;
         Completed -= OnDisapearCompleted;
     }
 
     private void Appear()
     {
-        _playerMovement.MovementEnabled -= Appear;
         _playerMovement.Swipped += OnSwipped;
         _rectMover.MoveTo(_endPosition, _panelAnimationTime);
     }
