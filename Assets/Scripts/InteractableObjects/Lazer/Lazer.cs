@@ -40,10 +40,9 @@ public class Lazer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out Player player))
+        if (other.TryGetComponent(out Player player) && player.IsInvulnerable == false)
         {
-            player.Die();
-            player.PlayBoltsOfLightingEffect();
+            player.ReadyToDie(DeathVariant.Laser);
         }
     }
 

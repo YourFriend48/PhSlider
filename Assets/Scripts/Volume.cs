@@ -38,6 +38,8 @@ public class Volume : MonoBehaviour
         WinCover.AdClosed += OnAdClosed;
         Upgrading.AdOpened += OnAdOpened;
         Upgrading.AdClosed += OnAdClosed;
+        InvulnerabilityView.AdOpened += OnAdOpened;
+        InvulnerabilityView.AdClosed += OnAdClosed;
     }
 
     private void OnDisable()
@@ -47,6 +49,8 @@ public class Volume : MonoBehaviour
         WinCover.AdClosed -= OnAdClosed;
         Upgrading.AdOpened -= OnAdOpened;
         Upgrading.AdClosed -= OnAdClosed;
+        InvulnerabilityView.AdOpened -= OnAdOpened;
+        InvulnerabilityView.AdClosed -= OnAdClosed;
     }
 
     private void OnAdOpened()

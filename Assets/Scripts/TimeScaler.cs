@@ -24,6 +24,8 @@ public class TimeScaler : MonoBehaviour
         WinCover.AdClosed += OnAdClosed;
         Upgrading.AdOpened += OnAdOpened;
         Upgrading.AdClosed += OnAdClosed;
+        InvulnerabilityView.Showed += OnAdOpened;
+        InvulnerabilityView.Closed += OnAdClosed;
     }
 
     private void OnDisable()
@@ -37,6 +39,8 @@ public class TimeScaler : MonoBehaviour
         WinCover.AdClosed -= OnAdClosed;
         Upgrading.AdOpened -= OnAdOpened;
         Upgrading.AdClosed -= OnAdClosed;
+        InvulnerabilityView.Showed -= OnAdOpened;
+        InvulnerabilityView.Closed -= OnAdClosed;
     }
 
     private void OnAdOpened()

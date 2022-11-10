@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _direction;
     private bool _isInputEnable = false;
     private bool _isMoving = false;
+    private bool _isInvunlerable = false;
 
     public event Action FinishReached;
     public event Action LastHitInitiated;
@@ -40,6 +41,8 @@ public class PlayerMovement : MonoBehaviour
     {
         _player.Landed += PlayerOnLanded;
         _player.Died += PlayerOnDied;
+        _player.ReadyToFall += OnMakeInvulnerable;
+        _player.MadeInvulnerable += OnMakeInvulnerable;
     }
 
     private void OnDisable()
@@ -62,6 +65,8 @@ public class PlayerMovement : MonoBehaviour
         _player.Died -= PlayerOnDied;
         Completed -= OnCompleted;
         Completed -= OnFinishReached;
+        _player.ReadyToFall -= OnMakeInvulnerable;
+        _player.MadeInvulnerable -= OnMakeInvulnerable;
     }
 
     private IEnumerator EnableMovement()
@@ -121,8 +126,9 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (other.TryGetComponent(out NavigationPlatform navigationPlatform))
         {
-            if (navigationPlatform.IsMovable == false)
+            if (_isInvunlerable == false && navigationPlatform.IsMovable == false)
             {
+                _player.ReadyToDie(DeathVariant.Fall);
                 MoveAndMake(navigationPlatform.Center, StayOverAnAbyss);
                 //Stop();
             }
@@ -131,6 +137,18 @@ public class PlayerMovement : MonoBehaviour
                 Move2(navigationPlatform.Center);
             }
         }
+    }
+
+    private void OnFall()
+    {
+        OnSwipped(_direction);
+    }
+
+    private void OnMakeInvulnerable()
+    {
+        StopMove();
+        _isInvunlerable = true;
+        OnSwipped(_direction);
     }
 
     private void MoveAndMake(Vector3 target, Action nextAction)

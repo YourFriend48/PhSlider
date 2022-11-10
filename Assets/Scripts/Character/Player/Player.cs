@@ -10,9 +10,13 @@ public class Player : MonoBehaviour, ICharacter
     [SerializeField] private ParticleSystem _boltsOfLighting;
     [SerializeField] private Power _power;
     [SerializeField] private PowerVisualizer _powerVisualizer;
+    [SerializeField] private InvulnerabilityView _invulnerabilityView;
+    [SerializeField] private MeshRenderer _invulnerabilityField;
+    [SerializeField] private MaterialXOffsetMover _materialXOffsetMover;
 
     private bool _isLanded;
     private Collider _collider;
+    //private DeathVariant _deathVariant;
 
     public event Action ButtonClicked;
     public event Action Striked;
@@ -21,10 +25,13 @@ public class Player : MonoBehaviour, ICharacter
     public event Action Failed;
     public event Action Won;
     public event Action Landed;
+    public event Action ReadyToFall;
+    public event Action MadeInvulnerable;
     public event Action<Player> Collided;
     public event Action<int> PowerChanged;
 
     public Power Power => _power;
+    public bool IsInvulnerable { get; private set; } = false;
 
     private void Awake()
     {
@@ -34,11 +41,15 @@ public class Player : MonoBehaviour, ICharacter
     private void OnEnable()
     {
         _power.Changed += OnPowerChanged;
+        _invulnerabilityView.BecameInvulnerable += OnBecameInvulnerable;
+        _invulnerabilityView.Died += OnDie;
     }
 
     private void OnDisable()
     {
         _power.Changed -= OnPowerChanged;
+        _invulnerabilityView.BecameInvulnerable -= OnBecameInvulnerable;
+        _invulnerabilityView.Died -= OnDie;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -74,11 +85,41 @@ public class Player : MonoBehaviour, ICharacter
         Fell?.Invoke();
     }
 
-    public void Die()
+    public void ReadyToDie(DeathVariant deathVariant)
     {
-        _powerVisualizer.Disappear();
-        _collider.enabled = false;
-        Died?.Invoke();
+        //_deathVariant = deathVariant;
+        //Изменить скорость игры
+        _invulnerabilityView.Show(deathVariant);
+    }
+
+    public void OnBecameInvulnerable()
+    {
+        IsInvulnerable = true;
+        MadeInvulnerable?.Invoke();
+        _invulnerabilityField.gameObject.SetActive(true);
+        _materialXOffsetMover.SetMaterial(_invulnerabilityField.material);
+        _materialXOffsetMover.Move();
+    }
+
+    public void OnDie(DeathVariant deathVariant)
+    {
+        switch (deathVariant)
+        {
+            case DeathVariant.Fall:
+                ReadyToFall?.Invoke();
+                break;
+            case DeathVariant.Laser:
+                PlayBoltsOfLightingEffect();
+                _powerVisualizer.Disappear();
+                _collider.enabled = false;
+                Died?.Invoke();
+                break;
+            case DeathVariant.Kick:
+                _powerVisualizer.Disappear();
+                _collider.enabled = false;
+                Died?.Invoke();
+                break;
+        }
     }
 
     public void StrikeSound()

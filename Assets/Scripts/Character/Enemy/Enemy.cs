@@ -41,6 +41,8 @@ public class Enemy : MonoBehaviour, ICharacter
     private void OnDisable()
     {
         _player.Collided -= OnCollided;
+        _player.Died -= Kick;
+        _player.MadeInvulnerable -= OnMadeInvulnerable;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -50,37 +52,55 @@ public class Enemy : MonoBehaviour, ICharacter
             _collider.enabled = false;
             Power playerPower = player.GetComponent<Power>();
 
-            if (playerPower.Current < _power.Current)
+            if (player.IsInvulnerable == false && playerPower.Current < _power.Current)
             {
-                Instantiate(_fieldEffect, _center, Quaternion.identity);
-                Struck?.Invoke();
-                player.Die();
+                player.ReadyToDie(DeathVariant.Kick);
+                _player.Died += Kick;
+                _player.MadeInvulnerable += OnMadeInvulnerable;
             }
             else
             {
-                player.StrikeSound();
-
-                if (_isBoss)
-                {
-                    player.Win();
-                    player.Collided += OnCollided;
-                }
-                else
-                {
-                    _enemyRotator.StopRotating();
-                    Vector3 hitEffectPosition = transform.position;
-                    Instantiate(_hitEffect, hitEffectPosition, Quaternion.identity);
-
-                    Died?.Invoke();
-
-                    playerPower.Increase();
-
-                    ChangeBodyToDead();
-
-                    TakeHit(player);
-                }
+                Die();
             }
         }
+    }
+
+    private void Die()
+    {
+        _player.StrikeSound();
+
+        if (_isBoss)
+        {
+            _player.Win();
+            _player.Collided += OnCollided;
+        }
+        else
+        {
+            _enemyRotator.StopRotating();
+            Vector3 hitEffectPosition = transform.position;
+            Instantiate(_hitEffect, hitEffectPosition, Quaternion.identity);
+
+            Died?.Invoke();
+
+            Power playerPower = _player.GetComponent<Power>();
+            playerPower.Increase();
+
+            ChangeBodyToDead();
+
+            TakeHit(_player);
+        }
+    }
+
+    private void OnMadeInvulnerable()
+    {
+        Die();
+    }
+
+    private void Kick()
+    {
+        _player.Died -= Kick;
+        Instantiate(_fieldEffect, _center, Quaternion.identity);
+        Struck?.Invoke();
     }
 
     public void Init(Player player)
