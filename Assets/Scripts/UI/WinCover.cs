@@ -4,6 +4,8 @@ using General;
 using Agava.YandexGames;
 using YandexSDK;
 using System;
+using General;
+using GameAnalyticsSDK;
 
 [RequireComponent(typeof(Animator))]
 public class WinCover : EndScreen
@@ -29,6 +31,7 @@ public class WinCover : EndScreen
 
     private void OnAdOpen()
     {
+        EventsSender.Instance.SendAdEvent(GAAdAction.Clicked, GAAdType.Interstitial);
         AdOpened?.Invoke();
     }
 

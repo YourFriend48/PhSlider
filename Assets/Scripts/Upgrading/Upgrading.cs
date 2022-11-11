@@ -4,6 +4,8 @@ using UnityEngine.UI;
 using Agava.YandexGames;
 using YandexSDK;
 using System;
+using General;
+using GameAnalyticsSDK;
 
 public class Upgrading : MonoBehaviour, IGameSpeedChangable
 {
@@ -46,6 +48,7 @@ public class Upgrading : MonoBehaviour, IGameSpeedChangable
     public void Upgrade()
     {
         int expendeture = _price.Value;
+        EventsSender.Instance.SendSoftSpentEvent("Upgrade", gameObject.name, expendeture, 1);
         _price.SetPrice(_price.Value * 2);
         _walletHolder.Withdraw(expendeture);
         _floatParametr.IncreaseParameter();
@@ -61,12 +64,14 @@ public class Upgrading : MonoBehaviour, IGameSpeedChangable
 
     private void OnAdOpen()
     {
+        EventsSender.Instance.SendAdEvent(GAAdAction.Clicked, GAAdType.RewardedVideo);
         AdOpened?.Invoke();
         //GameSpeedChanged?.Invoke(0f);
     }
 
     private void OnRewarded()
     {
+        EventsSender.Instance.SendAdEvent(GAAdAction.RewardReceived, GAAdType.RewardedVideo);
         _price.SetPrice(_price.Value * 2);
         _floatParametr.IncreaseParameter();
     }

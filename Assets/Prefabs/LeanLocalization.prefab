@@ -60,8 +60,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentLanguage: English
   detectLanguage: 1
-  defaultLanguage: 
-  saveLoad: 1
+  defaultLanguage: English
+  saveLoad: 0
   prefabs:
   - Root: {fileID: 765358623864573794, guid: 971ef8207f535194faf411d40b27fb77, type: 3}
     sources:

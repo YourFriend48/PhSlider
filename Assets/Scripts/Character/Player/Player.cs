@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using General;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Collider))]
@@ -120,6 +121,8 @@ public class Player : MonoBehaviour, ICharacter
                 Died?.Invoke();
                 break;
         }
+
+        EventsSender.Instance.SendLevelFailEvent(LevelLoader.Instance.Level);
     }
 
     public void StrikeSound()
@@ -136,6 +139,7 @@ public class Player : MonoBehaviour, ICharacter
     {
         _powerVisualizer.Disappear();
         Won?.Invoke();
+        EventsSender.Instance.SendLevelCompleteEvent(LevelLoader.Instance.Level);
     }
 
     public void PlayBoltsOfLightingEffect()

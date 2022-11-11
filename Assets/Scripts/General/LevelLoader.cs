@@ -8,7 +8,7 @@ namespace General
     public class LevelLoader : MonoBehaviour
     {
         [SerializeField] private Levels _levels;
-        //[SerializeField] private EventsSender _eventsSender;
+        [SerializeField] private EventsSender _eventsSender;
 
         private int _sceneIndex;
 
@@ -33,14 +33,14 @@ namespace General
 
             Instance = this;
 
-            SendStartEvents();
             Level = PlayerPrefs.GetInt(LevelKey, StartLevel);
 
         }
 
         private void Start()
         {
-            //_eventsSender.Init();
+            _eventsSender.Init();
+            SendStartEvents();
 
             _sceneIndex = GetLevelIndex();
 
@@ -68,8 +68,8 @@ namespace General
                 registrationDate = DateTime.Now;
             }
 
-            //_eventsSender.SendGameStartEvent(sessions);
-            //_eventsSender.SendCustomUserEvent(sessions, 0, registrationDate.ToString("dd/MM/yyyy"), (DateTime.Today - registrationDate).Days);
+            _eventsSender.SendGameStartEvent(sessions);
+            _eventsSender.SendCustomUserEvent(sessions, 0, registrationDate.ToString("dd/MM/yyyy"), (DateTime.Today - registrationDate).Days);
         }
 
         public void Reload()
@@ -89,31 +89,11 @@ namespace General
         private int GetLevelIndex()
         {
             return Level - Level / _levels.Names.Count * _levels.Names.Count;
-
-            //if (Level < _levels.Names.Count)
-            //{
-            //    return Level;
-            //}
-            //else
-            //{
-            //}
-
-
-
-            //int attempts = 0;
-            //int newIndex;
-
-            //do
-            //{
-            //    newIndex = Level < _levels.Names.Count ? Level : Random.Range(FirstLevelIndex, _levels.Names.Count);
-            //}
-            //while (_sceneIndex == newIndex && ++attempts < _levels.Names.Count);
-
-            //return newIndex;
         }
 
         private void Load()
         {
+            EventsSender.Instance.SendLevelStartEvent(Level);
             SceneManager.LoadScene(_levels.Names[_sceneIndex]);
         }
     }

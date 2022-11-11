@@ -2,11 +2,13 @@ using UnityEngine;
 using General;
 using YandexSDK;
 using Agava.YandexGames;
+using System.Collections;
 
 public class Boot : MonoBehaviour
 {
     [SerializeField] private LevelLoader _levelLoader;
     [SerializeField] private Volume _volume;
+    //[SerializeField] private LungageSetter _lungageSetter;
 
     private void Start()
     {
@@ -19,14 +21,22 @@ public class Boot : MonoBehaviour
     private void OnYandexInitialized()
     {
         Unsubscribe();
+        StartCoroutine(GetEnvironment());
+    }
+
+    private IEnumerator GetEnvironment()
+    {
+        YandexGamesEnvironment env = YandexGamesSdk.Environment;
+
+        yield return new WaitWhile(() => env == null);
+        Languge.Name = env.i18n.lang;
         StartGame();
     }
 
     private void OnYandexInitializeFailed()
     {
         Unsubscribe();
-        string currentLanguge = YandexGamesSdk.Environment.i18n.lang;
-        Lean.Localization.LeanLocalization.SetCurrentLanguageAll(currentLanguge);
+        //Languge.Name = "tr";
         StartGame();
     }
 

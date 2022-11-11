@@ -1,6 +1,7 @@
 using UnityEngine;
 using Finance;
-using Pooling;
+using General;
+using GameAnalyticsSDK;
 
 public class SceneInitializer : MonoBehaviour
 {
@@ -14,8 +15,9 @@ public class SceneInitializer : MonoBehaviour
 
     private void Start()
     {
+        GameAnalytics.Initialize();
         // _poolManager.Init();
-
+        //EventsSender.Instance.SendLevelStartEvent();
         _walletHolder.Init();
         _walletView.Enable();
 

@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using General;
+using GameAnalyticsSDK;
 
 public class GameCover : EndScreen
 {
@@ -13,6 +15,7 @@ public class GameCover : EndScreen
 
     protected override void OnButtonClick()
     {
+        EventsSender.Instance.SendLevelRestartEvent(LevelLoader.Instance.Level);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
