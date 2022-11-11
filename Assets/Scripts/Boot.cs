@@ -3,6 +3,8 @@ using General;
 using YandexSDK;
 using Agava.YandexGames;
 using System.Collections;
+using GameAnalyticsSDK;
+using General;
 
 public class Boot : MonoBehaviour
 {
@@ -48,7 +50,7 @@ public class Boot : MonoBehaviour
 
     private void StartGame()
     {
-        //GameAnalytics.Initialize();
+        GameAnalytics.Initialize();
         _volume.enabled = true;
         _levelLoader.enabled = true;
     }

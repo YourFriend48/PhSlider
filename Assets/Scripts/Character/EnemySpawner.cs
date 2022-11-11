@@ -57,7 +57,13 @@ public class EnemySpawner : MonoBehaviour
                     continue;
                 }
 
-                while (power.Current < platform.Power + LevelLoader.Instance.Level / LevelLoader.Instance.Count * firstEnemyPowerInLastLevel)
+                int additionalLevel = 0;
+
+#if !UNITY_EDITOR
+                additionalLevel = LevelLoader.Instance.Level / LevelLoader.Instance.Count * firstEnemyPowerInLastLevel;
+#endif
+
+                while (power.Current < platform.Power + additionalLevel)
                 {
                     power.Increase();
                 }

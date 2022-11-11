@@ -87,7 +87,7 @@ public class Enemy : MonoBehaviour, ICharacter
 
             ChangeBodyToDead();
 
-            TakeHit(_player);
+            TakeHit();
         }
     }
 
@@ -144,18 +144,20 @@ public class Enemy : MonoBehaviour, ICharacter
 
         ChangeBodyToDead();
 
-        TakeHit(player);
+        TakeHit();
     }
 
-    private void ChangeBodyToDead()
+    [ContextMenu("ChangeBodyToDead")]
+    public void ChangeBodyToDead()
     {
         _model.SetActive(false);
         _ragdoll.SetActive(true);
     }
 
-    private void TakeHit(Player player)
+    [ContextMenu("Fly")]
+    public void TakeHit()
     {
-        Vector3 hitDirection = _rootBone.transform.position - player.transform.position;
+        Vector3 hitDirection = _rootBone.transform.position - _player.transform.position;
         _rootBone.AddForce(hitDirection * _impactForce, ForceMode.VelocityChange);
     }
 }

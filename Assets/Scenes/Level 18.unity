@@ -5858,6 +5858,10 @@ PrefabInstance:
       propertyPath: _roofActiveArea
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 889491472680567203, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 889491472680567205, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
       propertyPath: m_text
       value: LEVEL 1
