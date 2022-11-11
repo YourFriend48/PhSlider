@@ -7,6 +7,7 @@ public class Boot : MonoBehaviour
 {
     [SerializeField] private LevelLoader _levelLoader;
     [SerializeField] private Volume _volume;
+    //[SerializeField] private LeanLocalizationLoader _localizationLoader;
 
     private void Start()
     {
@@ -19,14 +20,14 @@ public class Boot : MonoBehaviour
     private void OnYandexInitialized()
     {
         Unsubscribe();
+        string currentLanguge = YandexGamesSdk.Environment.i18n.lang;
+        Lean.Localization.LeanLocalization.SetCurrentLanguageAll(currentLanguge);
         StartGame();
     }
 
     private void OnYandexInitializeFailed()
     {
         Unsubscribe();
-        string currentLanguge = YandexGamesSdk.Environment.i18n.lang;
-        Lean.Localization.LeanLocalization.SetCurrentLanguageAll(currentLanguge);
         StartGame();
     }
 
@@ -40,6 +41,7 @@ public class Boot : MonoBehaviour
     {
         //GameAnalytics.Initialize();
         _volume.enabled = true;
+        //_localizationLoader.enabled = true;
         _levelLoader.enabled = true;
     }
 }

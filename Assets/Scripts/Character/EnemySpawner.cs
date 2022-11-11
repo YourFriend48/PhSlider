@@ -12,6 +12,8 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
+        int firstEnemyPowerInLastLevel = 12;
+
         foreach (ActiveBuildingArea activeHouseArea in _activeHouseAreas)
         {
             if (activeHouseArea == null)
@@ -55,7 +57,7 @@ public class EnemySpawner : MonoBehaviour
                     continue;
                 }
 
-                while (power.Current < platform.Power + LevelLoader.Instance.Level / LevelLoader.Instance.Count)
+                while (power.Current < platform.Power + LevelLoader.Instance.Level / LevelLoader.Instance.Count * firstEnemyPowerInLastLevel)
                 {
                     power.Increase();
                 }

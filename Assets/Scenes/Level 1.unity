@@ -7048,6 +7048,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -242.775
       objectReference: {fileID: 0}
+    - target: {fileID: 2890012926098743185, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3219832325834319008, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
       propertyPath: _powerUpgrade
       value: 

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2498035180580357931}
   - component: {fileID: 2855548333009855358}
   - component: {fileID: 5412938535433232978}
-  - component: {fileID: 7035818631319860104}
   - component: {fileID: 7843985508670682003}
   - component: {fileID: 5937391234234420664}
   - component: {fileID: 699267206350005367}
@@ -89,19 +88,6 @@ MonoBehaviour:
   _isBoss: 0
   _PowerCanvasField: {fileID: 6478794803490262565}
   _colorOfWeakEnemy: {r: 0.41568625, g: 1, b: 0.2980392, a: 1}
---- !u!114 &7035818631319860104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3951641141606494064}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: addd4724d5f76f449b02627024153b5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animator: {fileID: 0}
 --- !u!114 &7843985508670682003
 MonoBehaviour:
   m_ObjectHideFlags: 0
