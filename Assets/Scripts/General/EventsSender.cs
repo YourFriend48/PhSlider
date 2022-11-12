@@ -6,6 +6,9 @@ namespace General
 {
     public class EventsSender : MonoBehaviour
     {
+        private const string RegistrationDateKey = nameof(RegistrationDateKey);
+        private const string SessionsKey = nameof(SessionsKey);
+
         public static EventsSender Instance;
 
         private DateTime _startLevelDateTime;
@@ -20,14 +23,36 @@ namespace General
             GameAnalytics.Initialize();
         }
 
+        public void SendStartEvents()
+        {
+            int sessions;
+            int daysInGame;
+            string registrationDate;
+
+            if (PlayerPrefs.HasKey(SessionsKey))
+            {
+                sessions = PlayerPrefs.GetInt(SessionsKey);
+                sessions++;
+
+                registrationDate = PlayerPrefs.GetString(RegistrationDateKey);
+            }
+            else
+            {
+                sessions = 0;
+
+                registrationDate = DateTime.Now.ToString();
+                PlayerPrefs.SetString(RegistrationDateKey, registrationDate);
+            }
+
+            daysInGame = DateTime.Now.Subtract(DateTime.Parse(registrationDate)).Days;
+            PlayerPrefs.SetInt(SessionsKey, sessions);
+            SendGameStartEvent(sessions);
+            GameAnalytics.NewProgressionEvent(GAProgressionStatus.Start, "RegistrationDay", registrationDate, "daysInGame", daysInGame);
+        }
+
         public void SendGameStartEvent(int sessions)
         {
             GameAnalytics.NewProgressionEvent(GAProgressionStatus.Start, "Game", sessions);
-        }
-
-        public void SendCustomUserEvent(int sessions, int soft, string registrationDay, int daysInGame)
-        {
-            GameAnalytics.NewProgressionEvent(GAProgressionStatus.Start, "RegistrationDay", registrationDay, "daysInGame", daysInGame);
         }
 
         public void SendLevelStartEvent(int level)

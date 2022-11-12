@@ -51,6 +51,7 @@ public class Boot : MonoBehaviour
     private void StartGame()
     {
         GameAnalytics.Initialize();
+        EventsSender.Instance.SendStartEvents();
         _volume.enabled = true;
         _levelLoader.enabled = true;
     }
