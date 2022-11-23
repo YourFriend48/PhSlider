@@ -6988,6 +6988,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2344332173999274411, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
+      propertyPath: entries.Array.data[1].Text
+      value: "\u0411\u041E\u0413\u0410\u0422\u0421T\u0412\u0422\u041E"
+      objectReference: {fileID: 0}
     - target: {fileID: 2344332175980449025, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
       propertyPath: m_RootOrder
       value: 7

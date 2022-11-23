@@ -1,6 +1,7 @@
 using Agava.YandexGames;
 using Finance;
 using System;
+using System.Collections;
 using UnityEngine;
 using YandexSDK;
 
@@ -28,35 +29,19 @@ public class GemLeaderboard : MonoBehaviour
     private EntriesWaiting _entriesWaiting;
     private int _highestResult;
 
+    private bool _isLocked;
+
     public event Action OldTableFilled;
 
     private void Awake()
     {
         _entriesWaiting = GetComponent<EntriesWaiting>();
+        _isLocked = true;
     }
 
-    private void OnEnable()
+    private void Start()
     {
-        //YandexAuthorizing.Authorized += OnSucsessAuthorize;
-        //YandexPersonalData.DataPermissioned += Show;
-    }
-
-    private void OnDisable()
-    {
-        //YandexAuthorizing.Authorized -= OnSucsessAuthorize;
-        //YandexPersonalData.DataPermissioned -= Show;
-
-        OldTableFilled -= OnOldTableFilled;
-        _entriesWaiting.Completed -= CreateNewTable;
-        _entriesWaiting.Completed -= CreateOldTable;
-        _panelOfOpponentsRecords.MovementCompleted -= OnMovementCompleted;
-
-        if (_playerString != null)
-        {
-            _playerString.Scaled -= OnScaleDownComleted;
-            _playerString.Scaled -= OnScaleUpCompleted;
-            _playerString.Scaled -= MoveTable;
-        }
+        StartCoroutine(Unlock());
     }
 
     public void TryShow()
@@ -76,18 +61,21 @@ public class GemLeaderboard : MonoBehaviour
         }
     }
 
-    private void OnSucsessAuthorize()
+    private IEnumerator Unlock()
     {
-        TryShow();
-    }
-
-    private void WriteStartData(LeaderboardGetEntriesResponse leaderboardGetEntriesResponse)
-    {
-        _tableAtStartLevel = leaderboardGetEntriesResponse.entries;
+        float yandexRequireWaitTime = 1.1f;
+        yield return new WaitForSecondsRealtime(yandexRequireWaitTime);
+        _isLocked = false;
     }
 
     private void Show()
     {
+        StartCoroutine(YandexWaiting());
+    }
+
+    private IEnumerator YandexWaiting()
+    {
+        yield return new WaitWhile(() => _isLocked);
         _leaderbordPanel.gameObject.SetActive(true);
         Leaderboard.GetPlayerEntry(LeaderboardName, OnSucsess);
     }
@@ -99,38 +87,13 @@ public class GemLeaderboard : MonoBehaviour
             _highestResult = WalletHolder.Instance.Value;
             Leaderboard.SetScore(LeaderboardName, _highestResult);
             Leaderboard.GetEntries(LeaderboardName, CreateStaticTable, null, 0, 5, true);
-            //Leaderboard.GetEntries(LeaderboardName, WriteStartData, null, 0, 5, true);
-            //CreateOldTable(_tableAtStartLevel);
         }
         else
         {
             _highestResult = Mathf.Max(leaderboardEntryResponse.score, WalletHolder.Instance.Value);
             Leaderboard.SetScore(LeaderboardName, _highestResult);
             Leaderboard.GetEntries(LeaderboardName, CreateStaticTable, null, 0, 5, true);
-            //OldTableFilled += OnOldTableFilled;
-            //Leaderboard.GetEntries(LeaderboardName, FillOldTable, null, 0, 5, true);
         }
-    }
-
-    private void OnOldTableFilled()
-    {
-        OldTableFilled -= OnOldTableFilled;
-        Leaderboard.SetScore(LeaderboardName, _highestResult);
-        Leaderboard.GetEntries(LeaderboardName, FillNewTable, null, 0, 5, true);
-    }
-
-    private void FillNewTable(LeaderboardGetEntriesResponse table)
-    {
-        LeaderboardEntryResponse[] leaderboardEntries = table.entries;
-        _entriesWaiting.Completed += CreateNewTable;
-        _entriesWaiting.Wait(leaderboardEntries);
-    }
-
-    private void FillOldTable(LeaderboardGetEntriesResponse table)
-    {
-        LeaderboardEntryResponse[] leaderboardEntries = table.entries;
-        _entriesWaiting.Completed += CreateOldTable;
-        _entriesWaiting.Wait(leaderboardEntries);
     }
 
     private void CreateOldTable(LeaderboardEntryResponse[] table)
@@ -181,59 +144,5 @@ public class GemLeaderboard : MonoBehaviour
             LeaderboardEntryResponse entry = table[i];
             Create(entry, i, _startPosition, Vector2.down);
         }
-    }
-
-    private void CreateNewTable(LeaderboardEntryResponse[] table)
-    {
-        _entriesWaiting.Completed -= CreateNewTable;
-        int positionIndex = 0;
-
-        for (int i = table.Length - 1; i >= 0; i--, positionIndex++)
-        {
-            LeaderboardEntryResponse entry = table[i];
-
-            if (table[i].player.uniqueID != YandexPersonalData.Data.uniqueID)
-            {
-                TableString tableString = Create(entry, positionIndex, _newRecordsStartPosition, Vector2.up);
-            }
-        }
-
-        Animate();
-    }
-
-    private void Animate()
-    {
-        _originalScale = _playerString.transform.localScale;
-        _targetScale = _originalScale * _targetScaleMultiplier;
-        _playerString.Scaled += OnScaleUpCompleted;
-        _playerString.ScaleTo(_targetScale);
-    }
-
-    private void OnScaleUpCompleted()
-    {
-        _playerString.Scaled -= OnScaleUpCompleted;
-        _playerString.ChangeScore(_highestResult, _animationTime);
-        MoveTable();
-    }
-
-    private void MoveTable()
-    {
-        int tableStringsCount = 15;
-        Vector2 startPosition = _panelOfOpponentsRecords.GetComponent<RectTransform>().anchoredPosition;
-        _panelOfOpponentsRecords.MoveTo(tableStringsCount * _offset * Vector2.down + startPosition, _animationTime);
-        _panelOfOpponentsRecords.MovementCompleted += OnMovementCompleted;
-    }
-
-    private void OnMovementCompleted()
-    {
-        _panelOfOpponentsRecords.MovementCompleted -= OnMovementCompleted;
-        _playerString.Scaled += OnScaleDownComleted;
-        _playerString.ScaleTo(_originalScale);
-    }
-
-    private void OnScaleDownComleted()
-    {
-        _playerString.Scaled -= OnScaleDownComleted;
-        _playerString.PlayEffect();
     }
 }

@@ -40,23 +40,12 @@ public class WinCover : EndScreen
         AdClosed?.Invoke();
     }
 
-    private IEnumerator EnableCover()
-    {
-        yield return new WaitForSeconds(_enableAfterWin);
-        Win();
-    }
-
     private void Win()
     {
         Open();
         _animator.enabled = true;
         _confetti.gameObject.SetActive(true);
         _leaderboard.TryShow();
-    }
-
-    private void PlayerMovementOnFinishReached()
-    {
-        StartCoroutine(EnableCover());
     }
 
     protected override void Disable()

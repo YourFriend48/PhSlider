@@ -16,13 +16,6 @@ public class LoseCover : EndScreen
         LevelLoader.Instance.Reload();
     }
 
-    private IEnumerator EnableCover()
-    {
-        yield return new WaitForSeconds(_enableAfterLose);
-
-        Lose();
-    }
-
     private void Lose()
     {
         Open();
