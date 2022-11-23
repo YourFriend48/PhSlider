@@ -7,18 +7,26 @@ public class VolumeButton : MonoBehaviour
     [SerializeField] private Image _soundOnImage;
     [SerializeField] private Image _soundOffImage;
 
+    private Volume _volume;
     private bool _isOn;
 
-    private void OnEnable()
-    {
-        OnSetted(Volume.Instance.Value);
-        _button.onClick.AddListener(OnChanged);
-    }
+    //private void OnEnable()
+    //{
+    //    OnSetted(_volume.Value);
+    //    _button.onClick.AddListener(OnChanged);
+    //}
 
     private void OnDisable()
     {
-        OnSetted(Volume.Instance.Value);
+        OnSetted(_volume.Value);
         _button.onClick.RemoveListener(OnChanged);
+    }
+
+    public void Init(Volume volume)
+    {
+        _volume = volume;
+        OnSetted(_volume.Value);
+        _button.onClick.AddListener(OnChanged);
     }
 
     private void OnSetted(float value)
@@ -39,11 +47,11 @@ public class VolumeButton : MonoBehaviour
     {
         if (_isOn)
         {
-            Volume.Instance.VolumeOff();
+            _volume.VolumeOff();
         }
         else
         {
-            Volume.Instance.VolumeOn();
+            _volume.VolumeOn();
         }
 
         Switch();

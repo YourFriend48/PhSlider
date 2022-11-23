@@ -123,50 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &177171014
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 177171016}
-  - component: {fileID: 177171015}
-  m_Layer: 0
-  m_Name: Volume
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &177171015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 177171014}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2880eac6cbd7ef40996bad7a134b28f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &177171016
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 177171014}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &737484801
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,7 +153,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelLoader: {fileID: 1190961023}
-  _volume: {fileID: 177171015}
 --- !u!4 &737484803
 Transform:
   m_ObjectHideFlags: 0
@@ -300,7 +255,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levels: {fileID: 11400000, guid: bce81440a0b4e574e94b7ead37d18257, type: 2}
-  _eventsSender: {fileID: 8761094155550279214}
 --- !u!4 &1190961024
 Transform:
   m_ObjectHideFlags: 0
@@ -325,7 +279,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1677686034551231932, guid: f752e80340dab5a49929acd7c51548fb, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1677686034551231932, guid: f752e80340dab5a49929acd7c51548fb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -373,14 +327,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f752e80340dab5a49929acd7c51548fb, type: 3}
---- !u!114 &8761094155550279214 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5552805501244868426, guid: f752e80340dab5a49929acd7c51548fb, type: 3}
-  m_PrefabInstance: {fileID: 8761094155550279213}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e873d23b63df2a743b9e9c5943bc3145, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

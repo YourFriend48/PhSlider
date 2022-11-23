@@ -9,7 +9,7 @@ using General;
 public class Boot : MonoBehaviour
 {
     [SerializeField] private LevelLoader _levelLoader;
-    [SerializeField] private Volume _volume;
+    //[SerializeField] private Volume _volume;
     //[SerializeField] private LungageSetter _lungageSetter;
 
     private void Start()
@@ -52,7 +52,7 @@ public class Boot : MonoBehaviour
     {
         GameAnalytics.Initialize();
         EventsSender.Instance.SendStartEvents();
-        _volume.enabled = true;
+        //_volume.enabled = true;
         _levelLoader.enabled = true;
     }
 }

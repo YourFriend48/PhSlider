@@ -8,28 +8,31 @@ public class Volume : MonoBehaviour
     private float _value;// = 1f;
     private bool _isAdOpen = false;
 
-    public static Volume Instance { get; private set; }
+    //public static Volume Instance { get; private set; }
 
     public float Value => _value;
 
     private void Awake()
     {
-        if (Instance && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
+        //if (Instance && Instance != this)
+        //{
+        //    Destroy(gameObject);
+        //    return;
+        //}
 
-        Instance = this;
+        //Instance = this;
+        //_value = PlayerPrefs.GetFloat(VolumeKey, 1);
+
         _value = PlayerPrefs.GetFloat(VolumeKey, 1);
-    }
-
-    private void Start()
-    {
         SetVolume(_value);
-
-        DontDestroyOnLoad(gameObject);
     }
+
+    //private void Start()
+    //{
+    //    SetVolume(_value);
+
+    //    DontDestroyOnLoad(gameObject);
+    //}
 
     private void OnEnable()
     {
@@ -76,7 +79,7 @@ public class Volume : MonoBehaviour
 
     public void VolumeOn()
     {
-        SetVolume(_value);
+        SetVolume(1);
     }
 
     public void VolumeOff()
@@ -87,7 +90,10 @@ public class Volume : MonoBehaviour
     private void PlaySound()
     {
         AudioListener.volume = _value;
-        AudioListener.pause = IsZero(AudioListener.volume);
+        bool isPause = IsZero(AudioListener.volume);
+        AudioListener.pause = isPause;
+        //AudioListener.volume = _value;
+        //AudioListener.pause = IsZero(AudioListener.volume);
     }
 
     private void OnInBackgroundChange(bool isInBackground)
