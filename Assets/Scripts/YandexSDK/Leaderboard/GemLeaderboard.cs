@@ -101,6 +101,23 @@ public class GemLeaderboard : MonoBehaviour
         }
     }
 
+    private void WriteData()
+    {
+        //Leaderboard.GetEntries(LeaderboardName, LeaderboardData.WriteData(), null, 0, 5, true);
+    }
+
+    //private void CreateStaticTable(LeaderboardGetEntriesResponse leaderboardGetEntriesResponse)
+    //{
+    //    Debug.Log("CreateStaticTable");
+    //    LeaderboardEntryResponse[] table = leaderboardGetEntriesResponse.entries;
+
+    //    for (int i = 0; i < table.Length; i++)
+    //    {
+    //        LeaderboardEntryResponse entry = table[i];
+    //        Create(entry, i, _startPosition, Vector2.down);
+    //    }
+    //}
+
     private void UpdateRecord(int previousRecord)
     {
         YandexPersonalData.HighestResult = Mathf.Max(previousRecord, WalletHolder.Instance.Value);
@@ -110,7 +127,7 @@ public class GemLeaderboard : MonoBehaviour
     private void OnScoreSetted()
     {
         Debug.Log("OnScoreSetted");
-        Leaderboard.GetEntries(LeaderboardName, CreateStaticTable, null, 0, 5, true);
+        //Leaderboard.GetEntries(LeaderboardName, CreateStaticTable, null, 0, 5, true);
     }
 
     private void CreateOldTable(LeaderboardEntryResponse[] table)
