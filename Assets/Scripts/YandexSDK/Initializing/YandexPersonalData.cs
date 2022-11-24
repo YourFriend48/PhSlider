@@ -7,45 +7,17 @@ namespace YandexSDK
     public static class YandexPersonalData
     {
         public static PlayerAccountProfileDataResponse Data { get; private set; } = new();
+        public static bool IsDataSetted = false;
+        public static bool HasLeaderboardRecord = false;
+        public static int HighestResult;
 
         public static event UnityAction DataPermissioned;
         public static event UnityAction DataLoaded;
         public static event UnityAction DataProhibited;
 
-        public static bool GetDataIsAvailabled()
+        public static void Request()
         {
-#if UNITY_EDITOR == false && UNITY_WEBGL
-        if (YandexAuthorizing.GetIsAuthorized())
-        {
-            return PlayerAccount.HasPersonalProfileDataPermission;
-        }
-#endif
-            return false;
-        }
-
-        public static void RequestData()
-        {
-            if (YandexAuthorizing.GetIsAuthorized())
-            {
-                if (GetDataIsAvailabled())
-                {
-                    OnDataPermissioned();
-                }
-                else
-                {
-                    Debug.Log("Attempt to obtain permission for personal data");
-
-#if UNITY_EDITOR == false && UNITY_WEBGL
             PlayerAccount.RequestPersonalProfileDataPermission(OnDataPermissioned, OnErrorCallback);
-#else
-                    Debug.Log("Access to personal data is possible only in the Yandex Games assembly");
-#endif
-                }
-            }
-            else
-            {
-                YandexAuthorizing.Authorize();
-            }
         }
 
         private static void OnDataPermissioned()
@@ -65,6 +37,7 @@ namespace YandexSDK
         private static void SetData(PlayerAccountProfileDataResponse data)
         {
             Data = data;
+            IsDataSetted = true;
             Debug.Log("Data loaded");
             DataLoaded?.Invoke();
         }

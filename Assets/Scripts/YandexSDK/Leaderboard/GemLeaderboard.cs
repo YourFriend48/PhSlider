@@ -29,71 +29,88 @@ public class GemLeaderboard : MonoBehaviour
     private EntriesWaiting _entriesWaiting;
     private int _highestResult;
 
-    private bool _isLocked;
-
     public event Action OldTableFilled;
 
     private void Awake()
     {
         _entriesWaiting = GetComponent<EntriesWaiting>();
-        _isLocked = true;
     }
 
-    private void Start()
+    private void OnDisable()
     {
-        StartCoroutine(Unlock());
+        YandexAuthorizing.Authorized -= OnSucsessAuthorize;
+        YandexPersonalData.DataLoaded -= Show;
     }
 
     public void TryShow()
     {
-        if (YandexAuthorizing.GetIsAuthorized())
-        {
-            if (YandexPersonalData.GetDataIsAvailabled() == false)
-            {
-                YandexPersonalData.RequestData();
-            }
+        Debug.Log("TryShow");
 
+        if (YandexPersonalData.IsDataSetted)
+        {
             Show();
         }
         else
         {
-            YandexAuthorizing.Authorize();
+            if (YandexAuthorizing.IsAuthorised == false)
+            {
+                YandexAuthorizing.Authorized += OnSucsessAuthorize;
+                YandexAuthorizing.Authorise();
+            }
+            else
+            {
+                Show();
+            }
         }
     }
 
-    private IEnumerator Unlock()
+    private void OnSucsessAuthorize()
     {
-        float yandexRequireWaitTime = 1.1f;
-        yield return new WaitForSecondsRealtime(yandexRequireWaitTime);
-        _isLocked = false;
+        YandexAuthorizing.Authorized -= OnSucsessAuthorize;
+        YandexPersonalData.DataLoaded += Show;
+        YandexPersonalData.Request();
     }
 
     private void Show()
     {
-        StartCoroutine(YandexWaiting());
-    }
-
-    private IEnumerator YandexWaiting()
-    {
-        yield return new WaitWhile(() => _isLocked);
+        YandexPersonalData.DataLoaded -= Show;
         _leaderbordPanel.gameObject.SetActive(true);
-        Leaderboard.GetPlayerEntry(LeaderboardName, OnSucsess);
+
+        if (YandexPersonalData.HasLeaderboardRecord)
+        {
+            UpdateRecord(YandexPersonalData.HighestResult);
+        }
+        else
+        {
+            Leaderboard.GetPlayerEntry(LeaderboardName, OnSucsess);
+        }
     }
 
     private void OnSucsess(LeaderboardEntryResponse leaderboardEntryResponse)
     {
+        YandexPersonalData.HasLeaderboardRecord = true;
+        Debug.Log("OnSucsess");
         if (leaderboardEntryResponse == null)
         {
-            _highestResult = WalletHolder.Instance.Value;
-            Leaderboard.SetScore(LeaderboardName, _highestResult);
-            Leaderboard.GetEntries(LeaderboardName, CreateStaticTable, null, 0, 5, true);
+            YandexPersonalData.HighestResult = WalletHolder.Instance.Value;
+            Leaderboard.SetScore(LeaderboardName, YandexPersonalData.HighestResult, OnScoreSetted);
         }
         else
         {
-            _highestResult = Mathf.Max(leaderboardEntryResponse.score, WalletHolder.Instance.Value);
-            Leaderboard.SetScore(LeaderboardName, _highestResult);
-            Leaderboard.GetEntries(LeaderboardName, CreateStaticTable, null, 0, 5, true);
+            UpdateRecord(leaderboardEntryResponse.score);
         }
+    }
+
+    private void UpdateRecord(int previousRecord)
+    {
+        YandexPersonalData.HighestResult = Mathf.Max(previousRecord, WalletHolder.Instance.Value);
+        Leaderboard.SetScore(LeaderboardName, YandexPersonalData.HighestResult, OnScoreSetted);
+    }
+
+    private void OnScoreSetted()
+    {
+        Debug.Log("OnScoreSetted");
+        Leaderboard.GetEntries(LeaderboardName, CreateStaticTable, null, 0, 5, true);
     }
 
     private void CreateOldTable(LeaderboardEntryResponse[] table)
@@ -137,6 +154,7 @@ public class GemLeaderboard : MonoBehaviour
 
     private void CreateStaticTable(LeaderboardGetEntriesResponse leaderboardGetEntriesResponse)
     {
+        Debug.Log("CreateStaticTable");
         LeaderboardEntryResponse[] table = leaderboardGetEntriesResponse.entries;
 
         for (int i = 0; i < table.Length; i++)

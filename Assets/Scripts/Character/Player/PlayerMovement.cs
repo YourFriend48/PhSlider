@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private bool _isInputEnable = false;
     private bool _isMoving = false;
     private bool _isInvunlerable = false;
+    private NavigationPlatform _fellPlatform;
 
     public event Action FinishReached;
     public event Action LastHitInitiated;
@@ -41,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _player.Landed += PlayerOnLanded;
         _player.Died += PlayerOnDied;
-        _player.ReadyToFall += OnMakeInvulnerable;
+        _player.ReadyToFall += OnFall;
         _player.MadeInvulnerable += OnMakeInvulnerable;
     }
 
@@ -65,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
         _player.Died -= PlayerOnDied;
         Completed -= OnCompleted;
         Completed -= OnFinishReached;
-        _player.ReadyToFall -= OnMakeInvulnerable;
+        _player.ReadyToFall -= OnFall;
         _player.MadeInvulnerable -= OnMakeInvulnerable;
     }
 
@@ -128,8 +129,9 @@ public class PlayerMovement : MonoBehaviour
         {
             if (_isInvunlerable == false && navigationPlatform.IsMovable == false)
             {
+                _fellPlatform = navigationPlatform;
                 _player.ReadyToDie(DeathVariant.Fall);
-                MoveAndMake(navigationPlatform.Center, StayOverAnAbyss);
+                //MoveAndMake(navigationPlatform.Center, StayOverAnAbyss);
                 //Stop();
             }
             else
@@ -141,7 +143,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnFall()
     {
-        OnSwipped(_direction);
+        //OnSwipped(_direction);
+        MoveAndMake(_fellPlatform.Center, StayOverAnAbyss);
     }
 
     private void OnMakeInvulnerable()

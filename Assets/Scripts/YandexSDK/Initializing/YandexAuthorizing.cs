@@ -7,39 +7,16 @@ namespace YandexSDK
     public static class YandexAuthorizing
     {
         public static event UnityAction Authorized;
+        public static bool IsAuthorised = false;
 
-        public static bool GetIsAuthorized()
+        public static void Authorise()
         {
-#if UNITY_EDITOR == false && UNITY_WEBGL
-        if (YandexInitializing.GetIsInitialized())
-        {
-            return PlayerAccount.IsAuthorized;
-        }
-#endif
-            return false;
+            PlayerAccount.Authorize(OnSucsessAuthorize);
         }
 
-        public static void Authorize()
+        private static void OnSucsessAuthorize()
         {
-            if (GetIsAuthorized())
-            {
-                OnAuthorized();
-            }
-            else
-            {
-                Debug.Log("Authorization attempt");
-
-#if UNITY_EDITOR == false && UNITY_WEBGL
-            PlayerAccount.Authorize(OnAuthorized);
-#else
-                Debug.Log("Authorization is possible only in the Yandex Games build");
-#endif
-            }
-        }
-
-        private static void OnAuthorized()
-        {
-            Debug.Log("Authorized");
+            IsAuthorised = true;
             Authorized?.Invoke();
         }
     }
