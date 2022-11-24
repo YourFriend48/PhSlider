@@ -2,7 +2,10 @@ using Agava.YandexGames;
 using Finance;
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Profiling.Memory.Experimental;
 using YandexSDK;
 
 [RequireComponent(typeof(EntriesWaiting))]
@@ -28,6 +31,7 @@ public class GemLeaderboard : MonoBehaviour
     private LeaderboardEntryResponse[] _tableAtStartLevel;
     private EntriesWaiting _entriesWaiting;
     private int _highestResult;
+    private LeaderboardEntryResponse[] _entries;
 
     public event Action OldTableFilled;
 
@@ -48,17 +52,20 @@ public class GemLeaderboard : MonoBehaviour
 
         if (YandexPersonalData.IsDataSetted)
         {
+            Debug.Log("YandexPersonalData.IsDataSetted");
             Show();
         }
         else
         {
             if (YandexAuthorizing.IsAuthorised == false)
             {
+                Debug.Log("YandexAuthorizing.IsAuthorised == false");
                 YandexAuthorizing.Authorized += OnSucsessAuthorize;
                 YandexAuthorizing.Authorise();
             }
             else
             {
+                Debug.Log("YandexAuthorizing.IsAuthorised == true");
                 Show();
             }
         }
@@ -68,11 +75,14 @@ public class GemLeaderboard : MonoBehaviour
     {
         YandexAuthorizing.Authorized -= OnSucsessAuthorize;
         YandexPersonalData.DataLoaded += Show;
+        Debug.Log("Request");
         YandexPersonalData.Request();
     }
 
     private void Show()
     {
+        Debug.Log("Show");
+
         YandexPersonalData.DataLoaded -= Show;
         _leaderbordPanel.gameObject.SetActive(true);
 
@@ -82,8 +92,21 @@ public class GemLeaderboard : MonoBehaviour
         }
         else
         {
+            Debug.Log("GetPlayerEntry");
             Leaderboard.GetPlayerEntry(LeaderboardName, OnSucsess);
         }
+    }
+
+    private void OnError()
+    {
+
+    }
+
+    private void NormalUpdateTable()
+    {
+        Leaderboard.SetScore(LeaderboardName, YandexPersonalData.HighestResult);
+        List<LeaderboardEntryResponse> leaderboardEntryResponses = LeaderboardData.GetData();
+        CreateStaticTable(leaderboardEntryResponses);
     }
 
     private void OnSucsess(LeaderboardEntryResponse leaderboardEntryResponse)
@@ -93,40 +116,50 @@ public class GemLeaderboard : MonoBehaviour
         if (leaderboardEntryResponse == null)
         {
             YandexPersonalData.HighestResult = WalletHolder.Instance.Value;
-            Leaderboard.SetScore(LeaderboardName, YandexPersonalData.HighestResult, OnScoreSetted);
+            Leaderboard.SetScore(LeaderboardName, YandexPersonalData.HighestResult, GetEntries);
         }
         else
         {
-            UpdateRecord(leaderboardEntryResponse.score);
+            YandexPersonalData.HighestResult = Mathf.Max(leaderboardEntryResponse.score, WalletHolder.Instance.Value);
+            Leaderboard.SetScore(LeaderboardName, YandexPersonalData.HighestResult, GetEntries);
         }
+
+        List<LeaderboardEntryResponse> entries = LeaderboardData.GetData();
     }
 
-    private void WriteData()
+    private void GetEntries()
     {
-        //Leaderboard.GetEntries(LeaderboardName, LeaderboardData.WriteData(), null, 0, 5, true);
+        Leaderboard.GetEntries(LeaderboardName, WriteData, null, 0, 100, true);
     }
 
-    //private void CreateStaticTable(LeaderboardGetEntriesResponse leaderboardGetEntriesResponse)
-    //{
-    //    Debug.Log("CreateStaticTable");
-    //    LeaderboardEntryResponse[] table = leaderboardGetEntriesResponse.entries;
+    private void WriteData(LeaderboardGetEntriesResponse leaderboardGetEntriesResponse)
+    {
+        _entries = leaderboardGetEntriesResponse.entries;
+        _entriesWaiting.Wait(_entries);
+        _entriesWaiting.Completed += OnCompleted;
 
-    //    for (int i = 0; i < table.Length; i++)
-    //    {
-    //        LeaderboardEntryResponse entry = table[i];
-    //        Create(entry, i, _startPosition, Vector2.down);
-    //    }
-    //}
+        //List<LeaderboardEntryResponse> leaderboardEntryResponses = LeaderboardData.GetData();
+        //CreateStaticTable(leaderboardEntryResponses);
+    }
+
+    private void OnCompleted(LeaderboardEntryResponse[] entries)
+    {
+        _entries = entries;
+        LeaderboardData.WriteData(_entries.ToList());
+
+        List<LeaderboardEntryResponse> leaderboardEntryResponses = LeaderboardData.GetData();
+        CreateStaticTable(leaderboardEntryResponses);
+    }
 
     private void UpdateRecord(int previousRecord)
     {
         YandexPersonalData.HighestResult = Mathf.Max(previousRecord, WalletHolder.Instance.Value);
-        Leaderboard.SetScore(LeaderboardName, YandexPersonalData.HighestResult, OnScoreSetted);
+        Leaderboard.SetScore(LeaderboardName, YandexPersonalData.HighestResult, NormalUpdateTable);
     }
 
     private void OnScoreSetted()
     {
-        Debug.Log("OnScoreSetted");
+        //Debug.Log("OnScoreSetted");
         //Leaderboard.GetEntries(LeaderboardName, CreateStaticTable, null, 0, 5, true);
     }
 
@@ -175,6 +208,15 @@ public class GemLeaderboard : MonoBehaviour
         LeaderboardEntryResponse[] table = leaderboardGetEntriesResponse.entries;
 
         for (int i = 0; i < table.Length; i++)
+        {
+            LeaderboardEntryResponse entry = table[i];
+            Create(entry, i, _startPosition, Vector2.down);
+        }
+    }
+
+    private void CreateStaticTable(List<LeaderboardEntryResponse> table)
+    {
+        for (int i = 0; i < table.Count; i++)
         {
             LeaderboardEntryResponse entry = table[i];
             Create(entry, i, _startPosition, Vector2.down);
