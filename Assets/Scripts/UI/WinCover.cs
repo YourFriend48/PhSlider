@@ -45,7 +45,7 @@ public class WinCover : EndScreen
         Open();
         _animator.enabled = true;
         _confetti.gameObject.SetActive(true);
-        _leaderboard.TryShow();
+        //_leaderboard.TryShow();
     }
 
     protected override void Disable()

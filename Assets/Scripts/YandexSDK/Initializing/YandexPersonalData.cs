@@ -6,9 +6,7 @@ namespace YandexSDK
 {
     public static class YandexPersonalData
     {
-        private const string DataKey = "Data";
-
-        public static PlayerAccountProfileDataResponse Data { get; private set; } = PlayerPrefsSaver<PlayerAccountProfileDataResponse>.Load(DataKey);
+        public static PlayerAccountProfileDataResponse Data { get; private set; } = new();
         public static bool IsDataSetted = false;
         public static bool HasLeaderboardRecord = false;
         public static int HighestResult;
@@ -34,14 +32,11 @@ namespace YandexSDK
         {
             Debug.Log($"Data prohibited - {errorText}");
             DataProhibited?.Invoke();
-            IsDataSetted = true;
-            DataLoaded?.Invoke();
         }
 
         private static void SetData(PlayerAccountProfileDataResponse data)
         {
             Data = data;
-            PlayerPrefsSaver<PlayerAccountProfileDataResponse>.Save(DataKey, data);
             IsDataSetted = true;
             Debug.Log("Data loaded");
             DataLoaded?.Invoke();

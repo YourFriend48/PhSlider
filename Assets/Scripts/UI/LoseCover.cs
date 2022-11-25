@@ -20,7 +20,7 @@ public class LoseCover : EndScreen
     {
         Open();
         _animator.enabled = true;
-        _leaderboard.TryShow();
+        //_leaderboard.TryShow();
     }
 
     protected override void Disable()
