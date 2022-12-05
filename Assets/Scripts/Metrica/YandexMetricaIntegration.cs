@@ -31,43 +31,43 @@ public class YandexMetricaIntegration : MonoBehaviour
 
     public void OnLevelStart(int numberLevel)
     {
-        YandexMetrica.Send($"level {numberLevel} Start");
+        YandexMetrica.Send($"level{numberLevel}Start");
         Debug.Log($"OnLevelStart + level {numberLevel} Start");
     }
 
     public void OnLevelComplete()
     {
-        YandexMetrica.Send($"level {SceneManager.GetActiveScene().buildIndex} Complete");
+        YandexMetrica.Send($"level{SceneManager.GetActiveScene().buildIndex}Complete");
         Debug.Log($"level {SceneManager.GetActiveScene().buildIndex} Complete");
     }
 
     public void OnLevelFail(int numberLevel)
     {
-        YandexMetrica.Send($"level {numberLevel} Fail", $"{{\"Fail Time\": \"{Time.timeSinceLevelLoad}\"}}");
+        YandexMetrica.Send($"level{numberLevel}Fail");
         Debug.Log($"level {numberLevel} Fail");
     }
 
     public void OnRestartLevel(int numberLevel)
     {
-        YandexMetrica.Send($"level {numberLevel} Restart");
+        YandexMetrica.Send($"level{numberLevel}Restart");
         Debug.Log($"level {numberLevel} Restart");
     }
 
     public void SkipLevelAdOffer(int numberLevel)
     {
-        YandexMetrica.Send($"skipLevelAdOffer {numberLevel}");
+        YandexMetrica.Send($"skipLevelAdOffer{numberLevel}");
         Debug.Log($"skipLevelAdOffer {numberLevel}");
     }
 
     public void UpgradeForGems(string name)
     {
-        YandexMetrica.Send($"Upgrade for Gems {name}");
+        YandexMetrica.Send($"UpgradeForGems{name}");
         Debug.Log($"Upgrade for Gems {name}");
     }
 
     public void UpgradeForAd(string name)
     {
-        YandexMetrica.Send($"Upgrade for Ad {name}");
+        YandexMetrica.Send($"UpgradeForAd{name}");
         Debug.Log($"Upgrade for Ad {name}");
     }
 }
