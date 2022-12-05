@@ -2564,6 +2564,10 @@ PrefabInstance:
       propertyPath: translationName
       value: Failed
       objectReference: {fileID: 0}
+    - target: {fileID: 6796540290616645790, guid: dabc49d8558873446b24e96b901e69d4, type: 3}
+      propertyPath: _token
+      value: 
+      objectReference: {fileID: 6479960068353942118}
     - target: {fileID: 8492974085296717429, guid: dabc49d8558873446b24e96b901e69d4, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2860,6 +2864,10 @@ PrefabInstance:
       propertyPath: FallbackText
       value: Completed
       objectReference: {fileID: 0}
+    - target: {fileID: 6796540290616645790, guid: dabc49d8558873446b24e96b901e69d4, type: 3}
+      propertyPath: _token
+      value: 
+      objectReference: {fileID: 6479960068353942118}
     - target: {fileID: 8492974085296717429, guid: dabc49d8558873446b24e96b901e69d4, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
