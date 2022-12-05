@@ -285,13 +285,13 @@ MonoBehaviour:
   data: 0
   entries:
   - Language: English
-    Text: Price
+    Text: Income
     Object: {fileID: 0}
   - Language: Russian
-    Text: "\u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C "
+    Text: "\u0414\u043E\u0445\u043E\u0434"
     Object: {fileID: 0}
   - Language: Turkish
-    Text: Fiyat
+    Text: Gelir
     Object: {fileID: 0}
 --- !u!1 &3204560179636426696
 GameObject:
