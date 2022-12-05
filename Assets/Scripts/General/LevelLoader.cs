@@ -18,7 +18,6 @@ namespace General
 
         public int Count => _levels.Names.Count;
 
-        public static event Action<int> ComplitedLevel;
 
         private void Awake()
         {
@@ -58,8 +57,6 @@ namespace General
             PlayerPrefs.SetInt(LevelKey, ++Level);
 
             _sceneIndex = GetLevelIndex();
-
-            ComplitedLevel?.Invoke(_sceneIndex);
             Load();
         }
 
