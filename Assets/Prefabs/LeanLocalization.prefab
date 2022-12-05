@@ -43,6 +43,7 @@ Transform:
   - {fileID: 3204560178989878877}
   - {fileID: 8623115140369442619}
   - {fileID: 6640182468547785158}
+  - {fileID: 1533249938333177065}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -232,7 +233,7 @@ MonoBehaviour:
     Text: FREE
     Object: {fileID: 0}
   - Language: Russian
-    Text: "\u0414\u0410\u0420\u041E\u041C"
+    Text: "\u0411\u0435\u0441\u043F\u043B\u0430\u0442\u043D\u043E"
     Object: {fileID: 0}
   - Language: Turkish
     Text: BEDAVA
@@ -284,7 +285,7 @@ MonoBehaviour:
   data: 0
   entries:
   - Language: English
-    Text: Gem cost
+    Text: Price
     Object: {fileID: 0}
   - Language: Russian
     Text: "\u0421\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C "
@@ -394,13 +395,13 @@ MonoBehaviour:
   data: 0
   entries:
   - Language: English
-    Text: Level
+    Text: Level {LevelIndex}
     Object: {fileID: 0}
   - Language: Russian
-    Text: "\u0423\u0440\u043E\u0432\u0435\u043D\u044C"
+    Text: "\u0423\u0440\u043E\u0432\u0435\u043D\u044C {LevelIndex}"
     Object: {fileID: 0}
   - Language: Turkish
-    Text: Seviye
+    Text: Seviye {LevelIndex}
     Object: {fileID: 0}
 --- !u!1 &3204560180257546463
 GameObject:
@@ -455,7 +456,7 @@ MonoBehaviour:
     Text: "\u041D\u0435\u0443\u044F\u0437\u0432\u0438\u043C\u043E\u0441\u0442\u044C"
     Object: {fileID: 0}
   - Language: Turkish
-    Text: "g\xFCvenlik a\xE7\u0131\u011F\u0131"
+    Text: "Dokunulmazl\u0131k"
     Object: {fileID: 0}
 --- !u!1 &3204560180382073457
 GameObject:
@@ -787,6 +788,51 @@ MonoBehaviour:
   - Language: Turkish
     Text: "KAZAN\xC7"
     Object: {fileID: 0}
+--- !u!1 &5983938979181445181
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1533249938333177065}
+  - component: {fileID: 6133109299914595357}
+  m_Layer: 0
+  m_Name: LevelIndex
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1533249938333177065
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5983938979181445181}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3204560178790495098}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6133109299914595357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5983938979181445181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b00b1c461a103b4898dcc53ee709d22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value: 1
 --- !u!1 &6873946501874149149
 GameObject:
   m_ObjectHideFlags: 0
