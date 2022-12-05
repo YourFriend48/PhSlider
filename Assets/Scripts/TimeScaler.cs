@@ -50,7 +50,6 @@ public class TimeScaler : MonoBehaviour
 
     private void OnAdClosed()
     {
-        Debug.Log("OnAdClosed");
         SetTimeScale(1);
     }
 
@@ -71,11 +70,8 @@ public class TimeScaler : MonoBehaviour
 
     private void SetTimeScale(float time)
     {
-        Debug.Log("time " + time);
         _timeScale = time;
-        Debug.Log("_timeScale " + _timeScale);
         Time.timeScale = time;
-        Debug.Log("Time.timeScale " + Time.timeScale);
     }
 
     private void OnInBackgroundChange(bool isInBackground)

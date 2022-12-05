@@ -150,6 +150,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   translationName: LOSE
   FallbackText: WIN
+--- !u!1 &543756014443873240
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 665150724387705639}
+  - component: {fileID: 6731095974294030326}
+  m_Layer: 0
+  m_Name: YANDEXMetrica
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &665150724387705639
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543756014443873240}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -195.40887, y: 895.21124, z: 90.09025}
+  m_LocalScale: {x: 1.3626686, y: 1.3626686, z: 1.3626686}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 889491473752283179}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6731095974294030326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543756014443873240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5cd4ccef9deac647bf5d9ceaa8c1a7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &889491472375736410
 GameObject:
   m_ObjectHideFlags: 0
@@ -1272,6 +1316,7 @@ RectTransform:
   - {fileID: 2344332175980449025}
   - {fileID: 940355897443933945}
   - {fileID: 4577555967295062221}
+  - {fileID: 665150724387705639}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2166,7 +2211,7 @@ PrefabInstance:
       objectReference: {fileID: 940355897443932423}
     - target: {fileID: 2435223247800877509, guid: 179ecce3d9178694790518665a9fbd49, type: 3}
       propertyPath: m_text
-      value: Price
+      value: Income
       objectReference: {fileID: 0}
     - target: {fileID: 2435223247800877509, guid: 179ecce3d9178694790518665a9fbd49, type: 3}
       propertyPath: m_fontSize

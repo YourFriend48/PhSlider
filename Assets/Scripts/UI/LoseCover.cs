@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using General;
+using System;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Animator))]
 public class LoseCover : EndScreen
@@ -10,9 +12,11 @@ public class LoseCover : EndScreen
     [SerializeField] private GemLeaderboard _leaderboard;
 
     private Animator _animator;
+    public static event Action<int> Failed;
 
     protected override void OnButtonClick()
     {
+        Failed?.Invoke(SceneManager.GetActiveScene().buildIndex);
         LevelLoader.Instance.Reload();
     }
 

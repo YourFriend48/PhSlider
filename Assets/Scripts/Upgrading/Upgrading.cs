@@ -20,6 +20,8 @@ public class Upgrading : MonoBehaviour, IGameSpeedChangable
     public event Action<float> GameSpeedChanged;
     public static event Action AdOpened;
     public static event Action AdClosed;
+    public static event Action<string> UpgradedForGems;
+    public static event Action<string> UpgradedForAd;
 
     public event Action Upgraded;
 
@@ -53,10 +55,12 @@ public class Upgrading : MonoBehaviour, IGameSpeedChangable
         _walletHolder.Withdraw(expendeture);
         _floatParametr.IncreaseParameter();
         Upgraded?.Invoke();
+        UpgradedForGems?.Invoke(transform.name);
     }
 
     public void OnAdsUpgrade()
     {
+        UpgradedForAd?.Invoke(transform.name);
 #if UNITY_WEBGL && !UNITY_EDITOR
         VideoAd.Show(onOpenCallback: OnAdOpen, onRewardedCallback: OnRewarded, onCloseCallback: OnAdClose);
 #endif
