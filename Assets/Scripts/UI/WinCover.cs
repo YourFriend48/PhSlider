@@ -20,6 +20,8 @@ public class WinCover : EndScreen
     public static event Action<float> GameSpeedChanged;
     public static event Action AdOpened;
     public static event Action AdClosed;
+    public static event Action ComplitedLevel;
+
 
     protected override void OnButtonClick()
     {
@@ -42,6 +44,7 @@ public class WinCover : EndScreen
 
     private void Win()
     {
+        ComplitedLevel?.Invoke();
         Open();
         _animator.enabled = true;
         _confetti.gameObject.SetActive(true);

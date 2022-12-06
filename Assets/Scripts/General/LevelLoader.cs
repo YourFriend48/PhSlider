@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,6 +17,7 @@ namespace General
         public static LevelLoader Instance { get; private set; }
 
         public int Count => _levels.Names.Count;
+
 
         private void Awake()
         {
@@ -39,9 +41,10 @@ namespace General
             {
                 return;
             }
-
             DontDestroyOnLoad(gameObject);
             Load();
+
+            
         }
 
         public void Reload()
@@ -54,7 +57,6 @@ namespace General
             PlayerPrefs.SetInt(LevelKey, ++Level);
 
             _sceneIndex = GetLevelIndex();
-
             Load();
         }
 

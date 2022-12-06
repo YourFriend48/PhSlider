@@ -34,6 +34,12 @@ public class Player : MonoBehaviour, ICharacter
     public Power Power => _power;
     public bool IsInvulnerable { get; private set; } = false;
 
+    private void OnValidate()
+    {
+        _invulnerabilityView = FindObjectOfType<InvulnerabilityView>();
+        Debug.Log(0);
+    }
+
     private void Awake()
     {
         _collider = GetComponent<Collider>();
