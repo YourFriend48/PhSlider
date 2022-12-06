@@ -6998,6 +6998,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 1448121902422664249, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 1477984005548726148, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -37.5
@@ -7116,7 +7120,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4577555967295062221, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4953225255995533315, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7252,6 +7256,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6bb57bc3f7667941a9926ad7b78a2b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &889491472802808029 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7925660311309055848, guid: 19f56c04585bf4043be8a496df845a5a, type: 3}
+  m_PrefabInstance: {fileID: 889491472802808024}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9eb4dc335baa0f4cb451a7a12857ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1314023542995069706
@@ -7454,6 +7469,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1623213233081321736, guid: 31e9124d4f5fc2744a43c6830e03f303, type: 3}
+      propertyPath: _invulnerabilityView
+      value: 
+      objectReference: {fileID: 889491472802808029}
     - target: {fileID: 1623213233081321741, guid: 31e9124d4f5fc2744a43c6830e03f303, type: 3}
       propertyPath: _platform
       value: 
@@ -7491,63 +7510,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e228a7d5a7ca6c4d9b0fda07a9a1920, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1623213232511364314 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7856418836535044236, guid: 31e9124d4f5fc2744a43c6830e03f303, type: 3}
-  m_PrefabInstance: {fileID: 1623213232511364312}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1623213232511364315 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 610147995100950735, guid: 31e9124d4f5fc2744a43c6830e03f303, type: 3}
-  m_PrefabInstance: {fileID: 1623213232511364312}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1623213232511364316 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2402126057969588645, guid: 31e9124d4f5fc2744a43c6830e03f303, type: 3}
-  m_PrefabInstance: {fileID: 1623213232511364312}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1623213232511364317
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1623213232511364314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbf51be86e70d7941bd40914206e4ddc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  translationName: Get
-  FallbackText: 
---- !u!114 &1623213232511364318
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1623213232511364315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbf51be86e70d7941bd40914206e4ddc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  translationName: No, thanks
-  FallbackText: 
---- !u!114 &1623213232511364319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1623213232511364316}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbf51be86e70d7941bd40914206e4ddc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  translationName: Invulnerability
-  FallbackText: 
 --- !u!1001 &2682773887051478891
 PrefabInstance:
   m_ObjectHideFlags: 0
