@@ -46,7 +46,7 @@ MonoBehaviour:
     m_To: VirtualEndCamera
     m_Blend:
       m_Style: 1
-      m_Time: 0.1
+      m_Time: 0.5
       m_CustomCurve:
         serializedVersion: 2
         m_Curve:
@@ -75,7 +75,7 @@ MonoBehaviour:
     m_To: VirtualMainCamera
     m_Blend:
       m_Style: 1
-      m_Time: 1.1
+      m_Time: 3
       m_CustomCurve:
         serializedVersion: 2
         m_Curve:

@@ -1,6 +1,7 @@
 using System.Collections;
 using Cinemachine;
 using UnityEngine;
+using System;
 
 public class CameraChanger : MonoBehaviour
 {
@@ -9,19 +10,25 @@ public class CameraChanger : MonoBehaviour
     [SerializeField] private float _waitBeforeLaunchCameraDisable = 0.5f;
     [SerializeField] private CinemachineVirtualCamera _launchCamera;
     [SerializeField] private CinemachineVirtualCamera _mainCamera;
+    [SerializeField] private float _intervaOfWaiting = 3f;
+    [SerializeField] private TimeScaler _timeScaler;
+
+    public event Action Showed;
 
     private void OnEnable()
     {
         _player.Landed += PlayerOnLanded;
-        _playerMovement.LastHitInitiated += PlayerMovementOnLastHitInitiated;
-        _playerMovement.FinishReached += PlayerMovementOnFinishReached;
+        _player.Won += OnWon;
+        _player.Died += PlayerOnDied;
+        _player.Failed += PlayerOnDied;
     }
 
     private void OnDisable()
     {
         _player.Landed -= PlayerOnLanded;
-        _playerMovement.LastHitInitiated -= PlayerMovementOnLastHitInitiated;
-        _playerMovement.FinishReached -= PlayerMovementOnFinishReached;
+        _player.Won -= OnWon;
+        _player.Died -= PlayerOnDied;
+        _player.Failed -= PlayerOnDied;
     }
 
     private IEnumerator DisableLaunchCamera()
@@ -33,11 +40,24 @@ public class CameraChanger : MonoBehaviour
     private void PlayerMovementOnFinishReached()
     {
         _mainCamera.enabled = true;
+        Showed?.Invoke();
     }
 
-    private void PlayerMovementOnLastHitInitiated()
+    private IEnumerator Waiting()
+    {
+        yield return new WaitForSeconds(_intervaOfWaiting * _timeScaler.LastHitTimeScale);
+        PlayerMovementOnFinishReached();
+    }
+
+    private void OnWon()
     {
         _mainCamera.enabled = false;
+        StartCoroutine(Waiting());
+    }
+
+    private void PlayerOnDied()
+    {
+        _mainCamera.enabled = true;
     }
 
     private void PlayerOnLanded()
